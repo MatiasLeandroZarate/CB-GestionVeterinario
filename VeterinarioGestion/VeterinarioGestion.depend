@@ -1,0 +1,232 @@
+# depslib dependency file v1.0
+1747776640 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\clientemanager.cpp
+	"ClienteManager.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\clientemanager.h
+	"GestorArchivo.h"
+	"Cliente.h"
+	<string>
+	<iostream>
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\gestorarchivo.h
+	<iostream>
+	"Cliente.h"
+	"Mascotas.h"
+	"Sucursales.h"
+	"Especialidades.h"
+	"Veterinarios.h"
+	"Consultas.h"
+	"Tratamientos.h"
+	"Consultas.h"
+	"Pagos.h"
+	"Vacunas.h"
+	"Vacunaciones.h"
+
+1747776907 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\cliente.h
+	<iostream>
+	<cstring>
+	"Persona.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\persona.h
+	<iostream>
+	<string>
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\mascotas.h
+	<iostream>
+	<string>
+	"Animal.h"
+	"Fecha.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\animal.h
+	<iostream>
+	<string>
+	"Fecha.h"
+	"Cliente.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\fecha.h
+	<string>
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\sucursales.h
+	<iostream>
+	<string>
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\especialidades.h
+	<iostream>
+	<string>
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\veterinarios.h
+	<iostream>
+	<string>
+	"Persona.h"
+	"Especialidades.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\consultas.h
+	<iostream>
+	<string>
+	"Fecha.h"
+	"Mascotas.h"
+	"Sucursales.h"
+	"Veterinarios.h"
+	"Tratamientos.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\tratamientos.h
+	<iostream>
+	<string>
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\pagos.h
+	<iostream>
+	<string>
+	"Fecha.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\vacunas.h
+	<iostream>
+	<string>
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\vacunaciones.h
+	<iostream>
+	<string>
+	"Vacunas.h"
+	"Fecha.h"
+	"Mascotas.h"
+	"Veterinarios.h"
+
+1747776640 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\consultasmanager.cpp
+	"ConsultasManager.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\consultasmanager.h
+	<iostream>
+	<string>
+	"Consultas.h"
+	"GestorArchivo.h"
+	"TratamientosManager.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\tratamientosmanager.h
+	"GestorArchivo.h"
+	"Tratamientos.h"
+	<string>
+	<iostream>
+
+1747776640 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\especialidadmanager.cpp
+	"EspecialidadManager.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\especialidadmanager.h
+	"Especialidades.h"
+	"GestorArchivo.h"
+	<iostream>
+	<string>
+
+1747776640 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\fecha.cpp
+	"Fecha.h"
+
+1747776640 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\gestorarchivo.cpp
+	"GestorArchivo.h"
+
+1747776640 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\main.cpp
+	<iostream>
+	"MascotaManager.h"
+	"ClienteManager.h"
+	"SucursalManager.h"
+	"EspecialidadManager.h"
+	"VeterinariosManager.h"
+	"TratamientosManager.h"
+	"ConsultasManager.h"
+	"PagosManager.h"
+	"VacunasManager.h"
+	"VacunacionesManager.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\mascotamanager.h
+	"GestorArchivo.h"
+	"Mascotas.h"
+	<string>
+	<iostream>
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\sucursalmanager.h
+	"GestorArchivo.h"
+	"Sucursales.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\veterinariosmanager.h
+	"GestorArchivo.h"
+	"EspecialidadManager.h"
+	"Veterinarios.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\pagosmanager.h
+	<iostream>
+	"Pagos.h"
+	"GestorArchivo.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\vacunasmanager.h
+	<iostream>
+	<string>
+	"GestorArchivo.h"
+	"Vacunas.h"
+
+1747776765 c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\vacunacionesmanager.h
+	<iostream>
+	<string>
+	"Vacunaciones.h"
+	"GestorArchivo.h"
+	"VacunasManager.h"
+	"MascotaManager.h"
+	"VeterinariosManager.h"
+	"Fecha.h"
+
+1747776640 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\mascotamanager.cpp
+	"MascotaManager.h"
+
+1747776695 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\pagosmanager.cpp
+	"PagosManager.h"
+
+1747776695 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\sucursalmanager.cpp
+	"SucursalManager.h"
+
+1747776695 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\tratamientosmanager.cpp
+	"TratamientosManager.h"
+
+1747776695 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\vacunaciones.cpp
+	"Vacunaciones.h"
+
+1747776695 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\vacunacionesmanager.cpp
+	"VacunacionesManager.h"
+
+1747776695 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\vacunasmanager.cpp
+	"VacunasManager.h"
+
+1747776867 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\animal.cpp
+	"Animal.h"
+
+1747776851 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\cliente.cpp
+	"Cliente.h"
+
+1747776640 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\consultas.cpp
+	"Consultas.h"
+
+1747776828 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\mascotas.cpp
+	"Mascotas.h"
+
+1747776936 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\especialidades.cpp
+	"Especialidades.h"
+	<cstring>
+
+1747776955 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\pagos.cpp
+	"Pagos.h"
+	<cstring>
+
+1747776695 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\veterinariosmanager.cpp
+	"VeterinariosManager.h"
+
+1747776959 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\persona.cpp
+	"Persona.h"
+	<cstring>
+
+1747776966 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\sucursales.cpp
+	"Sucursales.h"
+	<cstring>
+
+1747776972 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\tratamientos.cpp
+	"Tratamientos.h"
+	<cstring>
+
+1747776976 source:c:\users\mzara\onedrive\documents\veterinariocodeblock\veterinariogestion\vacunas.cpp
+	"Vacunas.h"
+	<cstring>
+

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="VeterinarioGestion" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/VeterinarioGestion" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/VeterinarioGestion" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="Animal.cpp" />
+		<Unit filename="Animal.h" />
+		<Unit filename="Cliente.cpp" />
+		<Unit filename="Cliente.h" />
+		<Unit filename="ClienteManager.cpp" />
+		<Unit filename="ClienteManager.h" />
+		<Unit filename="Consultas.cpp" />
+		<Unit filename="Consultas.h" />
+		<Unit filename="ConsultasManager.cpp" />
+		<Unit filename="ConsultasManager.h" />
+		<Unit filename="EspecialidadManager.cpp" />
+		<Unit filename="EspecialidadManager.h" />
+		<Unit filename="Especialidades.cpp" />
+		<Unit filename="Especialidades.h" />
+		<Unit filename="Fecha.cpp" />
+		<Unit filename="Fecha.h" />
+		<Unit filename="GestorArchivo.cpp" />
+		<Unit filename="GestorArchivo.h" />
+		<Unit filename="MascotaManager.cpp" />
+		<Unit filename="MascotaManager.h" />
+		<Unit filename="Mascotas.cpp" />
+		<Unit filename="Mascotas.h" />
+		<Unit filename="Pagos.cpp" />
+		<Unit filename="Pagos.h" />
+		<Unit filename="PagosManager.cpp" />
+		<Unit filename="PagosManager.h" />
+		<Unit filename="Persona.cpp" />
+		<Unit filename="Persona.h" />
+		<Unit filename="SucursalManager.cpp" />
+		<Unit filename="SucursalManager.h" />
+		<Unit filename="Sucursales.cpp" />
+		<Unit filename="Sucursales.h" />
+		<Unit filename="Tratamientos.cpp" />
+		<Unit filename="Tratamientos.h" />
+		<Unit filename="TratamientosManager.cpp" />
+		<Unit filename="TratamientosManager.h" />
+		<Unit filename="Vacunaciones.cpp" />
+		<Unit filename="Vacunaciones.h" />
+		<Unit filename="VacunacionesManager.cpp" />
+		<Unit filename="VacunacionesManager.h" />
+		<Unit filename="Vacunas.cpp" />
+		<Unit filename="Vacunas.h" />
+		<Unit filename="VacunasManager.cpp" />
+		<Unit filename="VacunasManager.h" />
+		<Unit filename="Veterinarios.cpp" />
+		<Unit filename="Veterinarios.h" />
+		<Unit filename="VeterinariosManager.cpp" />
+		<Unit filename="VeterinariosManager.h" />
+		<Unit filename="clientes.dat" />
+		<Unit filename="consultas.dat" />
+		<Unit filename="especialidades.dat" />
+		<Unit filename="main.cpp" />
+		<Unit filename="mascotas.dat" />
+		<Unit filename="pagos.dat" />
+		<Unit filename="sucursales.dat" />
+		<Unit filename="tratamientos.dat" />
+		<Unit filename="vacunaciones.dat" />
+		<Unit filename="vacunas.dat" />
+		<Unit filename="veterinarios.dat" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
