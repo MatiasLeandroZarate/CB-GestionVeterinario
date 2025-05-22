@@ -6,12 +6,12 @@
 
 
 class ClienteManager
-{
+{	
 private:
 public:
-    void CargarCliente();
-    void MostrarClientes();
-    int BuscarClientePorID(int idBuscado);
-    int ObtenerSiguienteID();
+	void CargarCliente();
+	void MostrarClientes();
+	int BuscarClientePorID(int idBuscado);
+	int ObtenerSiguienteID();
 };
 

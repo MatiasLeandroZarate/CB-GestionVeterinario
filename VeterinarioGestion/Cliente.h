@@ -3,8 +3,7 @@
 #include <cstring>
 #include "Persona.h"
 
-class Cliente : public Persona
-{
+class Cliente : public Persona {
 private:
     int _IDCliente;
     char _Telefono[20];
@@ -22,6 +21,7 @@ public:
     void setTelefono(std::string Telefono);
     void setEmail(std::string Email);
 
+	std::string toInforme();
     std::string toCSV();
 
 };

@@ -4,13 +4,12 @@
 #include "Veterinarios.h"
 
 
-class VeterinariosManager
-{
-private:
+class VeterinariosManager 
+{private:
 public:
-    void CargarVeterinarios();
-    void MostrarVeterinario();
-    int BuscarVeterinariosPorID(int idBuscado);
-
+	void CargarVeterinarios();
+	void MostrarVeterinario();
+	int BuscarVeterinariosPorID(int idBuscado);
+	
 };
 

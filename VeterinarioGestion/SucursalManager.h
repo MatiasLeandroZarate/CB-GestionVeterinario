@@ -6,9 +6,9 @@ class SucursalManager
 {
 private:
 public:
-    void CargarSucursal();
-    void MostrarSucursal();
-    int BuscarSucursalPorID(int idBuscado);
-
+	void CargarSucursal();
+	void MostrarSucursal();
+	int BuscarSucursalPorID(int idBuscado);
+	
 };
 

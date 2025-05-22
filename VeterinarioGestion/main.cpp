@@ -25,7 +25,7 @@ int main()
     VacunasManager vacunasMan;
     VacunacionesManager vacunacionesMan;
 
-    //clienteMan.CargarCliente();
+    //for(int i=0;i<3;i++) clienteMan.CargarCliente();
     //mascotaMan.CargarMascota();
     //sucursalMan.CargarSucursal();
     //especialidadMan.CargarEspecialidad();
@@ -37,11 +37,12 @@ int main()
     //vacunacionesMan.CargarVacunaciones();
 
 
-    //std::cout << "--------------------" << std::endl;
-    //std::cout << "CLIENTE: " << std::endl;
-    //std::cout << "IDCliente,DNI,Nombre,Apellido,Telefono,Email" << std::endl;
-    //clienteMan.MostrarClientes();
-    //
+    std::cout << "--------------------" << std::endl;
+    std::cout << "CLIENTE: " << std::endl;
+    std::cout << "ID\t| DNI\t\t|Nombre\t|Apellido\t|Telefono\t|Email" << std::endl;
+    std::cout << "-------------------------------------------------------------------------------------" << std::endl;
+    clienteMan.MostrarClientes();
+
     //std::cout << std::endl <<"--------------------" << std::endl;
     //std::cout << "--------------------" << std::endl;
     //std::cout << "MASCOTA: " << std::endl;
@@ -59,32 +60,33 @@ int main()
     //std::cout << "ESPECIALIDADES: " << std::endl;
     //std::cout << "IDEspecialidad,NombreEspe,Descripcion" << std::endl;
     //especialidadMan.MostrarEspecialidades();
-    //
-    //std::cout << std::endl <<"--------------------" << std::endl;
-    //std::cout << "--------------------" << std::endl;
-    //std::cout << "VETERINARIO: " << std::endl;
-    //std::cout << "IDVeterinario,MatriculaVete,NombreVete,ApellidoVete,IDEspecialidad,NombreEspecialidad,Descripcion,Activo" << std::endl;
-    //veterinarioMan.MostrarVeterinario();
-    //
+//
+//    std::cout << std::endl <<"--------------------" << std::endl;
+//    std::cout << "--------------------" << std::endl;
+//    std::cout << "VETERINARIO: " << std::endl;
+//    std::cout << "IDVeterinario,MatriculaVete,NombreVete,ApellidoVete,IDEspecialidad,NombreEspecialidad,Descripcion,Activo" << std::endl;
+//    veterinarioMan.MostrarVeterinario();
+//
     //std::cout << std::endl <<"--------------------" << std::endl;
     //std::cout << "--------------------" << std::endl;
     //std::cout << "TRATAMIENTO:" << std::endl;
     //std::cout << "IDTratamiento,NombreTratamiento,Descripcion,DuracionDias,Costo" << std::endl;
     //tratamientoMan.MostrarTratamiento();
     //
-    //std::cout << std::endl <<"--------------------" << std::endl;
-    //std::cout << "--------------------" << std::endl;
-    //std::cout << "CONSULTA:" << std::endl;
-    //std::cout << "IDConsultas,IDMascota,Fecha,Sintomas,Diagnostico,IDTratamiento,NombreTratamiento,DescTratamiento,DuracionTrata,CostoTrata,FechaProximaVisita,IDVeterinario,IDSucursal" << std::endl;
-    //consultaMan.MostrarConsulta();
+    /*std::cout << std::endl <<"--------------------" << std::endl;
+    std::cout << "--------------------" << std::endl;
+    std::cout << "CONSULTA:" << std::endl;
+    std::cout << "IDConsultas,IDMascota,Fecha,Sintomas,Diagnostico,IDTratamiento,NombreTratamiento,DescTratamiento,DuracionTrata,CostoTrata,FechaProximaVisita,IDVeterinario,IDSucursal" << std::endl;
+    consultaMan.MostrarConsulta();*/
 
-    std::cout << std::endl <<"--------------------" << std::endl;
+    /*std::cout << std::endl <<"--------------------" << std::endl;
     std::cout << "--------------------" << std::endl;
     std::cout << "PAGOS:" << std::endl;
-    std::cout << "IDPago,IDConsulta,Monto,FechaPago,MediodePago" << std::endl;
+    std::cout << "IDPago  |" << "IDConsulta  |" "\t" << "Monto  |"  << "FechaPago  |" "\t" << "MediodePago  |" << std::endl;
+    std::cout << "---------------------------------------------------------------------------" << std::endl;
     pagosMan.MostrarPagos();
-    std::cout << std::endl;
-    pagosMan.FacturacionPorAnio();
+    std::cout << std::endl;*/
+    //pagosMan.FacturacionPorAnio();
 
     /*
     std::cout << std::endl <<"--------------------" << std::endl;

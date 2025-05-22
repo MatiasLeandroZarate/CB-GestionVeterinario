@@ -5,11 +5,10 @@
 #include "Vacunas.h"
 
 class VacunasManager
-{
-private:
+{private:
 public:
-    void CargarVacunas();
-    void MostrarVacunas();
-    int BuscarVacunasPorID(int idBuscado);
+	void CargarVacunas();
+	void MostrarVacunas();
+	int BuscarVacunasPorID(int idBuscado);
 };
 

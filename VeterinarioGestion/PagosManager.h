@@ -7,9 +7,10 @@ class PagosManager
 {
 private:
 public:
-    void CargarPagos();
-    void MostrarPagos();
-    int BuscarPagosPorID(int idBuscado);
-    void FacturacionPorAnio();
+	void CargarPagos();
+	void MostrarPagos();
+	int BuscarPagosPorID(int idBuscado);
+	void FacturacionPorAnio();
+	
 };
 

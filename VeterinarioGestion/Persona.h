@@ -2,8 +2,7 @@
 #include <iostream>
 #include <string>
 
-class Persona
-{
+class Persona {
 protected:
     char _DNI[15];
     char _Nombre[50];
@@ -11,7 +10,7 @@ protected:
 
 public:
     Persona();
-    Persona(std::string DNI, std::string Nombre, std::string Apellido);
+	Persona(std::string DNI, std::string Nombre, std::string Apellido);
     std::string getDNI();
     std::string getNombre();
     std::string getApellido();

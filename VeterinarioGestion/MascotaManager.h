@@ -8,9 +8,9 @@ class MascotaManager
 {
 private:
 public:
-    void CargarMascota();
-    void MostrarMascota();
-    int BuscarMascotaPorID(int idBuscado);
-    //int ObtenerSiguienteID();
+	void CargarMascota();
+	void MostrarMascota();
+	int BuscarMascotaPorID(int idBuscado);
+	//int ObtenerSiguienteID();
 
 };

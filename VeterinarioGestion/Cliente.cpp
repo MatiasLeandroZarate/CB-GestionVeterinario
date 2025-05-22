@@ -1,34 +1,32 @@
 #include "Cliente.h"
 
 Cliente::Cliente()
-    : Persona()
-{
+: Persona(){
     _IDCliente = 0;
-    std::strcpy(_Telefono, "0");
-    std::strcpy(_Email, "0");
+	strcpy(_Telefono, "0");
+	strcpy(_Email, "0");
 }
 
 Cliente::Cliente(int IDCliente, std::string DNI, std::string Nombre, std::string Apellido, std::string Telefono, std::string Email)
-    :Persona(DNI, Nombre, Apellido)
-{
-    setIDCliente(IDCliente);
-    setTelefono(Telefono);
-    setEmail(Email);
+:Persona(DNI, Nombre, Apellido){
+	setIDCliente(IDCliente);
+	setTelefono(Telefono);
+	setEmail(Email);
 }
 
 
 void Cliente::setIDCliente(int IDCliente)
 {
-    _IDCliente = IDCliente;
+	_IDCliente = IDCliente;
 }
 
-void Cliente::setTelefono(std::string Telefono)
+void Cliente::setTelefono(std::string Telefono) 
 {
-    std::strcpy(_Telefono, Telefono.c_str());
+	strcpy(_Telefono, Telefono.c_str());
 }
-void Cliente::setEmail(std::string Email)
+void Cliente::setEmail(std::string Email) 
 {
-    std::strcpy(_Email, Email.c_str());
+	strcpy(_Email, Email.c_str());
 }
 
 int Cliente::getIDCliente()
@@ -46,7 +44,12 @@ std::string Cliente::getEmail()
     return _Email;
 }
 
-std::string Cliente::toCSV()
+std::string Cliente::toCSV() 
 {
-    return std::to_string(_IDCliente) + "," + getDNI() + "," + getNombre() + "," + getApellido() + "," + std::string(_Telefono) + "," + std::string(_Email);
+	return std::to_string(_IDCliente) + "," + getDNI() + "," + getNombre() + "," + getApellido() + "," + std::string(_Telefono) + "," + std::string(_Email);   
+}
+
+std::string Cliente::toInforme()
+{
+	return std::to_string(_IDCliente) + "\t" + getDNI() + "\t" + getNombre() + "\t" + getApellido() + "\t\t" + std::string(_Telefono) + "\t" + std::string(_Email);   
 }

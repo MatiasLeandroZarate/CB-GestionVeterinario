@@ -5,12 +5,11 @@
 #include <iostream>
 
 class TratamientosManager
-{
-private:
+{private:
 public:
-    void CargarTratamiento();
-    void MostrarTratamiento();
-    int BuscarTratamientoPorID(int idBuscado);
-
+	void CargarTratamiento();
+	void MostrarTratamiento();
+	int BuscarTratamientoPorID(int idBuscado);
+	
 };
 

@@ -9,11 +9,10 @@
 #include "Fecha.h"
 
 class VacunacionesManager
-{
-private:
+{private:
 public:
-    void CargarVacunaciones();
-    void MostrarVacunaciones();
-    int BuscarVacunacionesPorID(int idBuscado);
+	void CargarVacunaciones();
+	void MostrarVacunaciones();
+	int BuscarVacunacionesPorID(int idBuscado);
 };
 

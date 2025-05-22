@@ -1,13 +1,13 @@
 #pragma once
+#include <iostream>
 #include <string>
 
 
-class Fecha
-{
-private:
+class Fecha{
+    private:
     int _dia, _mes, _anio;
 
-public:
+    public:
     Fecha();
     Fecha(int dia, int mes, int anio);
 
@@ -18,4 +18,6 @@ public:
     void setMes(int mes);
     void setAnio(int anio);
     std::string toString();
+
+    Fecha ValidacionFecha(Fecha validar);
 };

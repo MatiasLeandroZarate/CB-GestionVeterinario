@@ -6,11 +6,10 @@
 
 
 class EspecialidadManager
-{
-private:
+{private:
 public:
-    void CargarEspecialidad();
-    void MostrarEspecialidades();
-    int BuscarEspecialidadPorID(int idBuscado);
+	void CargarEspecialidad();
+	void MostrarEspecialidades();
+	int BuscarEspecialidadPorID(int idBuscado);
 };
 
