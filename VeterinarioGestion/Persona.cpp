@@ -1,4 +1,5 @@
 #include "Persona.h"
+#include <cstring>
 
 Persona::Persona()
 {

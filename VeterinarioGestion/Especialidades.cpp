@@ -1,4 +1,5 @@
 #include "Especialidades.h"
+#include <cstring>
 
 Especialidades::Especialidades()
 {

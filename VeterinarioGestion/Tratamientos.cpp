@@ -1,4 +1,5 @@
 #include "Tratamientos.h"
+#include <cstring>
 
 Tratamientos::Tratamientos()
 {

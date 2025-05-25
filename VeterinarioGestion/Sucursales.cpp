@@ -1,4 +1,5 @@
 #include "Sucursales.h"
+#include <cstring>
 
 Sucursales::Sucursales()
 {
@@ -14,7 +15,7 @@ Sucursales::Sucursales(int idSucursal, std::string nombre, std::string direccion
 	setDireccion(direccion);
 }
 
-void Sucursales::setIDSucursal(int IDSucursal) 
+void Sucursales::setIDSucursal(int IDSucursal)
 {
 	_IDSucursal = IDSucursal;
 }
@@ -22,9 +23,9 @@ void Sucursales::setNombre(std::string nombre)
 {
 	strcpy(_Nombre, nombre.c_str());
 }
-void Sucursales::setDireccion(std::string direccion) 
+void Sucursales::setDireccion(std::string direccion)
 {
-	strcpy(_Direccion, direccion.c_str());	
+	strcpy(_Direccion, direccion.c_str());
 }
 
 int Sucursales::getIDSucursal()
@@ -41,7 +42,7 @@ std::string Sucursales::getDireccion()
 }
 
 
-std::string Sucursales::toCSV() 
+std::string Sucursales::toCSV()
 {
 	return std::to_string(_IDSucursal) + "," + std::string(_Nombre) + "," + std::string(_Direccion);
 }

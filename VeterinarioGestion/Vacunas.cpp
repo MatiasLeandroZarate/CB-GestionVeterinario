@@ -1,4 +1,5 @@
 #include "Vacunas.h"
+#include <cstring>
 
 Vacunas::Vacunas()
 {

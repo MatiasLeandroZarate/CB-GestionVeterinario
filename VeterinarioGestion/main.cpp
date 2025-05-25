@@ -9,21 +9,24 @@
 #include "PagosManager.h"
 #include "VacunasManager.h"
 #include "VacunacionesManager.h"
+#include "MenuManager.h"
 
 using namespace std;
 
 int main()
 {
-    ClienteManager clienteMan;
-    MascotaManager mascotaMan;
-    SucursalManager sucursalMan;
-    EspecialidadManager especialidadMan;
-    VeterinariosManager veterinarioMan;
-    TratamientosManager tratamientoMan;
-    ConsultasManager consultaMan;
-    PagosManager pagosMan;
-    VacunasManager vacunasMan;
-    VacunacionesManager vacunacionesMan;
+    MenuManager menuManager;
+ //   MascotaManager mascotaMan;
+ //   SucursalManager sucursalMan;
+//    EspecialidadManager especialidadMan;
+//    VeterinariosManager veterinarioMan;
+ //   TratamientosManager tratamientoMan;
+ //   ConsultasManager consultaMan;
+ //   PagosManager pagosMan;
+ //   VacunasManager vacunasMan;
+ //   VacunacionesManager vacunacionesMan;
+
+    menuManager.procesarMenuPrincipal();
 
     //for(int i=0;i<3;i++) clienteMan.CargarCliente();
     //mascotaMan.CargarMascota();
@@ -36,12 +39,6 @@ int main()
     //vacunasMan.CargarVacunas();
     //vacunacionesMan.CargarVacunaciones();
 
-
-    std::cout << "--------------------" << std::endl;
-    std::cout << "CLIENTE: " << std::endl;
-    std::cout << "ID\t| DNI\t\t|Nombre\t|Apellido\t|Telefono\t|Email" << std::endl;
-    std::cout << "-------------------------------------------------------------------------------------" << std::endl;
-    clienteMan.MostrarClientes();
 
     //std::cout << std::endl <<"--------------------" << std::endl;
     //std::cout << "--------------------" << std::endl;

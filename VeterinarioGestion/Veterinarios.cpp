@@ -1,4 +1,5 @@
 #include "Veterinarios.h"
+#include <cstring>
 
 Veterinarios::Veterinarios()
 : Persona(){

@@ -48,12 +48,16 @@
 		<Unit filename="Especialidades.h" />
 		<Unit filename="Fecha.cpp" />
 		<Unit filename="Fecha.h" />
+		<Unit filename="FuncionesGlobales.cpp" />
+		<Unit filename="FuncionesGlobales.h" />
 		<Unit filename="GestorArchivo.cpp" />
 		<Unit filename="GestorArchivo.h" />
 		<Unit filename="MascotaManager.cpp" />
 		<Unit filename="MascotaManager.h" />
 		<Unit filename="Mascotas.cpp" />
 		<Unit filename="Mascotas.h" />
+		<Unit filename="MenuManager.cpp" />
+		<Unit filename="MenuManager.h" />
 		<Unit filename="Pagos.cpp" />
 		<Unit filename="Pagos.h" />
 		<Unit filename="PagosManager.cpp" />
