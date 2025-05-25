@@ -364,6 +364,8 @@ void MenuManager::procesarSubmenuVacunas(){
     const string TITULO_REGISTRAR = "Registrar vacunacion";
     const string TITULO_LISTAR = "Listado de vacunas";
 
+    VacunasManager vacunasMan;
+
     int opcion;
     limpiarPantalla();
 
@@ -389,6 +391,11 @@ void MenuManager::procesarSubmenuVacunas(){
             case OPCION_REGISTRAR:
                 break;
             case OPCION_LISTAR:
+                std::cout << std::endl << "--------------------" << std::endl;
+                std::cout << "--------------------" << std::endl;
+                std::cout << "VACUNACIONES: " << std::endl;
+                std::cout << "IDVacunaciones,IDVacuna,NombreVacuna,DescVacuna,Serial,IDMascota,NombreMascota,EspecieMascota,RazaMascota,EdadMascota,SexoMascota,FechaNacimiento,IDCliente,FechaAplicacion,IDVeterinario,NombreVeterinario,ApellidoVeterinario,IDEspecialidad,NombreEspecialidad,DescEspecialidad,Activo" << std::endl;
+                vacunasMan.MostrarVacunas();
                 break;
             case OPCION_ATRAS_SALIR:
                 break;

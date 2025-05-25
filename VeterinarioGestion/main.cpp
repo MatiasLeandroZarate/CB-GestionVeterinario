@@ -16,6 +16,8 @@ using namespace std;
 int main()
 {
     MenuManager menuManager;
+    menuManager.procesarMenuPrincipal();
+
  //   MascotaManager mascotaMan;
  //   SucursalManager sucursalMan;
 //    EspecialidadManager especialidadMan;
@@ -26,7 +28,6 @@ int main()
  //   VacunasManager vacunasMan;
  //   VacunacionesManager vacunacionesMan;
 
-    menuManager.procesarMenuPrincipal();
 
     //for(int i=0;i<3;i++) clienteMan.CargarCliente();
     //mascotaMan.CargarMascota();
@@ -38,7 +39,6 @@ int main()
     //pagosMan.CargarPagos();
     //vacunasMan.CargarVacunas();
     //vacunacionesMan.CargarVacunaciones();
-
 
     //std::cout << std::endl <<"--------------------" << std::endl;
     //std::cout << "--------------------" << std::endl;
@@ -84,20 +84,6 @@ int main()
     pagosMan.MostrarPagos();
     std::cout << std::endl;*/
     //pagosMan.FacturacionPorAnio();
-
-    /*
-    std::cout << std::endl <<"--------------------" << std::endl;
-    std::cout << "--------------------" << std::endl;
-    std::cout << "VACUNAS: " << std::endl;
-    std::cout << "IDVacuna,NombreVacuna,Descripcion,Serial" << std::endl;
-    vacunasMan.MostrarVacunas();
-
-    std::cout << std::endl << "--------------------" << std::endl;
-    std::cout << "--------------------" << std::endl;
-    std::cout << "VACUNACIONES: " << std::endl;
-    std::cout << "IDVacunaciones,IDVacuna,NombreVacuna,DescVacuna,Serial,IDMascota,NombreMascota,EspecieMascota,RazaMascota,EdadMascota,SexoMascota,FechaNacimiento,IDCliente,FechaAplicacion,IDVeterinario,NombreVeterinario,ApellidoVeterinario,IDEspecialidad,NombreEspecialidad,DescEspecialidad,Activo" << std::endl;
-    vacunacionesMan.MostrarVacunaciones();*/
-
 
     return 0;
 }
