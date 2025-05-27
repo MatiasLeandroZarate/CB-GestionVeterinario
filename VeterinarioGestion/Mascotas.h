@@ -1,16 +1,20 @@
 #pragma once
 #include <iostream>
-#include <string>
-#include "Animal.h"
+#include <cstring>
+
 #include "Fecha.h"
 
 
-class Mascotas : public Animal
+class Mascotas
 {
 private:
     int _IDMascota;
     char _Nombre[50];
+    char _Especie[50];
+    char _Raza[50];
     int _Edad;
+    float _Peso;
+    char _Sexo[10];
     Fecha _FechaNacimiento;
     int _IDCliente;
 
@@ -23,7 +27,15 @@ public:
     void setEdad(int Edad);
     void setFechaNacimiento(Fecha FechaNacimiento);
     void setIDCliente(int IDCliente);
+    void setEspecie(std::string Especie);
+    void setRaza(std::string Raza);
+    void setPeso(float Peso);
+    void setSexo(std::string Sexo);
 
+    std::string getEspecie();
+    std::string getRaza();
+    float getPeso();
+    std::string getSexo();
     int getIDMascota();
     std::string getNombre();
     int getEdad();
@@ -31,7 +43,5 @@ public:
     int getIDCliente();
 
     std::string toCSV();
-    std::string toInforme();
-
 };
 
