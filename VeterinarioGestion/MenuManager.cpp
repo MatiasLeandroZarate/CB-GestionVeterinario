@@ -127,6 +127,7 @@ void MenuManager::realizarOperacionPostSeleccion(int opcionSeleccionada){
     esperarCualquierTecla();
     limpiarPantalla();
   }
+
 }
 
 void MenuManager::procesarSubmenuClientes(){
@@ -234,19 +235,28 @@ void MenuManager::procesarSubmenuMascotas(){
         cin >> opcion;
         limpiarPantalla();
 
-        switch (opcion) {
-            case OPCION_LISTAR:
-                break;
-            case OPCION_ALTA:
-                break;
-            case OPCION_MODIFICAR:
-                break;
-            case OPCION_BAJA:
-                break;
-            case OPCION_ATRAS_SALIR:
-                break;
-            default:
-                evaluarOpcionDefault(opcion);
+        switch (opcion)
+        {
+        case OPCION_LISTAR:
+
+            std::cout << std::endl <<"--------------------" << std::endl;
+            std::cout << "--------------------" << std::endl;
+            std::cout << "MASCOTA: " << std::endl;
+            std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente" << std::endl;
+            mascotaMan.MostrarMascota();
+            break;
+        case OPCION_ALTA:
+           mascotaMan.CargarMascota();
+            break;
+        case OPCION_MODIFICAR:
+            break;
+        case OPCION_BAJA:
+            break;
+        case OPCION_ATRAS_SALIR:
+            break;
+        default:
+            evaluarOpcionDefault(opcion);
+
         }
 
         realizarOperacionPostSeleccion(opcion);
@@ -571,7 +581,7 @@ void MenuManager::procesarSubmenuAcercaDe(){
     cout << "- Kloster, Daniel - Profesor" << endl;
     cout << "- Wenner, Maximiliano - Ayudante" << endl;
     cout << "- Lara Campos, Brian - Ayudante" << endl;
-    cout << "- Carbonari, Ver�nica - Ayudante" << endl;
+    cout << "- Carbonari, Verónica - Ayudante" << endl;
     cout << endl;
     esperarCualquierTecla();
 }

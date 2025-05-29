@@ -15,10 +15,12 @@ using namespace std;
 
 int main()
 {
-    MenuManager menuManager;
+   MenuManager menuManager;
     menuManager.procesarMenuPrincipal();
 
+
  //   MascotaManager mascotaMan;
+
  //   SucursalManager sucursalMan;
 //    EspecialidadManager especialidadMan;
 
@@ -43,7 +45,7 @@ int main()
     //std::cout << std::endl <<"--------------------" << std::endl;
     //std::cout << "--------------------" << std::endl;
     //std::cout << "MASCOTA: " << std::endl;
-    //std::cout << "IDMascota,Nombre,Especie,Raza,EdadAños,Peso,Sexo,FechaNacimiento,IDCliente" << std::endl;
+    //std::cout << "IDMascota,Nombre,Especie,Raza,EdadAÃ±os,Peso,Sexo,FechaNacimiento,IDCliente" << std::endl;
     //mascotaMan.MostrarMascota();
     //
     //std::cout << std::endl <<"--------------------" << std::endl;
@@ -80,5 +82,6 @@ int main()
     std::cout << std::endl;*/
     //pagosMan.FacturacionPorAnio();
 
+// hola
     return 0;
 }
