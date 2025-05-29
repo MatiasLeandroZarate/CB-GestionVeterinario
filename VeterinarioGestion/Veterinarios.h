@@ -24,6 +24,7 @@ public:
 	void setEspecialidad(Especialidades especialidad);
 	void setActivo(bool Activo);
 
+	std::string toInforme();
 	std::string toCSV();
   
 };

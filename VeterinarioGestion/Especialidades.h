@@ -21,5 +21,6 @@ public:
 	void setDescripcion(std::string Descripcion);
 	
 	std::string toCSV();
+	std::string toInforme();
 };
 

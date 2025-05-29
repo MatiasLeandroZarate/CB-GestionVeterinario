@@ -55,5 +55,10 @@ void Veterinarios::setActivo(bool Activo)
 
 std::string Veterinarios::toCSV()
 {
-	return std::to_string(_IDVeterinario) + "," + std::to_string(_Matricula) + "," + getNombre() + "," + getApellido() + "," + _Especialidad.toCSV() + "," + std::to_string(_Activo);
+	return std::to_string(_IDVeterinario) + "," + std::to_string(_Matricula) + "," + getDNI() + "," + getNombre() + "," + getApellido() + "," + _Especialidad.toCSV() + "," + std::to_string(_Activo);
+}
+
+std::string Veterinarios::toInforme()
+{
+	return std::to_string(_IDVeterinario) + "\t\t" + std::to_string(_Matricula) + "\t\t" + getDNI()+ " " + getNombre() + "\t\t" + getApellido() + "\t\t" + _Especialidad.toInforme() + "\t" +std::to_string(_Activo);
 }
