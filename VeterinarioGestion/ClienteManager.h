@@ -13,5 +13,6 @@ public:
 	void MostrarClientes();
 	int BuscarClientePorID(int idBuscado);
 	int ObtenerSiguienteID();
-};
+	void BuscarClientePorDNI(std::string dniBuscado);
 
+};

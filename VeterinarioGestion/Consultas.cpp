@@ -1,4 +1,5 @@
 #include "Consultas.h"
+#include <cstring>
 
 Consultas::Consultas()
 {
@@ -25,7 +26,7 @@ Consultas::Consultas(int idconsultas, int idmascotas, Fecha fecha, std::string s
 	setIDVeterinario(idveterinario);
 	setIDSucursal(idsucursal);
 }
-void Consultas::setIDConsultas(int idconsultas) 
+void Consultas::setIDConsultas(int idconsultas)
 {
 	_IDConsultas = idconsultas;
 }

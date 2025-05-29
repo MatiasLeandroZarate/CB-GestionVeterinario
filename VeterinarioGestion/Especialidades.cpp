@@ -45,3 +45,8 @@ std::string Especialidades::toCSV()
 {
 	return std::to_string(_IDEspecialidad) + "," + std::string(_Nombre) + "," + std::string(_Descripcion);
 }
+
+std::string Especialidades::toInforme()
+{
+	return std::to_string(_IDEspecialidad) + "\t" + std::string(_Nombre) + "\t" + std::string(_Descripcion);
+}

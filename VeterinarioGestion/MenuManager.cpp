@@ -41,8 +41,7 @@ const static string SEPARADOR_TITULO_PRINCIPAL = " ======= ";
 const static string MENSAJE_SELECCIONE_OPCION = "Seleccione una opcion: ";
 const static string MENSAJE_OPCION_INVALIDA = "Error: Opcion invalida, porfavor ingrese una opcion valida nuevamente.";
 
-void MenuManager::procesarMenuPrincipal()
-{
+void MenuManager::procesarMenuPrincipal() {
     const int OPCION_GESTION_CLIENTES = 1;
     const int OPCION_GESTION_MASCOTAS = 2;
     const int OPCION_CONSULTAS_MEDICAS = 3;
@@ -53,10 +52,9 @@ void MenuManager::procesarMenuPrincipal()
     const int OPCION_PAGOS = 8;
     const int OPCION_ACERCA_DE = 9;
 
-    int opcion;
+    int opcion ;
 
-    do
-    {
+    do {
         limpiarPantalla();
 
         cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_MENU_PRINCIPAL << SEPARADOR_TITULO_PRINCIPAL << endl;
@@ -72,75 +70,67 @@ void MenuManager::procesarMenuPrincipal()
         cout << OPCION_ATRAS_SALIR << ". " << TITULO_SALIR << endl;
         cout << endl << MENSAJE_SELECCIONE_OPCION;
 
-        cin >> opcion;
+        cin >> opcion ;
 
         limpiarPantalla();
 
-        switch (opcion)
-        {
-        case OPCION_GESTION_CLIENTES:
-            procesarSubmenuClientes();
-            break;
-        case OPCION_GESTION_MASCOTAS:
-            procesarSubmenuMascotas();
-            break;
-        case OPCION_CONSULTAS_MEDICAS:
-            procesarSubmenuConsultasMedicas();
-            break;
-        case OPCION_VACUNAS:
-            procesarSubmenuVacunas();
-            break;
-        case OPCION_TRATAMIENTOS:
-            procesarSubmenuTratamientos();
-            break;
-        case OPCION_GESTION_VETERINARIOS:
-            procesarSubmenuVeterinarios();
-            break;
-        case OPCION_GESTION_SUCURSALES:
-            procesarSubmenuSucursales();
-            break;
-        case OPCION_PAGOS:
-            procesarSubmenuPagos();
-            break;
-        case OPCION_ACERCA_DE:
-            procesarSubmenuAcercaDe();
-            break;
-        case OPCION_ATRAS_SALIR:
-            limpiarPantalla();
-            cout << "Muchas gracias por usar nuestro sistema de gestion, hasta luego!" << endl;
-            esperarCualquierTecla();
-            break;
-        default:
-            evaluarOpcionDefault(opcion);
+        switch (opcion) {
+            case OPCION_GESTION_CLIENTES:
+                procesarSubmenuClientes();
+                break;
+            case OPCION_GESTION_MASCOTAS:
+                procesarSubmenuMascotas();
+                break;
+            case OPCION_CONSULTAS_MEDICAS:
+                procesarSubmenuConsultasMedicas();
+                break;
+            case OPCION_VACUNAS:
+                procesarSubmenuVacunas();
+                break;
+            case OPCION_TRATAMIENTOS:
+                procesarSubmenuTratamientos();
+                break;
+            case OPCION_GESTION_VETERINARIOS:
+                procesarSubmenuVeterinarios();
+                break;
+            case OPCION_GESTION_SUCURSALES:
+                procesarSubmenuSucursales();
+                break;
+            case OPCION_PAGOS:
+                procesarSubmenuPagos();
+                break;
+            case OPCION_ACERCA_DE:
+                procesarSubmenuAcercaDe();
+                break;
+            case OPCION_ATRAS_SALIR:
+                limpiarPantalla();
+                cout << "Muchas gracias por usar nuestro sistema de gestion, hasta luego!" << endl;
+                esperarCualquierTecla();
+                break;
+            default:
+                evaluarOpcionDefault(opcion);
         }
-    }
-    while (opcion != OPCION_ATRAS_SALIR);
+    } while (opcion != OPCION_ATRAS_SALIR);
 }
 
-void MenuManager::evaluarOpcionDefault(int opcionSeleccionada)
-{
-    if(opcionSeleccionada != OPCION_ATRAS_SALIR)
-    {
-        mostrarMensajeOpcionInvalida();
-    }
+void MenuManager::evaluarOpcionDefault(int opcionSeleccionada){
+  if(opcionSeleccionada != OPCION_ATRAS_SALIR){
+    mostrarMensajeOpcionInvalida();
+  }
 }
 
-void MenuManager::realizarOperacionPostSeleccion(int opcionSeleccionada)
-{
-    if(opcionSeleccionada == OPCION_ATRAS_SALIR)
-    {
-        limpiarPantalla();
-    }
-    else
-    {
-        cout << endl;
-        esperarCualquierTecla();
-        limpiarPantalla();
-    }
+void MenuManager::realizarOperacionPostSeleccion(int opcionSeleccionada){
+  if(opcionSeleccionada == OPCION_ATRAS_SALIR){
+    limpiarPantalla();
+  } else {
+    cout << endl;
+    esperarCualquierTecla();
+    limpiarPantalla();
+  }
+
 }
 
-void MenuManager::procesarSubmenuClientes()
-{
+void MenuManager::procesarSubmenuClientes(){
     const int OPCION_ALTA = 1;
     const int OPCION_MODIFICAR = 2;
     const int OPCION_BAJA= 3;
@@ -158,11 +148,10 @@ void MenuManager::procesarSubmenuClientes()
     const string TITULO_CONSULTA_TELEFONO = "Consulta por telefono";
 
     int opcion;
-
+    string dniBuscado; 
     ClienteManager clienteMan;
 
-    do
-    {
+    do {
         limpiarPantalla();
         cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_GESTION_CLIENTES << SEPARADOR_TITULO_PRINCIPAL << endl;
         cout << OPCION_ALTA << ". " << TITULO_ALTA << endl;
@@ -178,34 +167,40 @@ void MenuManager::procesarSubmenuClientes()
         cin >> opcion;
         limpiarPantalla();
 
-        switch (opcion)
-        {
-        case OPCION_LISTAR:
-            std::cout << "--------------------" << std::endl;
-            std::cout << "CLIENTE: " << std::endl;
-            std::cout << "ID\t| DNI\t\t|Nombre\t|Apellido\t|Telefono\t|Email" << std::endl;
-            std::cout << "-------------------------------------------------------------------------------------" << std::endl;
-            clienteMan.MostrarClientes();
-            break;
-        case OPCION_ALTA:
-            break;
-        case OPCION_MODIFICAR:
-            break;
-        case OPCION_BAJA:
-            break;
-        default:
-            evaluarOpcionDefault(opcion);
+        switch (opcion) {
+            case OPCION_LISTAR:
+
+                clienteMan.MostrarClientes();
+                break;
+            case OPCION_ALTA:
+                break;
+            case OPCION_MODIFICAR:
+                break;
+            case OPCION_BAJA:
+                break;
+            case OPCION_CONSULTA_DNI:
+                std::cout << "Ingrese el DNI del cliente a buscar: ";
+				
+                std::cin >> dniBuscado;
+				limpiarPantalla();
+                std::cout << "--------------------" << std::endl;
+				std::cout << "CLIENTE: " << std::endl;
+				std::cout << "ID\t| DNI\t\t|Nombre\t|Apellido\t|Telefono\t|Email" << std::endl;
+				std::cout << "-------------------------------------------------------------------------------------" << std::endl;
+				
+				clienteMan.BuscarClientePorDNI(dniBuscado);
+
+                break;
+            default:
+                evaluarOpcionDefault(opcion);
         }
 
         realizarOperacionPostSeleccion(opcion);
 
-    }
-    while (opcion != OPCION_ATRAS_SALIR);
+    } while (opcion != OPCION_ATRAS_SALIR);
 }
 
-void MenuManager::procesarSubmenuMascotas()
-{
-    MascotaManager mascotaMan;
+void MenuManager::procesarSubmenuMascotas(){
     const int OPCION_ALTA = 1;
     const int OPCION_MODIFICAR = 2;
     const int OPCION_BAJA = 3;
@@ -224,8 +219,7 @@ void MenuManager::procesarSubmenuMascotas()
 
     int opcion;
 
-    do
-    {
+    do {
         limpiarPantalla();
         cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_GESTION_MASCOTAS << SEPARADOR_TITULO_PRINCIPAL << endl;
         cout << OPCION_ALTA << ". " << TITULO_ALTA << endl;
@@ -248,7 +242,7 @@ void MenuManager::procesarSubmenuMascotas()
             std::cout << std::endl <<"--------------------" << std::endl;
             std::cout << "--------------------" << std::endl;
             std::cout << "MASCOTA: " << std::endl;
-            std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente" << std::endl;
+            std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAÃ±os\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente" << std::endl;
             mascotaMan.MostrarMascota();
             break;
         case OPCION_ALTA:
@@ -262,16 +256,15 @@ void MenuManager::procesarSubmenuMascotas()
             break;
         default:
             evaluarOpcionDefault(opcion);
+
         }
 
         realizarOperacionPostSeleccion(opcion);
 
-    }
-    while (opcion != OPCION_ATRAS_SALIR);
+    } while (opcion != OPCION_ATRAS_SALIR);
 }
 
-void MenuManager::procesarSubmenuVeterinarios()
-{
+void MenuManager::procesarSubmenuVeterinarios(){
     const int OPCION_ALTA = 1;
     const int OPCION_MODIFICAR = 2;
     const int OPCION_BAJA = 3;
@@ -283,11 +276,12 @@ void MenuManager::procesarSubmenuVeterinarios()
     const string TITULO_BAJA = "Baja de veterinario";
     const string TITULO_LISTAR_ID = "Listado por ID";
     const string TITULO_LISTAR_ACTIVOS = "Listado de activos";
+  
+    VeterinariosManager veterinarioMan;
 
     int opcion;
 
-    do
-    {
+    do {
         limpiarPantalla();
         cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_GESTION_VETERINARIOS << SEPARADOR_TITULO_PRINCIPAL << endl;
         cout << OPCION_ALTA << ". " << TITULO_ALTA << endl;
@@ -301,32 +295,33 @@ void MenuManager::procesarSubmenuVeterinarios()
         cin >> opcion;
         limpiarPantalla();
 
-        switch (opcion)
-        {
-        case OPCION_ALTA:
-            break;
-        case OPCION_MODIFICAR:
-            break;
-        case OPCION_BAJA:
-            break;
-        case OPCION_LISTAR_ID:
-            break;
-        case OPCION_LISTAR_ACTIVOS:
-            break;
-        case OPCION_ATRAS_SALIR:
-            break;
-        default:
-            evaluarOpcionDefault(opcion);
+        switch (opcion) {
+            case OPCION_ALTA:
+				veterinarioMan.CargarVeterinarios();
+                break;
+            case OPCION_MODIFICAR:
+                break;
+            case OPCION_BAJA:
+                veterinarioMan.BajaVeterinario();
+                break;
+            case OPCION_LISTAR_ID:
+                veterinarioMan.MostrarVeterinarioInforme();
+                break;
+            case OPCION_LISTAR_ACTIVOS:
+                veterinarioMan.ListarVeterinariosActivos();
+                break;
+            case OPCION_ATRAS_SALIR:
+                break;
+            default:
+                evaluarOpcionDefault(opcion);
         }
 
         realizarOperacionPostSeleccion(opcion);
 
-    }
-    while (opcion != OPCION_ATRAS_SALIR);
+    } while (opcion != OPCION_ATRAS_SALIR);
 }
 
-void MenuManager::procesarSubmenuConsultasMedicas()
-{
+void MenuManager::procesarSubmenuConsultasMedicas(){
     const int OPCION_ALTA = 1;
     const int OPCION_MODIFICAR = 2;
     const int OPCION_BAJA = 3;
@@ -347,8 +342,7 @@ void MenuManager::procesarSubmenuConsultasMedicas()
 
     int opcion;
 
-    do
-    {
+    do {
         limpiarPantalla();
         cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_GESTION_CONSULTAS_MEDICAS << SEPARADOR_TITULO_PRINCIPAL << endl;
         cout << OPCION_ALTA << ". " << TITULO_ALTA << endl;
@@ -365,28 +359,25 @@ void MenuManager::procesarSubmenuConsultasMedicas()
         cin >> opcion;
         limpiarPantalla();
 
-        switch (opcion)
-        {
-        case OPCION_ALTA:
-            break;
-        case OPCION_MODIFICAR:
-            break;
-        case OPCION_BAJA:
-            break;
-        case OPCION_ATRAS_SALIR:
-            break;
-        default:
-            evaluarOpcionDefault(opcion);
+        switch (opcion) {
+            case OPCION_ALTA:
+                break;
+            case OPCION_MODIFICAR:
+                break;
+            case OPCION_BAJA:
+                break;
+            case OPCION_ATRAS_SALIR:
+                break;
+            default:
+                evaluarOpcionDefault(opcion);
         }
 
         realizarOperacionPostSeleccion(opcion);
 
-    }
-    while (opcion != OPCION_ATRAS_SALIR);
+    } while (opcion != OPCION_ATRAS_SALIR);
 }
 
-void MenuManager::procesarSubmenuVacunas()
-{
+void MenuManager::procesarSubmenuVacunas(){
     const int OPCION_ALTA = 1;
     const int OPCION_MODIFICAR = 2;
     const int OPCION_BAJA = 3;
@@ -404,8 +395,7 @@ void MenuManager::procesarSubmenuVacunas()
     int opcion;
     limpiarPantalla();
 
-    do
-    {
+    do {
         cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_GESTION_VACUNAS << SEPARADOR_TITULO_PRINCIPAL << endl;
         cout << OPCION_ALTA << ". " << TITULO_ALTA << endl;
         cout << OPCION_MODIFICAR << ". " << TITULO_MODIFICAR << endl;
@@ -417,37 +407,34 @@ void MenuManager::procesarSubmenuVacunas()
 
         cin >> opcion;
 
-        switch (opcion)
-        {
-        case OPCION_ALTA:
-            break;
-        case OPCION_MODIFICAR:
-            break;
-        case OPCION_BAJA:
-            break;
-        case OPCION_REGISTRAR:
-            break;
-        case OPCION_LISTAR:
-            std::cout << std::endl << "--------------------" << std::endl;
-            std::cout << "--------------------" << std::endl;
-            std::cout << "VACUNACIONES: " << std::endl;
-            std::cout << "IDVacunaciones,IDVacuna,NombreVacuna,DescVacuna,Serial,IDMascota,NombreMascota,EspecieMascota,RazaMascota,EdadMascota,SexoMascota,FechaNacimiento,IDCliente,FechaAplicacion,IDVeterinario,NombreVeterinario,ApellidoVeterinario,IDEspecialidad,NombreEspecialidad,DescEspecialidad,Activo" << std::endl;
-            vacunasMan.MostrarVacunas();
-            break;
-        case OPCION_ATRAS_SALIR:
-            break;
-        default:
-            evaluarOpcionDefault(opcion);
+        switch (opcion) {
+            case OPCION_ALTA:
+                break;
+            case OPCION_MODIFICAR:
+                break;
+            case OPCION_BAJA:
+                break;
+            case OPCION_REGISTRAR:
+                break;
+            case OPCION_LISTAR:
+                std::cout << std::endl << "--------------------" << std::endl;
+                std::cout << "--------------------" << std::endl;
+                std::cout << "VACUNACIONES: " << std::endl;
+                std::cout << "IDVacunaciones,IDVacuna,NombreVacuna,DescVacuna,Serial,IDMascota,NombreMascota,EspecieMascota,RazaMascota,EdadMascota,SexoMascota,FechaNacimiento,IDCliente,FechaAplicacion,IDVeterinario,NombreVeterinario,ApellidoVeterinario,IDEspecialidad,NombreEspecialidad,DescEspecialidad,Activo" << std::endl;
+                vacunasMan.MostrarVacunas();
+                break;
+            case OPCION_ATRAS_SALIR:
+                break;
+            default:
+                evaluarOpcionDefault(opcion);
         }
 
         realizarOperacionPostSeleccion(opcion);
 
-    }
-    while (opcion != OPCION_ATRAS_SALIR);
+    } while (opcion != OPCION_ATRAS_SALIR);
 }
 
-void MenuManager::procesarSubmenuTratamientos()
-{
+void MenuManager::procesarSubmenuTratamientos(){
     const int OPCION_ALTA = 1;
     const int OPCION_MODIFICAR = 2;
     const int OPCION_BAJA = 3;
@@ -461,8 +448,7 @@ void MenuManager::procesarSubmenuTratamientos()
     int opcion;
     limpiarPantalla();
 
-    do
-    {
+    do {
         limpiarPantalla();
         cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_GESTION_TRATAMIENTOS << SEPARADOR_TITULO_PRINCIPAL << endl;
         cout << OPCION_ALTA << ". " << TITULO_ALTA << endl;
@@ -474,32 +460,27 @@ void MenuManager::procesarSubmenuTratamientos()
 
         cin >> opcion;
 
-        switch (opcion)
-        {
-        case OPCION_ALTA:
-            break;
-        case OPCION_MODIFICAR:
-            break;
-        case OPCION_BAJA:
-            break;
-        case OPCION_LISTAR:
-            break;
-        case OPCION_ATRAS_SALIR:
-            break;
-        default:
-            evaluarOpcionDefault(opcion);
-        }
+        switch (opcion) {
+            case OPCION_ALTA:
+                break;
+            case OPCION_MODIFICAR:
+                break;
+            case OPCION_BAJA:
+                break;
+            case OPCION_LISTAR:
+                break;
+            case OPCION_ATRAS_SALIR:
+                break;
+            default:
+                evaluarOpcionDefault(opcion);
+            }
 
         realizarOperacionPostSeleccion(opcion);
 
-    }
-    while (opcion != OPCION_ATRAS_SALIR);
+    } while (opcion != OPCION_ATRAS_SALIR);
 }
 
-void MenuManager::procesarSubmenuPagos()
-{
-    PagosManager pagosMan;
-
+void MenuManager::procesarSubmenuPagos(){
     const int OPCION_RECAUDACION_ANUAL = 1;
     const int OPCION_RECAUDACION_POR_CLIENTE = 2;
     const int OPCION_RECAUDACION_POR_SUCURSAL = 3;
@@ -511,8 +492,7 @@ void MenuManager::procesarSubmenuPagos()
     int opcion;
     limpiarPantalla();
 
-    do
-    {
+    do {
         limpiarPantalla();
         cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_GESTION_PAGOS << SEPARADOR_TITULO_PRINCIPAL << endl;
         cout << OPCION_RECAUDACION_ANUAL << ". " << TITULO_RECAUDACION_ANUAL << endl;
@@ -523,36 +503,25 @@ void MenuManager::procesarSubmenuPagos()
 
         cin >> opcion;
 
-        switch (opcion)
-        {
-        case OPCION_RECAUDACION_ANUAL:
-            std::cout << std::endl <<"--------------------" << std::endl;
-            std::cout << "--------------------" << std::endl;
-            std::cout << "PAGOS:" << std::endl;
-            std::cout << "IDPago  |" << "IDConsulta  |" "\t" << "Monto  |"  << "FechaPago  |" "\t" << "MediodePago  |" << std::endl;
-            std::cout << "---------------------------------------------------------------------------" << std::endl;
-            //pagosMan.MostrarPagos();
-            std::cout << std::endl;
-            pagosMan.FacturacionPorAnio();
-            break;
-        case OPCION_RECAUDACION_POR_CLIENTE:
-            break;
-        case OPCION_RECAUDACION_POR_SUCURSAL:
-            break;
-        case OPCION_ATRAS_SALIR:
-            break;
-        default:
-            evaluarOpcionDefault(opcion);
+        switch (opcion) {
+            case OPCION_RECAUDACION_ANUAL:
+                break;
+            case OPCION_RECAUDACION_POR_CLIENTE:
+                break;
+            case OPCION_RECAUDACION_POR_SUCURSAL:
+                break;
+            case OPCION_ATRAS_SALIR:
+                break;
+            default:
+                evaluarOpcionDefault(opcion);
         }
 
         realizarOperacionPostSeleccion(opcion);
 
-    }
-    while (opcion != OPCION_ATRAS_SALIR);
+    } while (opcion != OPCION_ATRAS_SALIR);
 }
 
-void MenuManager::procesarSubmenuSucursales()
-{
+void MenuManager::procesarSubmenuSucursales(){
     const int OPCION_ALTA = 1;
     const int OPCION_MODIFICAR = 2;
     const int OPCION_BAJA = 3;
@@ -566,8 +535,7 @@ void MenuManager::procesarSubmenuSucursales()
     int opcion;
     limpiarPantalla();
 
-    do
-    {
+    do {
         limpiarPantalla();
         cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_GESTION_SUCURSALES << SEPARADOR_TITULO_PRINCIPAL << endl;
         cout << OPCION_ALTA << ". " << TITULO_ALTA << endl;
@@ -579,30 +547,27 @@ void MenuManager::procesarSubmenuSucursales()
 
         cin >> opcion;
 
-        switch (opcion)
-        {
-        case OPCION_ALTA:
-            break;
-        case OPCION_MODIFICAR:
-            break;
-        case OPCION_BAJA:
-            break;
-        case OPCION_LISTAR:
-            break;
-        case OPCION_ATRAS_SALIR:
-            break;
-        default:
-            evaluarOpcionDefault(opcion);
+        switch (opcion) {
+            case OPCION_ALTA:
+                break;
+            case OPCION_MODIFICAR:
+                break;
+            case OPCION_BAJA:
+                break;
+            case OPCION_LISTAR:
+                break;
+            case OPCION_ATRAS_SALIR:
+                break;
+            default:
+                evaluarOpcionDefault(opcion);
         }
 
         realizarOperacionPostSeleccion(opcion);
 
-    }
-    while (opcion != OPCION_ATRAS_SALIR);
+    } while (opcion != OPCION_ATRAS_SALIR);
 }
 
-void MenuManager::procesarSubmenuAcercaDe()
-{
+void MenuManager::procesarSubmenuAcercaDe(){
     cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_ACERCA_DE << SEPARADOR_TITULO_PRINCIPAL << endl;
     cout << "Trabajo Practico Integrador - Programacion 2 - UTN FRGP" << endl;
     cout << "Sistema de Gestion Integral para Veterinaria (SIGVE)" << endl;
@@ -616,13 +581,12 @@ void MenuManager::procesarSubmenuAcercaDe()
     cout << "- Kloster, Daniel - Profesor" << endl;
     cout << "- Wenner, Maximiliano - Ayudante" << endl;
     cout << "- Lara Campos, Brian - Ayudante" << endl;
-    cout << "- Carbonari, Verónica - Ayudante" << endl;
+    cout << "- Carbonari, VerÃ³nica - Ayudante" << endl;
     cout << endl;
     esperarCualquierTecla();
 }
 
-void MenuManager::mostrarMensajeOpcionInvalida()
-{
+void MenuManager::mostrarMensajeOpcionInvalida(){
     cout << MENSAJE_OPCION_INVALIDA << endl << endl;
     esperarCualquierTecla();
     limpiarPantalla();

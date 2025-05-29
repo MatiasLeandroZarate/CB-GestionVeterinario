@@ -28,11 +28,10 @@ void MascotaManager::CargarMascota()
     std::getline(std::cin, Sexo);
     std::cout << "Ingrese la Fecha de Nacimiento: " << std::endl;
 
-    FechaNacimiento = fechavalidar.ValidacionFecha(FechaNacimiento);
+	FechaNacimiento = fechavalidar.ValidacionFecha(FechaNacimiento);
 
-    std::cout << "Ingrese el ID del Cliente: ";
-    std::cin >> IDCliente;
-
+	std::cout << "Ingrese el ID del Cliente: ";
+	std::cin >> IDCliente;
 
     mascota = Mascotas(IDMascota, Nombre, Especie, Raza, Edad, Peso, Sexo, FechaNacimiento, IDCliente);
 
@@ -45,6 +44,7 @@ void MascotaManager::CargarMascota()
     {
         std::cout << "Error al guardar la mascota." << std::endl;
     }
+
 }
 
 
@@ -64,11 +64,12 @@ void MascotaManager::MostrarMascota()
         std:: cout << mascotas.toInforme() << std::endl;
         //std::cout << mascotas.toCSV() << std::endl;
     }
+
 }
 
 int MascotaManager::BuscarMascotaPorID(int idBuscado)
 {
-    Mascotas mascotas;
+	Mascotas mascotas;
     GestorArchivo gArchivo("mascotas.dat");
     int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
     for (int i = 0; i < cantidadRegistros; i++)
@@ -79,7 +80,7 @@ int MascotaManager::BuscarMascotaPorID(int idBuscado)
             return i;
         }
     }
-    std::cout << "No se encontró el ID de la Mascota." << std::endl;
+    std::cout << "No se encontrÃ³ el ID de la Mascota." << std::endl;
     return -1;
 }
 
@@ -125,7 +126,7 @@ int MascotaManager::validarEdad()
         }
         if (!edadValida)
         {
-            std::cout << "Edad inválida, Ingrese de nuevo." << std::endl;
+            std::cout << "Edad invÃ¡lida, Ingrese de nuevo." << std::endl;
 
         }
 
@@ -289,7 +290,7 @@ int MascotaManager::validarPeso()
 
     if (!pesoValido)
     {
-        std::cout << "Peso inválido, Ingrese de nuevo" << std::endl;
+        std::cout << "Peso invÃ¡lido, Ingrese de nuevo" << std::endl;
     }
 
     return Peso;
