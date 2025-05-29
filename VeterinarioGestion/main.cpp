@@ -15,8 +15,9 @@ using namespace std;
 
 int main()
 {
-    MenuManager menuManager;
+   MenuManager menuManager;
     menuManager.procesarMenuPrincipal();
+
 
  //   SucursalManager sucursalMan;
 //    EspecialidadManager especialidadMan;

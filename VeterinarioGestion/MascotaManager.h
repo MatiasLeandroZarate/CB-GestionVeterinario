@@ -11,6 +11,11 @@ public:
 	void CargarMascota();
 	void MostrarMascota();
 	int BuscarMascotaPorID(int idBuscado);
+	int validarEdad();
+	int validarPeso();
+	std::string validarNombre();
+	std::string validarEspecie();
+	std::string validarRaza();
 	//int ObtenerSiguienteID();
 
 };
