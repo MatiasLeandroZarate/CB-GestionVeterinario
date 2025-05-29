@@ -7,8 +7,8 @@ Cliente::Cliente()
 	strcpy(_Email, "0");
 }
 
-Cliente::Cliente(int IDCliente, std::string DNI, std::string Nombre, std::string Apellido, std::string Telefono, std::string Email)
-:Persona(DNI, Nombre, Apellido){
+Cliente::Cliente(int IDCliente, std::string DNI, std::string Nombre, std::string Apellido, std::string Telefono, std::string Email, bool Activo)
+:Persona(DNI, Nombre, Apellido ,Activo){
 	setIDCliente(IDCliente);
 	setTelefono(Telefono);
 	setEmail(Email);

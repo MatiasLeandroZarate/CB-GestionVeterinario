@@ -21,5 +21,9 @@ public:
 	bool ConfirmarIngreso(Veterinarios veterinario, bool confirmar);
 	bool BajaVeterinario();
 
+	int validarNumero();
+	std::string validarNombre();
+	std::string validarNUMenString();
+
 };
 
