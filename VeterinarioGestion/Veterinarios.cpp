@@ -5,18 +5,17 @@ Veterinarios::Veterinarios()
 : Persona(){
 	_IDVeterinario = 0;
 	_Matricula = 0;
-	_Activo = false;
 	strcpy(_DNI, "0");
 	strcpy(_Nombre, "0");
 	strcpy(_Apellido, "0");
 }
 
 Veterinarios::Veterinarios(int IDVeterinario, int Matricula, std::string DNI, std::string Nombre, std::string Apellido, Especialidades especialidad, bool Activo)
-:Persona(DNI,Nombre,Apellido){
+:Persona(DNI,Nombre,Apellido,Activo){
 	setIDVeterinario(IDVeterinario);
 	setMatricula(Matricula);
 	setEspecialidad(especialidad);
-	setActivo(Activo);
+	
 }
 
 int Veterinarios::getIDVeterinario()
@@ -31,10 +30,7 @@ Especialidades Veterinarios::getEspecialidad()
 {
 	return _Especialidad;
 }
-bool Veterinarios::getActivo()
-{
-	return _Activo;
-}
+
 void Veterinarios::setIDVeterinario(int IDVeterinario)
 {
 	_IDVeterinario = IDVeterinario;
@@ -47,10 +43,7 @@ void Veterinarios::setEspecialidad(Especialidades especialidad)
 {
 	_Especialidad = especialidad;
 }
-void Veterinarios::setActivo(bool Activo)
-{
-	_Activo = Activo;
-}
+
 
 
 std::string Veterinarios::toCSV()
@@ -58,7 +51,7 @@ std::string Veterinarios::toCSV()
 	return std::to_string(_IDVeterinario) + "," + std::to_string(_Matricula) + "," + getDNI() + "," + getNombre() + "," + getApellido() + "," + _Especialidad.toCSV() + "," + std::to_string(_Activo);
 }
 
-std::string Veterinarios::toInforme()
+std::string Veterinarios::toInforme() 
 {
-	return std::to_string(_IDVeterinario) + "\t\t" + std::to_string(_Matricula) + "\t\t" + getDNI()+ " " + getNombre() + "\t\t" + getApellido() + "\t\t" + _Especialidad.toInforme() + "\t" +std::to_string(_Activo);
+	return std::to_string(_IDVeterinario) + "\t\t" + std::to_string(_Matricula) + "\t\t" + getDNI()+ " " + getNombre() + "\t\t" + getApellido() + "\t\t" + _Especialidad.toInforme() + "\t" + std::to_string(getActivo());
 }

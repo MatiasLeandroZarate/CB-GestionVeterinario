@@ -6,12 +6,14 @@ Persona::Persona()
 	strcpy(_DNI, "0");
 	strcpy(_Nombre, "0");
 	strcpy(_Apellido, "0");
+	_Activo = false;
 }
-Persona::Persona(std::string DNI, std::string Nombre, std::string Apellido)
+Persona::Persona(std::string DNI, std::string Nombre, std::string Apellido, bool Activo)
 {
 	setDNI(DNI);
 	setNombre(Nombre);
 	setApellido(Apellido);
+	setActivo(Activo);
 }
 
 void Persona::setDNI(std::string DNI)
@@ -25,6 +27,10 @@ void Persona::setNombre(std::string Nombre)
 void Persona::setApellido(std::string Apellido)
 {
 	strcpy(_Apellido, Apellido.c_str());
+}
+void Persona::setActivo(bool Activo)
+{
+	_Activo = Activo;
 }
 
 //-------------------------SET
@@ -41,4 +47,8 @@ std::string Persona::getNombre(
 std::string Persona::getApellido()
 {
 	return _Apellido;
+}
+bool Persona::getActivo()
+{
+	return _Activo;
 }

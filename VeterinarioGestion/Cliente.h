@@ -11,7 +11,7 @@ private:
 
 public:
     Cliente();
-    Cliente(int IDCliente, std::string DNI, std::string Nombre, std::string Apellido, std::string Telefono, std::string Email);
+    Cliente(int IDCliente, std::string DNI, std::string Nombre, std::string Apellido, std::string Telefono, std::string Email, bool Activo);
 
     int getIDCliente();
     std::string getTelefono();
