@@ -20,10 +20,12 @@ public:
 	bool BuscarVeterinarioPorDNI(std::string dniBuscado);
 	bool ConfirmarIngreso(Veterinarios veterinario, bool confirmar);
 	bool BajaVeterinario();
+	void ModificarVeterinarios();
 
 	int validarNumero();
 	std::string validarNombre();
 	std::string validarNUMenString();
+
 
 };
 

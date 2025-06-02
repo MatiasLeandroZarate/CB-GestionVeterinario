@@ -226,17 +226,24 @@ bool VeterinariosManager::BajaVeterinario()
 	int cantidadRegistros = vArchivo.CantidadRegistrosVeterinario();
 	std::cout << "Ingrese el DNI del Veterinario que desea dar de baja: ";
 	std::cin.ignore();
-	std::getline(std::cin, dni);
-
+	dni = validarNUMenString();
 
 	for (int i = 0; i < cantidadRegistros; i++)
 	{
 		veterinarios = vArchivo.LeerVeterinario(i);
-		if (veterinarios.getDNI() == dni && veterinarios.getActivo() == true)
+		if (veterinarios.getDNI() == dni && veterinarios.getActivo())
 		{
-			std::cout << "El Veterinario se dio de Baja. ";
-			veterinarios.setActivo(baja);
-			return veterinarios.getActivo();
+			veterinarios.setActivo(false);
+			if (vArchivo.ModificarVeterinarios(i, veterinarios))
+			{
+				std::cout << "Veterinario dado de baja exitosamente." << std::endl;
+				return true;
+			}
+			else 
+				{
+				std::cout << "Veterinario no encontrado o ya dado de baja." << std::endl;
+				return false;
+				}
 		}
 	}
 
@@ -327,11 +334,7 @@ int VeterinariosManager::validarNumero()
 				i++;
 			}
 		}
-		//if (Num < 0)
-		//{
-		//	numValido= false;
 
-		//}
 		if (!numValido)
 		{
 			std::cout << "Dato inválido, Ingrese de nuevo." << std::endl;
@@ -369,4 +372,69 @@ std::string VeterinariosManager::validarNUMenString()
 		}
 	}
 	return str;
+}
+
+void VeterinariosManager::ModificarVeterinarios() {
+	std::string dni;
+	Veterinarios veterinario;
+	Especialidades especialidad;
+	EspecialidadManager eManager;
+	GestorArchivo vArchivo("veterinarios.dat");
+	int cantidadRegistros = vArchivo.CantidadRegistrosVeterinario();
+
+	std::cout << "Ingrese el DNI del Veterinario a modificar: ";
+	std::cin.ignore();
+	dni = validarNUMenString();
+
+	for (int i = 0; i < cantidadRegistros; i++) {
+		veterinario = vArchivo.LeerVeterinario(i);
+		if (veterinario.getDNI() == dni) {
+			std::cout << "Datos actuales:" << std::endl;
+			std::cout << veterinario.toInforme() << std::endl;
+
+			int matricula, idespecialidad;
+			std::string nombre, apellido;
+			bool activo;
+
+			std::cout << "Ingrese nueva Matricula: ";
+			matricula = validarNumero();
+
+			std::cout << "Ingrese nuevo ID Especialidad: ";
+			idespecialidad = validarNumero();
+
+			int posEspecialidad = eManager.BuscarEspecialidadPorID(idespecialidad);
+			if (posEspecialidad == -1) {
+				std::cout << "No se encontro la especialidad." << std::endl;
+				especialidad = Especialidades(0, "Sin especialidad", "Sin datos");
+			}
+			else {
+				especialidad = GestorArchivo("especialidades.dat").LeerEspecialidad(posEspecialidad);
+			}
+
+			std::cout << "Ingrese nuevo Nombre: ";
+			nombre = validarNombre();
+
+			std::cout << "Ingrese nuevo Apellido: ";
+			apellido = validarNombre();
+
+			std::cout << "Activo (1: Si / 0: No): ";
+			std::cin >> activo;
+
+			veterinario.setMatricula(matricula);
+			veterinario.setEspecialidad(especialidad);
+			veterinario.setNombre(nombre);
+			veterinario.setApellido(apellido);
+			veterinario.setActivo(activo);
+
+			if (vArchivo.ModificarVeterinarios(i, veterinario)) {
+				std::cout << "Veterinario modificado correctamente." << std::endl;
+			}
+			else {
+				std::cout << "Error al modificar el Veterinario." << std::endl;
+			}
+			return;
+		}
+	}
+
+	std::cout << "No se encontró el Veterinario con ese DNI." << std::endl;
 }

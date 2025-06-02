@@ -218,6 +218,7 @@ void MenuManager::procesarSubmenuMascotas(){
     const string TITULO_CONSULTA_ESPECIE = "Consulta por especie";
 
     int opcion;
+    MascotaManager mascotaMan;
 
     do {
         limpiarPantalla();
@@ -300,6 +301,7 @@ void MenuManager::procesarSubmenuVeterinarios(){
 				veterinarioMan.CargarVeterinarios();
                 break;
             case OPCION_MODIFICAR:
+                veterinarioMan.ModificarVeterinarios();
                 break;
             case OPCION_BAJA:
                 veterinarioMan.BajaVeterinario();
