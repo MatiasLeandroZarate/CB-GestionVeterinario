@@ -1,7 +1,7 @@
 #include "ConsultasManager.h"
 
 void ConsultasManager::CargarConsulta()
-{	
+{
 	Consultas consulta;
 	GestorArchivo cArchivo("consultas.dat");
 	GestorArchivo tArchivo("tratamientos.dat");
@@ -19,7 +19,7 @@ void ConsultasManager::CargarConsulta()
 	std::cout << "Ingrese el ID de la Mascota: ";
 	std::cin >> IDMascota;
 	std::cout << "Ingrese la Fecha de la Consulta: " << std::endl;
-	
+
 	Fechaconsulta = fechavalidar.ValidacionFecha(Fechaconsulta);
 	std::cout << "Ingrese los Sintomas: ";
 	std::cin.ignore();
@@ -89,6 +89,11 @@ void ConsultasManager::MostrarConsulta()
 	{
 		std::cout << "No hay Consultas registradas." << std::endl;
 	}
+
+    std::cout << std::endl <<"--------------------" << std::endl;
+    std::cout << "--------------------" << std::endl;
+    std::cout << "CONSULTA:" << std::endl;
+    std::cout << "IDConsultas,IDMascota,Fecha,Sintomas,Diagnostico,IDTratamiento,NombreTratamiento,DescTratamiento,DuracionTrata,CostoTrata,FechaProximaVisita,IDVeterinario,IDSucursal" << std::endl;
 
 	for (int i = 0; i < cantidadregistros; i++)
 	{

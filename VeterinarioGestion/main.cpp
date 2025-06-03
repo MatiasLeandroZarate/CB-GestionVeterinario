@@ -67,11 +67,7 @@ int main()
     //std::cout << "IDTratamiento,NombreTratamiento,Descripcion,DuracionDias,Costo" << std::endl;
     //tratamientoMan.MostrarTratamiento();
     //
-    /*std::cout << std::endl <<"--------------------" << std::endl;
-    std::cout << "--------------------" << std::endl;
-    std::cout << "CONSULTA:" << std::endl;
-    std::cout << "IDConsultas,IDMascota,Fecha,Sintomas,Diagnostico,IDTratamiento,NombreTratamiento,DescTratamiento,DuracionTrata,CostoTrata,FechaProximaVisita,IDVeterinario,IDSucursal" << std::endl;
-    consultaMan.MostrarConsulta();*/
+
 
     /*std::cout << std::endl <<"--------------------" << std::endl;
     std::cout << "--------------------" << std::endl;
