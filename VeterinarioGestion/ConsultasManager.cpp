@@ -1,6 +1,6 @@
 #include "ConsultasManager.h"
 
-void ConsultasManager::CargarConsulta()
+void ConsultasManager::altaConsulta()
 {
 	Consultas consulta;
 	GestorArchivo cArchivo("consultas.dat");
@@ -79,8 +79,12 @@ void ConsultasManager::CargarConsulta()
 		std::cout << "Error al guardar la Consulta." << std::endl;
 	}
 }
+void ConsultasManager::modificarConsulta()
+{
 
-void ConsultasManager::MostrarConsulta()
+}
+
+void ConsultasManager::listarConsultas()
 {
 	Consultas consulta;
 	GestorArchivo cArchivo("consultas.dat");
@@ -101,6 +105,31 @@ void ConsultasManager::MostrarConsulta()
 		std::cout << consulta.toCSV() << std::endl;
 	}
 }
+
+void ConsultasManager::bajaConsulta(){
+
+}
+
+void ConsultasManager::consultarPorMascota(){
+
+}
+
+void ConsultasManager::consultarPorFecha(){
+
+}
+
+void ConsultasManager::consultarPorSucursal(){
+
+}
+
+void ConsultasManager::consultarPorVeterinario(){
+
+}
+
+void ConsultasManager::consultarPorCliente(){
+
+}
+
 
 int ConsultasManager::BuscarConsultaPorID(int idBuscado)
 {

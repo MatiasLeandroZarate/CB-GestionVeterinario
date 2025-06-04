@@ -340,24 +340,31 @@ void MenuManager::procesarSubmenuConsultasMedicas(){
 
         switch (opcion) {
             case OPCION_ALTA:
-
+                consultasMan.altaConsulta();
                 break;
             case OPCION_MODIFICAR:
+                consultasMan.modificarConsulta();
                 break;
             case OPCION_LISTAR:
-                consultasMan.MostrarConsulta();
+                consultasMan.listarConsultas();
                 break;
             case OPCION_BAJA:
+                consultasMan.bajaConsulta();
                 break;
             case OPCION_CONSULTA_MASCOTA:
+                consultasMan.consultarPorMascota();
                 break;
             case OPCION_CONSULTA_FECHA:
+                consultasMan.consultarPorFecha();
                 break;
             case OPCION_CONSULTA_SUCURSAL:
+                consultasMan.consultarPorSucursal();
                 break;
             case OPCION_CONSULTA_VETERINARIO:
+                consultasMan.consultarPorVeterinario();
                 break;
             case OPCION_CONSULTA_CLIENTE:
+                consultasMan.consultarPorCliente();
                 break;
              case OPCION_ATRAS_SALIR:
                 break;
