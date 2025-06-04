@@ -560,7 +560,7 @@ void MenuManager::procesarSubmenuAcercaDe(){
     cout << "- Kloster, Daniel - Profesor" << endl;
     cout << "- Wenner, Maximiliano - Ayudante" << endl;
     cout << "- Lara Campos, Brian - Ayudante" << endl;
-    cout << "- Carbonari, Verónica - Ayudante" << endl;
+    cout << "- Carbonari, Veronica - Ayudante" << endl;
     cout << endl;
     esperarCualquierTecla();
 }
