@@ -9,7 +9,7 @@ void VeterinariosManager::CargarVeterinarios()
 
 	
 	GestorArchivo eArchivo("especialidades.dat");
-	int idveterinario = 0, matricula, idespecialidad;
+	int idveterinario = 0,matricula, idespecialidad;
 	std::string DNI, Nombre, Apellido; 
 	bool activo, confirmar = false , buscaDNI = false;
 	
@@ -17,6 +17,7 @@ void VeterinariosManager::CargarVeterinarios()
 	std::cin.ignore();
 	DNI = validarNUMenString();
 	
+do {
 	buscaDNI = BuscarVeterinarioPorDNI(DNI);
 	if (buscaDNI) 
 	{
@@ -24,56 +25,51 @@ void VeterinariosManager::CargarVeterinarios()
 		confirmar = true;
 	}
 	else {
-		do {
+		idveterinario = SiguienteID();
+		//std::cin.ignore();
+		std::cout << "Ingrese la Matricula del Veterinario: ";
+		matricula = validarNumero();
+		std::cout << "Ingrese el ID especialidad: ";
+		idespecialidad = validarNumero();
+		std::cout << "Ingrese el Nombre: ";
+		Nombre = validarNombre();
+		std::cout << "Ingrese el Apellido: ";
+		Apellido = validarNombre();
+		std::cout << "Ingrese 1 si esta Activo o 0 para inactivo): ";
 
-			idveterinario = SiguienteID();
-			std::cout << "Ingrese la Matricula del Veterinario: ";
-			matricula = validarNumero();
-			std::cout << "Ingrese el ID especialidad: ";
-			idespecialidad = validarNumero();
-			std::cout << "Ingrese el Nombre: ";
-			Nombre = validarNombre();
-			std::cout << "Ingrese el Apellido: ";
-			Apellido = validarNombre();
-			std::cout << "Ingrese 1 si esta Activo o 0 para inactivo): ";
+		std::cin >> activo;
 
-			std::cin >> activo;
-			/*while (activo != 1 || activo != 0)
+		int posEspecialidad = eManager.BuscarEspecialidadPorID(idespecialidad);
+		if (posEspecialidad == -1)
+		{
+			bool crear;
+			std::cout << "No se encontro la especialidad." << std::endl;
+			std::cout << "Desea agregar una especialidad? 1- Si . 0 - No: ";
+			std::cin >> crear;
+			if (crear == 1)
 			{
-			std::cout << "Dato invalido, ingrese 1 si esta Activo o 0 para inactivo): ";
-			std::cin >> activo;
-			}*/
-
-			int posEspecialidad = eManager.BuscarEspecialidadPorID(idespecialidad);
-			if (posEspecialidad == -1)
-			{
-				bool crear;
-				std::cout << "No se encontro la especialidad." << std::endl;
-				std::cout << "Desea agregar una especialidad? 1- Si . 0 - No: ";
-				std::cin >> crear;
-				if (crear == 1)
-				{
-					eManager.CargarEspecialidad();
-					//especialidad = Especialidades();
-				}
-				else
-				{
-					std::cout << "No se cargo ninguna especialidad." << std::endl;
-					especialidad = Especialidades(0, "Sin especialidad", "Sin Datos");
-				}
+				eManager.CargarEspecialidad();
+				posEspecialidad = eManager.BuscarEspecialidadPorID(idespecialidad);
+				especialidad = eArchivo.LeerEspecialidad(posEspecialidad);
 			}
 			else
 			{
-				especialidad = eArchivo.LeerEspecialidad(posEspecialidad);
+				std::cout << "No se cargo ninguna especialidad." << std::endl;
+				especialidad = Especialidades(0, "Sin especialidad", "Sin Datos");
 			}
+		}
+		else
+		{
+		especialidad = eArchivo.LeerEspecialidad(idespecialidad);
+		}
 			limpiarPantalla();
 			veterinarios = Veterinarios(idveterinario, matricula, DNI, Nombre, Apellido, especialidad, activo);
 		
 			confirmar = ConfirmarIngreso(veterinarios, confirmar);
 
-		} while (!confirmar);
+		}
+} while (!confirmar);
 		Guardar(veterinarios);
-	}
 
 }
 
@@ -150,6 +146,7 @@ bool VeterinariosManager::ConfirmarIngreso(Veterinarios veterinario, bool confir
 	
 	std::cout << "Confirma los datos ingresados? 1-Si, 0-No: " << std::endl;
 	std::cin >> confirmar;
+	std::cin.ignore();
 
 	if (confirmar)
 	{
@@ -159,7 +156,7 @@ bool VeterinariosManager::ConfirmarIngreso(Veterinarios veterinario, bool confir
 	else
 	{
 		std::cout << "Datos no confirmados, vuelva a ingresar." << std::endl;
-		return false;
+		return false;		
 	}
 	
 }
@@ -205,14 +202,15 @@ void VeterinariosManager::Guardar(Veterinarios veterinarios)
 }
 
 int VeterinariosManager::SiguienteID()
-{
+{	
 	Veterinarios ultimoveterinario;
 	GestorArchivo vArchivo("veterinarios.dat");
-	int cantidadRegistros = vArchivo.CantidadRegistrosClientes();
+	int cantidadRegistros = vArchivo.CantidadRegistrosVeterinario();
 	if (cantidadRegistros == 0)
 	{
 		return 1;
 	}
+
 	ultimoveterinario = vArchivo.LeerVeterinario(cantidadRegistros - 1);
 	return ultimoveterinario.getIDVeterinario() + 1;
 }
@@ -281,7 +279,6 @@ std::string VeterinariosManager::validarNombre()
 		int i = 0;
 		strValido = true;
 
-		//std::cout << "Ingrese el Nombre: ";
 		std::getline(std::cin, str);
 
 		while (str[i])
@@ -354,6 +351,7 @@ std::string VeterinariosManager::validarNUMenString()
 		strValido = true;
 
 		//std::cout << "Ingrese el Nombre: ";
+		
 		std::getline(std::cin, str);
 
 		while (str[i])
@@ -396,6 +394,7 @@ void VeterinariosManager::ModificarVeterinarios() {
 			std::string nombre, apellido;
 			bool activo;
 
+			//idvete = veterinario.getIDVeterinario();
 			std::cout << "Ingrese nueva Matricula: ";
 			matricula = validarNumero();
 
