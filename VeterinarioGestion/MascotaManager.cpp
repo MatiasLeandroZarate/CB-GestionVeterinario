@@ -61,7 +61,7 @@ void MascotaManager::MostrarMascota()
     for (int i = 0; i < cantidadRegistros; i++)
     {
         mascotas = gArchivo.LeerMascota(i);
-        std:: cout << mascotas.toInforme() << std::endl;
+       // std:: cout << mascotas.toInforme() << std::endl;
         //std::cout << mascotas.toCSV() << std::endl;
     }
 

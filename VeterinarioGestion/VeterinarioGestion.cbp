@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -78,6 +80,8 @@
 		<Unit filename="Vacunas.h" />
 		<Unit filename="VacunasManager.cpp" />
 		<Unit filename="VacunasManager.h" />
+		<Unit filename="Validaciones.cpp" />
+		<Unit filename="Validaciones.h" />
 		<Unit filename="Veterinarios.cpp" />
 		<Unit filename="Veterinarios.h" />
 		<Unit filename="VeterinariosManager.cpp" />

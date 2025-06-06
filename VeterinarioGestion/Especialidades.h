@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "Validaciones.h"
 
 
 class Especialidades
@@ -11,15 +12,15 @@ class Especialidades
 public:
 	Especialidades();
 	Especialidades(int IDEspecialidad, std::string Nombre, std::string Descripcion);
-	
+
 	int getIDEspecialidad();
 	std::string getNombre();
 	std::string getDescripcion();
-	
+
 	void setIDEspecialidad(int IDEspecialidad);
 	void setNombre(std::string Nombre);
 	void setDescripcion(std::string Descripcion);
-	
+
 	std::string toCSV();
 	std::string toInforme();
 };
