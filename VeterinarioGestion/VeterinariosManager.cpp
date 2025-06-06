@@ -27,7 +27,6 @@ do {
 	}
 	else {
 		idveterinario = SiguienteID();
-		//std::cin.ignore();
 		std::cout << "Ingrese la Matricula del Veterinario: ";
 		matricula = validar.validarNumero();
 		std::cout << "Ingrese el ID especialidad: ";
@@ -37,10 +36,10 @@ do {
 		std::cout << "Ingrese el Apellido: ";
 		Apellido = validar.validarNombre();
 		std::cout << "Ingrese 1 si esta Activo o 0 para inactivo): ";
-
 		activo = validar.validarBool();
-
+	
 		int posEspecialidad = eManager.BuscarEspecialidadPorID(idespecialidad);
+
 		if (posEspecialidad == -1)
 		{
 			bool crear;
@@ -63,9 +62,9 @@ do {
 		}
 		else
 		{
-		especialidad = eArchivo.LeerEspecialidad(idespecialidad);
+		especialidad = eArchivo.LeerEspecialidad(posEspecialidad);
 		}
-			limpiarPantalla();
+		limpiarPantalla();
 			veterinarios = Veterinarios(idveterinario, matricula, DNI, Nombre, Apellido, especialidad, activo);
 
 			confirmar = ConfirmarIngreso(veterinarios, confirmar);
@@ -271,110 +270,7 @@ void VeterinariosManager::ListarVeterinariosActivos()
 	}
 
 }
-/*
-std::string VeterinariosManager::validarNombre()
-{
-	std::string str;
-	bool strValido = false;
 
-	while (!strValido)
-	{
-		int i = 0;
-		strValido = true;
-
-		std::getline(std::cin, str);
-
-		while (str[i])
-		{
-			char c = str[i];
-			if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == ' '))
-			{
-				strValido = false;
-			}
-			i++;
-		}
-
-		if (!strValido)
-		{
-			std::cout << "Dato Invalido, Ingresar Nuevamente." << std::endl;
-		}
-	}
-	return str;
-}
-int VeterinariosManager::validarNumero()
-{
-	std::string numIngresado;
-	bool numValido = false;
-	int Num;
-
-	while (!numValido)
-	{
-		//std::cout << "Ingrese la Edad: ";
-
-		std::getline(std::cin, numIngresado);
-		numValido = true;
-		int i = 0;
-
-		while (numIngresado[i] != '\0')  // Validacion de que todos los caracteres sean numeros y no letras o caracteres
-		{
-			if (numIngresado[i] < '0' || numIngresado[i] > '9')
-			{
-				numValido = false;
-			}
-			i++;
-		}
-
-		if (numValido)
-		{
-			Num = 0;
-			i = 0;
-			while (numIngresado[i] != '\0')
-			{
-				Num = Num * 10 + (numIngresado[i] - '0');
-				i++;
-			}
-		}
-
-		if (!numValido)
-		{
-			std::cout << "Dato inválido, Ingrese de nuevo." << std::endl;
-		}
-	}
-	return Num;
-}
-
-std::string VeterinariosManager::validarNUMenString()
-{
-	std::string str;
-	bool strValido = false;
-
-	while (!strValido)
-	{
-		int i = 0;
-		strValido = true;
-
-		//std::cout << "Ingrese el Nombre: ";
-
-		std::getline(std::cin, str);
-
-		while (str[i])
-		{
-			char c = str[i];
-			if (!((c >= '0' && c <= '9') || c == ' '))
-			{
-				strValido = false;
-			}
-			i++;
-		}
-
-		if (!strValido)
-		{
-			std::cout << "Dato Invalido, Ingresar Nuevamente." << std::endl;
-		}
-	}
-	return str;
-}
-**/
 
 void VeterinariosManager::ModificarVeterinarios()
 {
@@ -443,43 +339,3 @@ void VeterinariosManager::ModificarVeterinarios()
 
 	std::cout << "No se encontró el Veterinario con ese DNI." << std::endl;
 }
-/*
-bool VeterinariosManager::validarBool()
-{
-	std::string numIngresado;
-	bool numValido = false;
-	int Num;
-
-while (!numValido)
-{
-	std::getline(std::cin, numIngresado);
-	numValido = true;
-	int i = 0;
-
-		while (numIngresado[i] != '\0')  // Validacion de que todos los caracteres sean numeros y no letras o caracteres
-		{
-			if (numIngresado[i] < '0' || numIngresado[i] > '1')
-			{
-				numValido = false;
-			}
-			i++;
-		}
-
-		if (numValido)
-		{	Num = 0;
-			i = 0;
-			while (numIngresado[i] != '\0')
-			{
-				Num = Num * 10 + (numIngresado[i] - '0');
-				i++;
-			}
-		}
-
-		if (!numValido)
-		{
-			std::cout << "Dato inválido, Ingrese de nuevo." << std::endl;
-		}
-}
-	return Num;
-}
-**/

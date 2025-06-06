@@ -23,11 +23,5 @@ public:
 	bool BajaVeterinario();
 	void ModificarVeterinarios();
 
-	//int validarNumero();
-	//bool validarBool();
-	//std::string validarNombre();
-    //std::string validarNUMenString();
-
-
 };
 

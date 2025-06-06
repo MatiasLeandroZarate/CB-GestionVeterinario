@@ -1,4 +1,5 @@
 #include "Validaciones.h"
+#include <string>
 
 
 std::string Validaciones::validarNombre()
@@ -43,33 +44,31 @@ int Validaciones::validarNumero()
 
     while (!numValido)
         {
-            //std::cout << "Ingrese la Edad: ";
+         std::getline(std::cin, numIngresado);
+         numValido = true;
+         int i = 0;
 
-            std::getline(std::cin, numIngresado);
-            numValido = true;
-            int i = 0;
+         if(numIngresado.empty())  ///empty() , verifica si el str esta Vacio.
+            {
+             numValido = false;
+            }
 
-            //if(numIngresado.empty())  ///empty() , verifica si el str esta Vacio.
-              //  {
-               // numValido = false;
-                //}
-
-            while (numIngresado[i] != '\0')  // Validacion de que todos los caracteres sean numeros y no letras o caracteres
-                {
-                    if (numIngresado[i] < '0' || numIngresado[i] > '9')
-                        {
-                            numValido = false;
-                        }
+          while (numIngresado[i] != '\0')  // Validacion de que todos los caracteres sean numeros y no letras o caracteres
+              {
+              if (numIngresado[i] < '0' || numIngresado[i] > '9')
+                 {
+                    numValido = false;
+                }
                     i++;
                 }
 
             if (numValido)
                 {
-                    Num = 0;
-                    i = 0;
-                    while (numIngresado[i] != '\0')
-                        {
-                            Num = Num * 10 + (numIngresado[i] - '0');
+                 Num = 0;
+                 i = 0;
+                 while (numIngresado[i] != '\0')
+                 {
+                          Num = Num * 10 + (numIngresado[i] - '0');
                             i++;
                         }
                 }
