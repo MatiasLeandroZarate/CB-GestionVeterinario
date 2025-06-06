@@ -366,7 +366,7 @@ void MenuManager::procesarSubmenuConsultasMedicas(){
             case OPCION_CONSULTA_CLIENTE:
                 consultasMan.consultarPorCliente();
                 break;
-             case OPCION_ATRAS_SALIR:
+            case OPCION_ATRAS_SALIR:
                 break;
         }
 
