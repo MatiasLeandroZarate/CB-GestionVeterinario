@@ -208,6 +208,18 @@ int GestorArchivo::CantidadRegistrosVeterinario() {
     return cantidadRegistros;
 }
 
+bool GestorArchivo::ModificarVeterinarios(int pos, Veterinarios veterinario) {
+    FILE* p;
+    p = fopen("veterinarios.dat", "rb+");
+    if (p == nullptr) return false;
+
+    fseek(p, pos * sizeof(Veterinarios), SEEK_SET);
+    bool escribio = fwrite(&veterinario, sizeof(Veterinarios), 1, p);
+    fclose(p);
+
+    return escribio;
+}
+
 // ----------------------------------SECTOR TRATAMIENTO ----------------------------------
 bool GestorArchivo::GuardarTratamientos(Tratamientos tratamiento)
 {

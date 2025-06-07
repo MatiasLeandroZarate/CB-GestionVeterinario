@@ -2,19 +2,19 @@
 
 void EspecialidadManager::CargarEspecialidad()
 {
+    Validaciones validar;
 	Especialidades especialidad;
 	GestorArchivo eArchivo("especialidades.dat");
 	int IDespecialidad;
 	std::string Nombre, Descripcion;
 
 	std::cout << "Ingrese el ID de la especialidad: ";
-	std::cin >> IDespecialidad;
+	IDespecialidad = validar.validarNumero();
 	std::cout << "Ingrese el Nombre: ";
-	std::cin.ignore();
-	std::getline(std::cin, Nombre);
+	Nombre = validar.validarNombre();
 	std::cout << "Ingrese la Descripcion: ";
-	std::getline(std::cin, Descripcion);
-	
+	Descripcion = validar.validarNombre();
+
 	especialidad = Especialidades(IDespecialidad, Nombre, Descripcion);
 
 	if (eArchivo.GuardarEspecialidad(especialidad))
@@ -30,6 +30,7 @@ void EspecialidadManager::CargarEspecialidad()
 
 void EspecialidadManager::MostrarEspecialidades()
 {
+    Validaciones validar;
 	Especialidades especialidad;
 	GestorArchivo eArchivo("especialidades.dat");
 	int cantidadRegistros = eArchivo.CantidadRegistrosEspecialidades();
@@ -38,7 +39,7 @@ void EspecialidadManager::MostrarEspecialidades()
 	{
 		std::cout << "No hay Especialidad registrada." << std::endl;
 		std::cout << "Desea agregar una especialidad? 1- Si . 2- No: ";
-		std::cin >> crear;
+		crear = validar.validarBool();
 		if (crear == 1)
 		{
 			CargarEspecialidad();

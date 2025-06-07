@@ -203,6 +203,7 @@ void MenuManager::procesarSubmenuMascotas(){
 
     MascotaManager mascotaMan;
     int opcion;
+    MascotaManager mascotaMan;
 
     do {
         limpiarPantalla();
@@ -278,6 +279,7 @@ void MenuManager::procesarSubmenuVeterinarios(){
 				veterinarioMan.CargarVeterinarios();
                 break;
             case OPCION_MODIFICAR:
+                veterinarioMan.ModificarVeterinarios();
                 break;
             case OPCION_BAJA:
                 veterinarioMan.BajaVeterinario();

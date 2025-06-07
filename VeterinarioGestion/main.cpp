@@ -16,13 +16,13 @@ using namespace std;
 int main()
 {
    MenuManager menuManager;
-    menuManager.procesarMenuPrincipal();
+   menuManager.procesarMenuPrincipal();
 
 
  //   MascotaManager mascotaMan;
 
  //   SucursalManager sucursalMan;
-//    EspecialidadManager especialidadMan;
+    //EspecialidadManager especialidadMan;
 
  //   TratamientosManager tratamientoMan;
  //   ConsultasManager consultaMan;
@@ -54,12 +54,12 @@ int main()
     //std::cout << "IDSucursal,NombreSuc,Direccion";
     //sucursalMan.MostrarSucursal();
     //
-    //std::cout << std::endl <<"--------------------" << std::endl;
-    //std::cout << "--------------------" << std::endl;
-    //std::cout << "ESPECIALIDADES: " << std::endl;
-    //std::cout << "IDEspecialidad,NombreEspe,Descripcion" << std::endl;
-    //especialidadMan.MostrarEspecialidades();
-//
+   // std::cout << std::endl <<"--------------------" << std::endl;
+   // std::cout << "--------------------" << std::endl;
+   // std::cout << "ESPECIALIDADES: " << std::endl;
+   // std::cout << "IDEspecialidad,NombreEspe,Descripcion" << std::endl;
+   //especialidadMan.MostrarEspecialidades();
+// 
 //
     //std::cout << std::endl <<"--------------------" << std::endl;
     //std::cout << "--------------------" << std::endl;
