@@ -5,7 +5,6 @@ class MenuManager {
 public:
     void procesarMenuPrincipal();
 private:
-    void evaluarOpcionDefault(int opcionSeleccionada);
     void realizarOperacionPostSeleccion(int opcionSeleccionada);
     void procesarSubmenuClientes();
     void procesarSubmenuMascotas();
@@ -16,7 +15,7 @@ private:
     void procesarSubmenuSucursales();
     void procesarSubmenuPagos();
     void procesarSubmenuAcercaDe();
-    void mostrarMensajeOpcionInvalida();
+    int procesarEntradaMenu(int opcionMinima, int opcionMaxima);
 };
 
 #endif

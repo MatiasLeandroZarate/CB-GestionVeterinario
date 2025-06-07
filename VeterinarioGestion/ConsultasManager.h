@@ -7,11 +7,18 @@
 #include "Fecha.h"
 
 class ConsultasManager
-{private:
+{
+private:
 public:
-	void CargarConsulta();
-	void MostrarConsulta();
+	void altaConsulta();
+	void modificarConsulta();
+	void listarConsultas();
+	void bajaConsulta();
+	void consultarPorMascota();
+	void consultarPorFecha();
+	void consultarPorSucursal();
+	void consultarPorVeterinario();
+	void consultarPorCliente();
 	int BuscarConsultaPorID(int idBuscado);
-
 };
 
