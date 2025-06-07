@@ -203,7 +203,6 @@ void MenuManager::procesarSubmenuMascotas(){
 
     MascotaManager mascotaMan;
     int opcion;
-    MascotaManager mascotaMan;
 
     do {
         limpiarPantalla();
