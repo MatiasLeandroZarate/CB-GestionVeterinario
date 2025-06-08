@@ -148,7 +148,7 @@ void MenuManager::procesarSubmenuClientes(){
     const string TITULO_CONSULTA_TELEFONO = "Consulta por telefono";
 
     int opcion;
-    string dniBuscado; 
+    string dniBuscado;
     ClienteManager clienteMan;
 
     do {
@@ -180,14 +180,14 @@ void MenuManager::procesarSubmenuClientes(){
                 break;
             case OPCION_CONSULTA_DNI:
                 std::cout << "Ingrese el DNI del cliente a buscar: ";
-				
+
                 std::cin >> dniBuscado;
 				limpiarPantalla();
                 std::cout << "--------------------" << std::endl;
 				std::cout << "CLIENTE: " << std::endl;
 				std::cout << "ID\t| DNI\t\t|Nombre\t|Apellido\t|Telefono\t|Email" << std::endl;
 				std::cout << "-------------------------------------------------------------------------------------" << std::endl;
-				
+
 				clienteMan.BuscarClientePorDNI(dniBuscado);
 
                 break;
@@ -242,7 +242,6 @@ void MenuManager::procesarSubmenuMascotas(){
             std::cout << std::endl <<"--------------------" << std::endl;
             std::cout << "--------------------" << std::endl;
             std::cout << "MASCOTA: " << std::endl;
-            std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente" << std::endl;
             mascotaMan.MostrarMascota();
             break;
         case OPCION_ALTA:
@@ -253,6 +252,15 @@ void MenuManager::procesarSubmenuMascotas(){
         case OPCION_BAJA:
             break;
         case OPCION_ATRAS_SALIR:
+            break;
+        case OPCION_CONSULTA_ID:
+            mascotaMan.MostrarMascotaPorID();
+            break;
+        case OPCION_CONSULTA_RAZA:
+            mascotaMan.MostrarMascotaPorRaza();
+            break;
+        case OPCION_CONSULTA_ESPECIE:
+            mascotaMan.MostrarMascotaPorEspecie();
             break;
         default:
             evaluarOpcionDefault(opcion);
@@ -276,7 +284,7 @@ void MenuManager::procesarSubmenuVeterinarios(){
     const string TITULO_BAJA = "Baja de veterinario";
     const string TITULO_LISTAR_ID = "Listado por ID";
     const string TITULO_LISTAR_ACTIVOS = "Listado de activos";
-  
+
     VeterinariosManager veterinarioMan;
 
     int opcion;

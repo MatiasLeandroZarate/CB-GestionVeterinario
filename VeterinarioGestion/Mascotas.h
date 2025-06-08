@@ -18,6 +18,7 @@ private:
     Fecha _FechaNacimiento;
     int _IDCliente;
 
+
 public:
     Mascotas();
     Mascotas(int IDMascota, std::string Nombre, std::string Especie, std::string Raza, int Edad, float Peso, std::string Sexo, Fecha FechaNacimiento, int IDCliente);
@@ -32,6 +33,7 @@ public:
     void setPeso(float Peso);
     void setSexo(std::string Sexo);
 
+
     std::string getEspecie();
     std::string getRaza();
     float getPeso();
@@ -42,6 +44,7 @@ public:
     Fecha getFechaNacimiento();
     int getIDCliente();
 
+std::string toInforme();
     std::string toCSV();
 };
 
