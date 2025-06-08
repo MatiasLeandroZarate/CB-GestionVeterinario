@@ -226,7 +226,6 @@ void MenuManager::procesarSubmenuMascotas(){
             std::cout << std::endl <<"--------------------" << std::endl;
             std::cout << "--------------------" << std::endl;
             std::cout << "MASCOTA: " << std::endl;
-            std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente" << std::endl;
             mascotaMan.MostrarMascota();
             break;
         case OPCION_ALTA:
@@ -238,6 +237,19 @@ void MenuManager::procesarSubmenuMascotas(){
             break;
         case OPCION_ATRAS_SALIR:
             break;
+
+        case OPCION_CONSULTA_ID:
+            mascotaMan.MostrarMascotaPorID();
+            break;
+        case OPCION_CONSULTA_RAZA:
+            mascotaMan.MostrarMascotaPorRaza();
+            break;
+        case OPCION_CONSULTA_ESPECIE:
+            mascotaMan.MostrarMascotaPorEspecie();
+            break;
+        default:
+            evaluarOpcionDefault(opcion);
+
         }
 
         realizarOperacionPostSeleccion(opcion);
