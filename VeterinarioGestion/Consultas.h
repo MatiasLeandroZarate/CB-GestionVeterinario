@@ -19,10 +19,11 @@ private:
 	Fecha _FechaProximaVisita;
 	int _IDVeterinario;
 	int _IDSucursal;
+	bool _Estado;
 public:
 	Consultas();
-	Consultas(int idconsultas, int idmascotas, Fecha fecha, std::string sintomas, std::string diagnostico, Tratamientos tratamiento, Fecha fechaproximavisita, int idveterinario, int idsucursal);
 
+	Consultas(int idconsultas, int idmascotas, Fecha fecha, std::string sintomas, std::string diagnostico, Tratamientos tratamiento, Fecha fechaproximavisita, int idveterinario, int idsucursal);
 	void setIDConsultas(int idconsultas);
 	void setIDMascotas(int idmascotas);
 	void setFecha(Fecha fecha);
@@ -32,6 +33,7 @@ public:
 	void setFechaproximavisita(Fecha fechaproximavisita);
 	void setIDVeterinario(int idveterinario);
 	void setIDSucursal(int idsucursal);
+	void setEstado(bool estado);
 
 	int getIDConsultas();
 	int getIDMascotas();
@@ -42,6 +44,7 @@ public:
 	Fecha getFechaproximavisita();
 	int getIDVeterinario();
 	int getIDSucursal();
+	bool getEstado();
 
 	std::string toCSV();
 

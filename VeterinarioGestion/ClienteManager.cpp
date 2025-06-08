@@ -6,7 +6,7 @@ void ClienteManager::CargarCliente()
 	Cliente cliente;
 	GestorArchivo gArchivo("clientes.dat");
 	int ID = ObtenerSiguienteID();
-	
+	bool Activo = 1;
 
 	std::string DNI, Nombre, Apellido, Telefono, Email;
 
@@ -22,10 +22,11 @@ void ClienteManager::CargarCliente()
 	std::getline(std::cin, Telefono);
 	std::cout << "Ingrese el Email: ";
 	std::getline(std::cin, Email);
+	
 
 	
 
-	cliente = Cliente(ID, DNI, Nombre, Apellido, Telefono, Email);
+	cliente = Cliente(ID, DNI, Nombre, Apellido, Telefono, Email,Activo);
 
 	if (gArchivo.GuardarClientes(cliente)) 
 	{

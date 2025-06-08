@@ -44,6 +44,7 @@ class GestorArchivo{
         bool GuardarVeterinario(Veterinarios veterinario);
         Veterinarios LeerVeterinario(int posicion);
         int CantidadRegistrosVeterinario();
+        bool ModificarVeterinarios(int pos, Veterinarios veterinario);
 
 		//Funciones para TRATAMIENTOS
         bool GuardarTratamientos(Tratamientos tratamiento);

@@ -3,9 +3,10 @@
 #include "EspecialidadManager.h"
 #include "Veterinarios.h"
 #include "FuncionesGlobales.h"
+#include "Validaciones.h"
 
 
-class VeterinariosManager 
+class VeterinariosManager
 {private:
 public:
 	void CargarVeterinarios();
@@ -16,10 +17,11 @@ public:
 
 	int SiguienteID();
 	int BuscarVeterinariosPorID(int idBuscado);
-	
+
 	bool BuscarVeterinarioPorDNI(std::string dniBuscado);
 	bool ConfirmarIngreso(Veterinarios veterinario, bool confirmar);
 	bool BajaVeterinario();
+	void ModificarVeterinarios();
 
 };
 

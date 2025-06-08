@@ -1,115 +1,239 @@
 #include "ConsultasManager.h"
 
-void ConsultasManager::CargarConsulta()
-{	
-	Consultas consulta;
-	GestorArchivo cArchivo("consultas.dat");
-	GestorArchivo tArchivo("tratamientos.dat");
-	TratamientosManager tManager;
-	Tratamientos Tratamiento;
+void ConsultasManager::altaConsulta() {
+    Consultas consulta;
+    GestorArchivo cArchivo("consultas.dat");
+    GestorArchivo tArchivo("tratamientos.dat");
+    TratamientosManager tManager;
+    Tratamientos tratamiento;
 
-	int IDTratamiento;
-	int IDMascota,IDConsulta,IDVeterinario, IDSucursal;
-	std::string Sintomas, Diagnostico;
-	Fecha Fechaconsulta, FechaProximaVisita , fechavalidar;
-	int dia, mes, anio;
+    Fecha fechaConsulta, fechaProximaVisita, validadorFecha;
+    int idConsulta, idMascota, idTratamiento, idVeterinario, idSucursal;
+    std::string sintomas, diagnostico;
+    std::cout << "Ingrese el ID de la Mascota: ";
+    std::cin >> idMascota;
+    std::cout << "Ingrese la Fecha de la Consulta:\n";
+    fechaConsulta = validadorFecha.ValidacionFecha(fechaConsulta);
 
-	std::cout << "Ingrese el ID de la Consulta: ";
-	std::cin >> IDConsulta;
-	std::cout << "Ingrese el ID de la Mascota: ";
-	std::cin >> IDMascota;
-	std::cout << "Ingrese la Fecha de la Consulta: " << std::endl;
-	
-	Fechaconsulta = fechavalidar.ValidacionFecha(Fechaconsulta);
-	std::cout << "Ingrese los Sintomas: ";
-	std::cin.ignore();
-	std::getline(std::cin, Sintomas);
-	std::cout << "Ingrese el Diagnostico: ";
-	std::getline(std::cin, Diagnostico);
-	std::cout << "Ingrese el ID del Tratamiento: ";
-	std::cin >> IDTratamiento;
+    std::cin.ignore();
+    std::cout << "Ingrese los Sintomas: ";
+    std::getline(std::cin, sintomas);
+    std::cout << "Ingrese el Diagnostico: ";
+    std::getline(std::cin, diagnostico);
 
-	int posTratamiento = tManager.BuscarTratamientoPorID(IDTratamiento);
-	if (posTratamiento == -1)
-	{
-		bool crear;
-		std::cout << "No se encontró la especialidad." << std::endl;
-		std::cout << "Desea agregar una especialidad? 1- Si . 2- No: ";
-		std::cin >> crear;
-		if (crear == 1)
-		{
-			tManager.CargarTratamiento();
-		}
-		else
-		{
-			std::cout << "No se cargó ningun Tratamiento con ese ID." << std::endl;
-		}
-	}
-	else
-	{
-		// Leer la especialidad desde el archivo
-		Tratamiento = tArchivo.LeerTratamientos(posTratamiento);
-	}
+    std::cout << "Ingrese el ID del Tratamiento: ";
+    std::cin >> idTratamiento;
 
-	std::cout << "Ingrese la Fecha de la Proxima Visita: " << std::endl;
-	/*
-	std::cout << "Dia: ";
-	std::cin >> dia;
-	std::cout << "Mes: ";
-	std::cin >> mes;
-	std::cout << "Anio: ";
-	std::cin >> anio;*/
+    int posTrat = tManager.BuscarTratamientoPorID(idTratamiento);
+    if (posTrat == -1) {
+        int opcion;
+        std::cout << "Tratamiento no encontrado. ¿Desea darlo de alta? (1=Sí, 2=No): ";
+        std::cin >> opcion;
+        if (opcion == 1) {
+            tManager.CargarTratamiento();
+        } else {
+            std::cout << "No se cargó tratamiento.\n";
+            return;
+        }
+    } else {
+        tratamiento = tArchivo.LeerTratamientos(posTrat);
+    }
 
-	FechaProximaVisita = fechavalidar.ValidacionFecha(FechaProximaVisita);
-	std::cout << "Ingrese el ID del Veterinario: ";
-	std::cin >> IDVeterinario;
-	std::cout << "Ingrese el ID de la Sucursal: ";
-	std::cin >> IDSucursal;
+    std::cout << "Ingrese la Fecha de la Próxima Visita:\n";
+    fechaProximaVisita = validadorFecha.ValidacionFecha(fechaProximaVisita);
 
+    std::cout << "Ingrese el ID del Veterinario: ";
+    std::cin >> idVeterinario;
+    std::cout << "Ingrese el ID de la Sucursal: ";
+    std::cin >> idSucursal;
 
-	consulta = Consultas(IDConsulta, IDMascota, Fechaconsulta, Sintomas, Diagnostico, Tratamiento, FechaProximaVisita, IDVeterinario, IDSucursal);
+    idConsulta = 1;
+    consulta = Consultas(idConsulta, idMascota, fechaConsulta, sintomas, diagnostico, tratamiento, fechaProximaVisita, idVeterinario, idSucursal);
 
-	if (cArchivo.GuardarConsultas(consulta))
-	{
-		std::cout << std::endl;
-		std::cout << "La consulta fue guardada correctamente." << std::endl;
-	}
-	else
-	{
-		std::cout << "Error al guardar la Consulta." << std::endl;
-	}
+    if (cArchivo.GuardarConsultas(consulta)) {
+        std::cout << "\nConsulta registrada exitosamente.\n";
+    } else {
+        std::cout << "\nError al guardar la consulta.\n";
+    }
 }
 
-void ConsultasManager::MostrarConsulta()
-{
-	Consultas consulta;
-	GestorArchivo cArchivo("consultas.dat");
-	int cantidadregistros = cArchivo.CantidadRegistrosConsultas();
-	if (cantidadregistros == 0)
-	{
-		std::cout << "No hay Consultas registradas." << std::endl;
-	}
+void ConsultasManager::listarConsultas() {
+    GestorArchivo archivo("consultas.dat");
+    Consultas consulta;
+    int total = archivo.CantidadRegistrosConsultas();
 
-	for (int i = 0; i < cantidadregistros; i++)
-	{
-		consulta = cArchivo.LeerConsultas(i);
-		std::cout << consulta.toCSV() << std::endl;
-	}
+    if (total == 0) {
+        std::cout << "No hay consultas registradas.\n";
+        return;
+    }
+
+    std::cout << "\nIDConsulta,IDMascota,Fecha,Sintomas,Diagnostico,IDTratamiento,NombreTratamiento,DescTratamiento,Duracion,Costo,FechaProximaVisita,IDVeterinario,IDSucursal\n";
+    for (int i = 0; i < total; i++) {
+        consulta = archivo.LeerConsultas(i);
+        std::cout << consulta.toCSV() << std::endl;
+    }
 }
 
-int ConsultasManager::BuscarConsultaPorID(int idBuscado)
-{
-	Consultas consulta;
-	GestorArchivo cArchivo("consultas.dat");
-	int cantidadRegistros = cArchivo.CantidadRegistrosVeterinario();
-	for (int i = 0; i < cantidadRegistros; i++)
-	{
-		consulta = cArchivo.LeerConsultas(i);
-		if (consulta.getIDConsultas() == idBuscado)
-		{
-			return i;
-		}
-	}
-	std::cout << "No se encontró el ID de la Consulta." << std::endl;
-	return -1;
+void ConsultasManager::modificarConsulta() {
+    int id;
+    std::cout << "Ingrese el ID de la consulta a modificar: ";
+    std::cin >> id;
+
+    GestorArchivo archivo("consultas.dat");
+    int pos = BuscarConsultaPorID(id);
+    if (pos == -1) return;
+
+    Consultas consulta = archivo.LeerConsultas(pos);
+
+    std::string nuevoDiagnostico;
+    std::cout << "Diagnóstico actual: " << consulta.getDiagnostico() << "\n";
+    std::cout << "Nuevo diagnóstico: ";
+    std::cin.ignore();
+    std::getline(std::cin, nuevoDiagnostico);
+
+    consulta.setDiagnostico(nuevoDiagnostico);
+    archivo.GuardarConsultas(consulta);
+
+    std::cout << "Consulta modificada con éxito.\n";
+}
+
+void ConsultasManager::bajaConsulta() {
+    int id;
+    std::cout << "Ingrese el ID de la consulta a dar de baja: ";
+    std::cin >> id;
+
+    GestorArchivo cArchivo("consultas.dat");
+    int pos = BuscarConsultaPorID(id);
+    if (pos == -1) return;
+
+    Consultas consulta = cArchivo.LeerConsultas(pos);
+    consulta.setEstado(false);
+
+    if (cArchivo.GuardarConsultas(consulta)) {
+        std::cout << "Consulta dada de baja exitosamente." << std::endl;
+    } else {
+        std::cout << "Error al dar de baja la consulta." << std::endl;
+    }
+}
+
+void ConsultasManager::consultarPorMascota() {
+    int idMascota;
+    std::cout << "Ingrese ID de la mascota: ";
+    std::cin >> idMascota;
+
+    GestorArchivo archivo("consultas.dat");
+    Consultas consulta;
+    bool encontrado = false;
+
+    for (int i = 0; i < archivo.CantidadRegistrosConsultas(); i++) {
+        consulta = archivo.LeerConsultas(i);
+        if (consulta.getIDMascotas() == idMascota) {
+            std::cout << consulta.toCSV() << std::endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) std::cout << "No se encontraron consultas para la mascota indicada.\n";
+}
+
+void ConsultasManager::consultarPorFecha() {
+    Fecha f;
+    f = f.ValidacionFecha(f);
+
+    GestorArchivo cArchivo("consultas.dat");
+    Consultas consulta;
+    bool encontrado = false;
+
+    for (int i = 0; i < cArchivo.CantidadRegistrosConsultas(); i++) {
+        consulta = cArchivo.LeerConsultas(i);
+        if (consulta.getFecha().getAnio() == f.getAnio()
+            && consulta.getFecha().getMes() == f.getMes()
+            && consulta.getFecha().getAnio() == f.getAnio()) {
+            std::cout << consulta.toCSV() << std::endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) {
+        std::cout << "No se encontraron consultas en esa fecha." << std::endl;
+    }
+}
+
+void ConsultasManager::consultarPorSucursal() {
+    int id;
+    std::cout << "Ingrese el ID de la sucursal: ";
+    std::cin >> id;
+
+    GestorArchivo archivo("consultas.dat");
+    Consultas consulta;
+    bool encontrado = false;
+
+    for (int i = 0; i < archivo.CantidadRegistrosConsultas(); i++) {
+        consulta = archivo.LeerConsultas(i);
+        if (consulta.getIDSucursal() == id) {
+            std::cout << consulta.toCSV() << std::endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) std::cout << "No se encontraron consultas para esa sucursal.\n";
+}
+
+void ConsultasManager::consultarPorVeterinario() {
+    int id;
+    std::cout << "Ingrese el ID del veterinario: ";
+    std::cin >> id;
+
+    GestorArchivo archivo("consultas.dat");
+    Consultas consulta;
+    bool encontrado = false;
+
+    for (int i = 0; i < archivo.CantidadRegistrosConsultas(); i++) {
+        consulta = archivo.LeerConsultas(i);
+        if (consulta.getIDVeterinario() == id) {
+            std::cout << consulta.toCSV() << std::endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) std::cout << "No se encontraron consultas para ese veterinario.\n";
+}
+
+void ConsultasManager::consultarPorCliente() {
+    int id;
+    std::cout << "Ingrese el ID del cliente: ";
+    std::cin >> id;
+
+    GestorArchivo archivo("consultas.dat");
+    GestorArchivo archivoMascotas("mascotas.dat");
+
+    Consultas consulta;
+    bool encontrado = false;
+
+    /*
+    for (int i = 0; i < archivo.CantidadRegistrosConsultas(); i++) {
+        consulta = archivo.LeerConsultas(i);
+        consulta.getIDMascotas()
+        if (consulta.getIDMascotas() == id) {
+            std::cout << consulta.toCSV() << std::endl;
+            encontrado = true;
+        }
+    }
+    */
+
+    if (!encontrado) std::cout << "No se encontraron consultas para ese cliente.\n";
+}
+
+int ConsultasManager::BuscarConsultaPorID(int idBuscado) {
+    GestorArchivo archivo("consultas.dat");
+    Consultas consulta;
+    int total = archivo.CantidadRegistrosConsultas();
+
+    for (int i = 0; i < total; i++) {
+        consulta = archivo.LeerConsultas(i);
+        if (consulta.getIDConsultas() == idBuscado) return i;
+    }
+
+    std::cout << "Consulta con ID " << idBuscado << " no encontrada.\n";
+    return -1;
 }
