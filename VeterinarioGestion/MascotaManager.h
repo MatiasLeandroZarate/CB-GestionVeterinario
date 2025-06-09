@@ -18,6 +18,8 @@ public:
 	void MostrarMascotaPorRaza();
 	void MostrarMascotaPorEspecie();
 	int ValidarIdCliente();
+	bool DarDeBajaMascota();
+	void ModificarMascota();
 	std::string validarNombre();
 	std::string validarSexo();
 	std::string validarEspecie();

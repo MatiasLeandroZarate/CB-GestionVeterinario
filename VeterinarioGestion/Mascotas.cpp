@@ -11,9 +11,10 @@ Mascotas::Mascotas()
     strcpy(_Sexo, "0");
     _FechaNacimiento = Fecha();
     _IDCliente = 0;
+    _Activo = false;
 }
 
-Mascotas::Mascotas(int IDMascota, std::string Nombre, std::string Especie, std::string Raza, int Edad, float Peso, std::string Sexo, Fecha FechaNacimiento, int IDCliente)
+Mascotas::Mascotas(int IDMascota, std::string Nombre, std::string Especie, std::string Raza, int Edad, float Peso, std::string Sexo, Fecha FechaNacimiento, int IDCliente, bool Activo)
 {
     setIDMascota(IDMascota);
     setNombre(Nombre);
@@ -24,6 +25,11 @@ Mascotas::Mascotas(int IDMascota, std::string Nombre, std::string Especie, std::
     setSexo(Sexo);
     setFechaNacimiento(FechaNacimiento);
     setIDCliente(IDCliente);
+    setActivo(Activo);
+}
+void Mascotas::setActivo(bool Activo)
+{
+	_Activo = Activo;
 }
 
 void Mascotas::setIDMascota(int IDMascota)
@@ -101,17 +107,21 @@ std::string Mascotas::getSexo()
 {
     return _Sexo;
 }
+bool Mascotas::getActivo()
+{
+	return _Activo;
+}
 
 
 
 std::string Mascotas::toInforme()
 {
-    return std::to_string(_IDMascota) + "\t" + getNombre() + "\t" + getEspecie() + "\t" + getRaza() +"\t" + std::to_string(_Edad) + "\t" + std::to_string(_Peso) + "\t" + getSexo() + "\t" + _FechaNacimiento.toString() + "\t" + std::to_string(_IDCliente);
+    return std::to_string(_IDMascota) + "\t  " + getNombre() + "\t" + getEspecie() + "\t" + getRaza() +"\t" + std::to_string(_Edad) + "\t" + std::to_string(_Peso) + "\t" + getSexo() + "\t" + _FechaNacimiento.toString() + "\t" + std::to_string(_IDCliente)+ "\t" + std::to_string(getActivo());
 }
 
 
 
 std::string Mascotas::toCSV()
 {
-    return std::to_string(_IDMascota) + "," + getNombre() + "," + getEspecie() + "," + getRaza() + "," + std::to_string(_Edad) + "," + std::to_string(_Peso) + "," + getSexo() + "," + _FechaNacimiento.toString() + "," + std::to_string(_IDCliente);
+    return std::to_string(_IDMascota) + "," + getNombre() + "," + getEspecie() + "," + getRaza() + "," + std::to_string(_Edad) + "," + std::to_string(_Peso) + "," + getSexo() + "," + _FechaNacimiento.toString() + "," + std::to_string(_IDCliente) + "," + std::to_string(getActivo());
 }

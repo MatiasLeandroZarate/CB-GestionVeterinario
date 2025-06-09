@@ -89,6 +89,18 @@ int GestorArchivo::CantidadRegistrosMascotas()
     return cantidadRegistros;
 }
 
+bool GestorArchivo::ModificarMascota(int pos, Mascotas mascotas) {
+    FILE* p;
+    p = fopen("mascotas.dat", "rb+");
+    if (p == nullptr) return false;
+
+    fseek(p, pos * sizeof(Mascotas), SEEK_SET);
+    bool escribio = fwrite(&mascotas, sizeof(Mascotas), 1, p);
+    fclose(p);
+
+    return escribio;
+}
+
 // ----------------------------------SECTOR SUCURSALES----------------------------------
 
 bool GestorArchivo::GuardarSucursal(Sucursales sucursal)
