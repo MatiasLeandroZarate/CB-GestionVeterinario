@@ -221,19 +221,25 @@ void MenuManager::procesarSubmenuMascotas(){
         switch (opcion)
         {
         case OPCION_LISTAR:
-
-            std::cout << std::endl <<"--------------------" << std::endl;
-            std::cout << "--------------------" << std::endl;
-            std::cout << "MASCOTA: " << std::endl;
-            std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente" << std::endl;
             mascotaMan.MostrarMascota();
             break;
         case OPCION_ALTA:
            mascotaMan.CargarMascota();
             break;
         case OPCION_MODIFICAR:
+            mascotaMan.ModificarMascota();
             break;
         case OPCION_BAJA:
+            mascotaMan.DarDeBajaMascota();
+            break;
+        case OPCION_CONSULTA_RAZA:
+            mascotaMan.MostrarMascotaPorRaza();
+            break;
+        case OPCION_CONSULTA_ESPECIE:
+            mascotaMan.MostrarMascotaPorEspecie();
+            break;
+        case OPCION_CONSULTA_ID:
+            mascotaMan.MostrarMascotaPorID();
             break;
         case OPCION_ATRAS_SALIR:
             break;
@@ -593,5 +599,3 @@ int MenuManager::procesarEntradaMenu(int opcionMinima, int opcionMaxima){
         }
     }
 }
-
-
