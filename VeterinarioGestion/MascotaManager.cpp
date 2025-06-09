@@ -9,6 +9,7 @@ void MascotaManager::CargarMascota()
     int IDMascota, Edad, IDCliente;
     std::string Nombre, Especie, Raza, Sexo;
     float Peso;
+    bool Activo;
     Fecha FechaNacimiento, fechavalidar;
 
     IDMascota = GenerarIdAutomatico();
@@ -27,13 +28,15 @@ void MascotaManager::CargarMascota()
 
     IDCliente = ValidarIdCliente();
 
+    Activo = true;
+
     std::cout << "Ingrese la Fecha de Nacimiento: " << std::endl;
 
     FechaNacimiento = fechavalidar.ValidacionFecha(FechaNacimiento);
 
 
 
-    mascota = Mascotas(IDMascota, Nombre, Especie, Raza, Edad, Peso, Sexo, FechaNacimiento, IDCliente);
+    mascota = Mascotas(IDMascota, Nombre, Especie, Raza, Edad, Peso, Sexo, FechaNacimiento, IDCliente, Activo);
 
     if (gArchivo.GuardarMascotas(mascota))
     {
@@ -57,12 +60,14 @@ void MascotaManager::MostrarMascota()
     {
         std::cout << "No hay Macotas registradas." << std::endl;
     }
-
-    std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente" << std::endl;
+    std::cout << std::endl <<"--------------------" << std::endl;
+    std::cout << "--------------------" << std::endl;
+    std::cout << "MASCOTA: " << std::endl;
+    std::cout << "IDMascota|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente\t|Activo" << std::endl;
     for (int i = 0; i < cantidadRegistros; i++)
     {
         mascotas = gArchivo.LeerMascota(i);
-       // std:: cout << mascotas.toInforme() << std::endl;
+        std:: cout << mascotas.toInforme() << std::endl;
         //std::cout << mascotas.toCSV() << std::endl;
     }
 
@@ -91,7 +96,7 @@ void MascotaManager::MostrarMascotaPorRaza()
     }
     if(!ContEncontrados == 0)
     {
-        std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente" << std::endl;
+        std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente\t|Activo" << std::endl;
         for (int i = 0; i < cantidadRegistros; i++)
         {
             mascotas = gArchivo.LeerMascota(i);
@@ -134,7 +139,7 @@ void MascotaManager::MostrarMascotaPorEspecie()
     }
     if(!ContEncontrados == 0)
     {
-        std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente" << std::endl;
+        std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente\t|Activo" << std::endl;
         for (int i = 0; i < cantidadRegistros; i++)
         {
             mascotas = gArchivo.LeerMascota(i);
@@ -178,7 +183,7 @@ void MascotaManager::MostrarMascotaPorID()
 
     if(!ContEncontrados == 0)
     {
-        std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente" << std::endl;
+        std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente\t|Activo" << std::endl;
         for (int i = 0; i < cantidadRegistros; i++)
         {
             mascotas = gArchivo.LeerMascota(i);
@@ -270,7 +275,7 @@ int MascotaManager::ValidarIdCliente()
     std::string IDIngresado;
     bool IDValido = false;
 
-int ID;
+    int ID;
 
     while (!IDValido)
     {
@@ -300,7 +305,7 @@ int ID;
             }
         }
 
-       IDValido = false;
+        IDValido = false;
 
         Cliente cliente;
         GestorArchivo gArchivo("clientes.dat");
@@ -532,12 +537,106 @@ int MascotaManager::GenerarIdAutomatico()
 {
 
     GestorArchivo gArchivo("mascotas.dat");
-    int iDAutomatico;
     int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
 
     return cantidadRegistros + 1; // CONSULTAR SI ES POSIBLE BORRAR UN REGISTRO ENTERO EN UN ARCHIVO.
 
 }
+bool MascotaManager::DarDeBajaMascota()
+{
+    Validaciones validar;
+    Mascotas mascotas;
+    int ID;
+
+
+    GestorArchivo vArchivo("mascotas.dat");
+    int cantidadRegistros = vArchivo.CantidadRegistrosMascotas();
+    std::cout << "Ingrese el ID de la Mascota que desea dar de baja: ";
+
+    ID = validar.validarNumero();
+
+    for (int i = 0; i < cantidadRegistros; i++)
+    {
+        mascotas = vArchivo.LeerMascota(i);
+        if (mascotas.getIDMascota() == ID && mascotas.getActivo())
+        {
+            mascotas.setActivo(false);
+            if (vArchivo.ModificarMascota(i, mascotas))
+            {
+                std::cout << "Mascota dada de baja exitosamente." << std::endl;
+                return true;
+            }
+            else
+            {
+                std::cout << "Mascota no encontrada o ya dada de baja." << std::endl;
+                return false;
+            }
+        }
+    }
+}
+
+void MascotaManager::ModificarMascota()
+{
+    Validaciones validar;
+    int ID;
+    Mascotas mascota;
+
+    GestorArchivo vArchivo("mascotas.dat");
+    int cantidadRegistros = vArchivo.CantidadRegistrosMascotas();
+
+    std::cout << "Ingrese el ID de la Mascota a modificar: ";
+    std::cin.ignore();
+    ID = validar.validarNumero();
+
+    for (int i = 0; i < cantidadRegistros; i++)
+    {
+        mascota = vArchivo.LeerMascota(i);
+        if (mascota.getIDMascota() == ID)
+        {
+            std::cout << "Datos actuales:" << std::endl;
+            std::cout << mascota.toInforme() << std::endl;
+
+            int IDMascota, Edad, IDCliente;
+            std::string Nombre, Especie, Raza, Sexo;
+            float Peso;
+            bool Activo;
+            Fecha FechaNacimiento, fechavalidar;
+
+            Nombre = validarNombre();
+            Especie = validarEspecie();
+            Raza = validarRaza();
+            Edad = validarEdad();
+            Peso = validarPeso();
+            Sexo = validarSexo();
+            FechaNacimiento = fechavalidar.ValidacionFecha(FechaNacimiento);
+
+
+            std::cout << "Activo (1: Si / 0: No): ";
+            Activo = validar.validarBool();
+
+            mascota.setNombre(Nombre);
+            mascota.setEspecie(Especie);
+            mascota.setRaza(Raza);
+            mascota.setEdad(Edad);
+            mascota.setPeso(Peso);
+            mascota.setSexo(Sexo);
+            mascota.setActivo(Activo);
+
+            if (vArchivo.ModificarMascota(i, mascota))
+            {
+                std::cout << "Mascota modificada correctamente." << std::endl;
+            }
+            else
+            {
+                std::cout << "Error al modificar Mascota." << std::endl;
+            }
+            return;
+        }
+    }
+
+    std::cout << "No se encontro Mascota con ese ID." << std::endl;
+}
+
 
 
 //int ObtenerSiguienteID()

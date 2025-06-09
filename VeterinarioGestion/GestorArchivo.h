@@ -15,20 +15,21 @@
 class GestorArchivo{
     private:
         std::string _nombreArchivo;
-        
+
     public:
         GestorArchivo();
         GestorArchivo(std::string nombreArchivo);
-        
+
         //Funciones para Cliente
         bool GuardarClientes(Cliente cliente);
         Cliente LeerClientes (int posicion);
         int CantidadRegistrosClientes();
-       
+
 		//Funciones para Mascotas
         bool GuardarMascotas(Mascotas mascota);
 		Mascotas LeerMascota(int posicion);
 		int CantidadRegistrosMascotas();
+		 bool ModificarMascota(int pos, Mascotas mascotas);
 
         //Funciones para Sucursales
         bool GuardarSucursal(Sucursales sucursal);
@@ -39,7 +40,7 @@ class GestorArchivo{
         bool GuardarEspecialidad(Especialidades especialidad);
         Especialidades LeerEspecialidad(int posicion);
         int CantidadRegistrosEspecialidades();
- 
+
         //Funciones para Veterinario
         bool GuardarVeterinario(Veterinarios veterinario);
         Veterinarios LeerVeterinario(int posicion);
