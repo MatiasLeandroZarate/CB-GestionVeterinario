@@ -9,6 +9,9 @@
 class ConsultasManager
 {
 private:
+    void imprimirEncabezadoListado();
+    bool confirmarVistaPrevia(Consultas consulta);
+    bool validarNuevaConsulta(Consultas consulta);
 public:
 	void altaConsulta();
 	void modificarConsulta();
