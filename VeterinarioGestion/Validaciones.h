@@ -10,5 +10,5 @@ public:
 	bool validarBool();
 	std::string validarLetra();
 	std::string validarNUMenString();
-
+	float validarFloat();
 };
