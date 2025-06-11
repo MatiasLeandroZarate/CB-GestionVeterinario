@@ -17,10 +17,12 @@ private:
     char _Sexo[10];
     Fecha _FechaNacimiento;
     int _IDCliente;
+    bool _Activo;
+
 
 public:
     Mascotas();
-    Mascotas(int IDMascota, std::string Nombre, std::string Especie, std::string Raza, int Edad, float Peso, std::string Sexo, Fecha FechaNacimiento, int IDCliente);
+    Mascotas(int IDMascota, std::string Nombre, std::string Especie, std::string Raza, int Edad, float Peso, std::string Sexo, Fecha FechaNacimiento, int IDCliente, bool Activo);
 
     void setIDMascota(int IDMascota);
     void setNombre(std::string Nombre);
@@ -31,6 +33,7 @@ public:
     void setRaza(std::string Raza);
     void setPeso(float Peso);
     void setSexo(std::string Sexo);
+    void setActivo(bool Activo);
 
     std::string getEspecie();
     std::string getRaza();
@@ -41,7 +44,9 @@ public:
     int getEdad();
     Fecha getFechaNacimiento();
     int getIDCliente();
+    bool getActivo();
 
+    std::string toInforme();
     std::string toCSV();
 };
 

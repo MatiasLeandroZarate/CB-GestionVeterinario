@@ -1,4 +1,6 @@
 #include "MascotaManager.h"
+#include "Cliente.h"
+
 
 void MascotaManager::CargarMascota()
 {
@@ -7,11 +9,10 @@ void MascotaManager::CargarMascota()
     int IDMascota, Edad, IDCliente;
     std::string Nombre, Especie, Raza, Sexo;
     float Peso;
+    bool Activo;
     Fecha FechaNacimiento, fechavalidar;
 
-    std::cout << "Ingrese el ID de la Mascota: "; // falta hacer ID automatico (se muestra al final el ID que le toco a la mascota)
-    std::cin >> IDMascota;
-
+    IDMascota = GenerarIdAutomatico();
     std::cin.ignore();
     Nombre = validarNombre();
 
@@ -23,17 +24,19 @@ void MascotaManager::CargarMascota()
 
     Peso = validarPeso();
 
-    std::cout << "Ingrese el Sexo 1.- Hembra 2.- Macho: ";
-    std::cin.ignore();
-    std::getline(std::cin, Sexo);
+    Sexo = validarSexo();
+
+    IDCliente = ValidarIdCliente();
+
+    Activo = true;
+
     std::cout << "Ingrese la Fecha de Nacimiento: " << std::endl;
 
-	FechaNacimiento = fechavalidar.ValidacionFecha(FechaNacimiento);
+    FechaNacimiento = fechavalidar.ValidacionFecha(FechaNacimiento);
 
-	std::cout << "Ingrese el ID del Cliente: ";
-	std::cin >> IDCliente;
 
-    mascota = Mascotas(IDMascota, Nombre, Especie, Raza, Edad, Peso, Sexo, FechaNacimiento, IDCliente);
+
+    mascota = Mascotas(IDMascota, Nombre, Especie, Raza, Edad, Peso, Sexo, FechaNacimiento, IDCliente, Activo);
 
     if (gArchivo.GuardarMascotas(mascota))
     {
@@ -55,28 +58,161 @@ void MascotaManager::MostrarMascota()
     int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
     if (cantidadRegistros == 0)
     {
-        std::cout << "No hay clientes registrados." << std::endl;
+        std::cout << "No hay Macotas registradas." << std::endl;
     }
+    std::cout << std::endl <<"--------------------" << std::endl;
+    std::cout << "--------------------" << std::endl;
+    std::cout << "MASCOTA: " << std::endl;
+    std::cout << "IDMascota|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente\t|Activo" << std::endl;
+    for (int i = 0; i < cantidadRegistros; i++)
+    {
+        mascotas = gArchivo.LeerMascota(i);
+        std:: cout << mascotas.toInforme() << std::endl;
+        //std::cout << mascotas.toCSV() << std::endl;
+    }
+
+
+}
+void MascotaManager::MostrarMascotaPorRaza()
+{
+    Mascotas mascotas;
+    GestorArchivo gArchivo("mascotas.dat");
+    int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
+    std::string RazaBuscada;
+    int ContEncontrados = 0;
+
+    std::cout << "Ingrese Raza de la Mascota: ";
+    std::cin >> RazaBuscada;
 
     for (int i = 0; i < cantidadRegistros; i++)
     {
         mascotas = gArchivo.LeerMascota(i);
-       // std:: cout << mascotas.toInforme() << std::endl;
-        //std::cout << mascotas.toCSV() << std::endl;
+        if (mascotas.getRaza() == RazaBuscada)
+        {
+
+            ContEncontrados++;
+        }
+
+    }
+    if(!ContEncontrados == 0)
+    {
+        std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente\t|Activo" << std::endl;
+        for (int i = 0; i < cantidadRegistros; i++)
+        {
+            mascotas = gArchivo.LeerMascota(i);
+            if (mascotas.getRaza() == RazaBuscada)
+            {
+                std:: cout << mascotas.toInforme() << std::endl;
+
+            }
+
+        }
+
+    }
+    else
+    {
+        std::cout << "No se encontro ninguna Mascota." << std::endl;
+    }
+
+}
+void MascotaManager::MostrarMascotaPorEspecie()
+{
+
+    Mascotas mascotas;
+    GestorArchivo gArchivo("mascotas.dat");
+    int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
+    std::string EspecieBuscada;
+    int ContEncontrados = 0;
+
+    std::cout << "Ingrese Especie de la Mascota: ";
+    std::cin >> EspecieBuscada;
+
+    for (int i = 0; i < cantidadRegistros; i++)
+    {
+        mascotas = gArchivo.LeerMascota(i);
+        if (mascotas.getEspecie() == EspecieBuscada)
+        {
+
+            ContEncontrados++;
+        }
+
+    }
+    if(!ContEncontrados == 0)
+    {
+        std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente\t|Activo" << std::endl;
+        for (int i = 0; i < cantidadRegistros; i++)
+        {
+            mascotas = gArchivo.LeerMascota(i);
+            if (mascotas.getEspecie() == EspecieBuscada)
+            {
+                std:: cout << mascotas.toInforme() << std::endl;
+
+            }
+
+        }
+
+    }
+    else
+    {
+        std::cout << "No se encontro ninguna Mascota." << std::endl;
+    }
+
+}
+void MascotaManager::MostrarMascotaPorID()
+{
+
+    Mascotas mascotas;
+    GestorArchivo gArchivo("mascotas.dat");
+    int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
+    int idBuscado;
+    int ContEncontrados = 0;
+
+    std::cout << "Ingrese el ID de la Mascota: ";
+    std::cin >> idBuscado;
+
+    for (int i = 0; i < cantidadRegistros; i++)
+    {
+        mascotas = gArchivo.LeerMascota(i);
+        if (mascotas.getIDMascota() == idBuscado)
+        {
+            ContEncontrados++;
+        }
+
+    }
+
+
+    if(!ContEncontrados == 0)
+    {
+        std::cout << "IDMascota\t|Nombre\t|Especie\t|Raza\t|EdadAños\t|Peso\t|Sexo\t|FechaNacimiento\t|IDCliente\t|Activo" << std::endl;
+        for (int i = 0; i < cantidadRegistros; i++)
+        {
+            mascotas = gArchivo.LeerMascota(i);
+            if (mascotas.getIDMascota() == idBuscado)
+            {
+                std:: cout << mascotas.toInforme() << std::endl;
+            }
+
+        }
+
+    }
+    else
+    {
+        std::cout << "No se encontro ninguna Mascota." << std::endl;
     }
 
 }
 
 int MascotaManager::BuscarMascotaPorID(int idBuscado)
 {
-	Mascotas mascotas;
+    Mascotas mascotas;
     GestorArchivo gArchivo("mascotas.dat");
     int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
     for (int i = 0; i < cantidadRegistros; i++)
     {
-        mascotas= gArchivo.LeerMascota(i);
+        mascotas = gArchivo.LeerMascota(i);
         if (mascotas.getIDMascota() == idBuscado)
         {
+
             return i;
         }
     }
@@ -133,6 +269,67 @@ int MascotaManager::validarEdad()
     }
     return Edad;
 }
+int MascotaManager::ValidarIdCliente()
+{
+
+    std::string IDIngresado;
+    bool IDValido = false;
+
+    int ID;
+
+    while (!IDValido)
+    {
+
+        std::cout << "Ingrese ID del Cliente: ";
+        std::getline(std::cin, IDIngresado);
+        IDValido = true;
+        int i = 0;
+
+
+        while (IDIngresado[i] != '\0')  // Validacion de que todos los caracteres sean numeros y no letras o caracteres
+        {
+            if (IDIngresado[i] < '0' || IDIngresado[i] > '9')
+            {
+                IDValido = false;
+            }
+            i++;
+        }
+        if (IDValido)
+        {
+            ID = 0;
+            i = 0;
+            while (IDIngresado[i] != '\0')
+            {
+                ID = ID * 10 + (IDIngresado[i] - '0');
+                i++;
+            }
+        }
+
+        IDValido = false;
+
+        Cliente cliente;
+        GestorArchivo gArchivo("clientes.dat");
+        int cantidadRegistros = gArchivo.CantidadRegistrosClientes();
+        for (i = 0; i < cantidadRegistros; i++)
+        {
+            cliente = gArchivo.LeerClientes(i);
+            if (cliente.getIDCliente() == ID)
+            {
+                IDValido = true;
+            }
+        }
+        if (!IDValido)
+        {
+            std::cout << "ID invalido, Ingrese de nuevo." << std::endl;
+
+        }
+
+    }
+
+
+    return ID;
+
+}
 
 std::string MascotaManager::validarNombre()
 {
@@ -167,6 +364,45 @@ std::string MascotaManager::validarNombre()
 
     return Nombre;
 
+
+}
+std::string  MascotaManager::validarSexo()
+{
+    std::string Sexo;
+    bool SexoValido = false;
+
+    while(!SexoValido)
+    {
+        int i = 0;
+        SexoValido = true;
+
+        std::cout << "Ingrese el Sexo (1.- Hembra 0.- Macho): ";
+        std::getline(std::cin, Sexo);
+
+        while (Sexo[i] != '\0')  // Validacion de que todos los caracteres sean numeros y no letras o caracteres
+        {
+            if (Sexo[i] < '0' || Sexo[i] > '1')
+            {
+                SexoValido = false;
+            }
+            i++;
+        }
+        if (!SexoValido)
+        {
+            std::cout << "Sexo inválida, Ingrese de nuevo." << std::endl;
+
+        }
+
+    }
+    if(Sexo[0] == 1)
+    {
+        Sexo = "Hembra";
+    }
+    else
+    {
+        Sexo = "Macho";
+    }
+    return Sexo;
 
 }
 std::string MascotaManager::validarEspecie()
@@ -241,7 +477,7 @@ std::string MascotaManager::validarRaza()
 
 }
 
-int MascotaManager::validarPeso()
+float MascotaManager::validarPeso()
 {
     std::string pesoIngresado;
     bool pesoValido = false;
@@ -297,8 +533,8 @@ int MascotaManager::validarPeso()
 
 }
 
-<<<<<<< Updated upstream
-=======
+
+
 int MascotaManager::GenerarIdAutomatico()
 {
 
@@ -306,7 +542,6 @@ int MascotaManager::GenerarIdAutomatico()
     int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
 
     return cantidadRegistros + 1; // CONSULTAR SI ES POSIBLE BORRAR UN REGISTRO ENTERO EN UN ARCHIVO.
-}
 
 bool MascotaManager::DarDeBajaMascota()
 {
@@ -402,7 +637,6 @@ void MascotaManager::ModificarMascota()
 
     std::cout << "No se encontro Mascota con ese ID." << std::endl;
 }
->>>>>>> Stashed changes
 
 
 
