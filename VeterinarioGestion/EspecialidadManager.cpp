@@ -11,9 +11,9 @@ void EspecialidadManager::CargarEspecialidad()
 	std::cout << "Ingrese el ID de la especialidad: ";
 	IDespecialidad = validar.validarNumero();
 	std::cout << "Ingrese el Nombre: ";
-	Nombre = validar.validarNombre();
+	Nombre = validar.validarLetra();
 	std::cout << "Ingrese la Descripcion: ";
-	Descripcion = validar.validarNombre();
+	Descripcion = validar.validarLetra();
 
 	especialidad = Especialidades(IDespecialidad, Nombre, Descripcion);
 

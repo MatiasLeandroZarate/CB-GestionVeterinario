@@ -297,6 +297,112 @@ int MascotaManager::validarPeso()
 
 }
 
+<<<<<<< Updated upstream
+=======
+int MascotaManager::GenerarIdAutomatico()
+{
+
+    GestorArchivo gArchivo("mascotas.dat");
+    int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
+
+    return cantidadRegistros + 1; // CONSULTAR SI ES POSIBLE BORRAR UN REGISTRO ENTERO EN UN ARCHIVO.
+}
+
+bool MascotaManager::DarDeBajaMascota()
+{
+    Validaciones validar;
+    Mascotas mascotas;
+    int ID;
+
+
+    GestorArchivo vArchivo("mascotas.dat");
+    int cantidadRegistros = vArchivo.CantidadRegistrosMascotas();
+    std::cout << "Ingrese el ID de la Mascota que desea dar de baja: ";
+
+    ID = validar.validarNumero();
+
+    for (int i = 0; i < cantidadRegistros; i++)
+    {
+        mascotas = vArchivo.LeerMascota(i);
+        if (mascotas.getIDMascota() == ID && mascotas.getActivo())
+        {
+            mascotas.setActivo(false);
+            if (vArchivo.ModificarMascota(i, mascotas))
+            {
+                std::cout << "Mascota dada de baja exitosamente." << std::endl;
+                return true;
+            }
+            else
+            {
+                std::cout << "Mascota no encontrada o ya dada de baja." << std::endl;
+                return false;
+            }
+        }
+    }
+}
+
+void MascotaManager::ModificarMascota()
+{
+    Validaciones validar;
+    int ID;
+    Mascotas mascota;
+
+    GestorArchivo vArchivo("mascotas.dat");
+    int cantidadRegistros = vArchivo.CantidadRegistrosMascotas();
+
+    std::cout << "Ingrese el ID de la Mascota a modificar: ";
+    std::cin.ignore();
+    ID = validar.validarNumero();
+
+    for (int i = 0; i < cantidadRegistros; i++)
+    {
+        mascota = vArchivo.LeerMascota(i);
+        if (mascota.getIDMascota() == ID)
+        {
+            std::cout << "Datos actuales:" << std::endl;
+            std::cout << mascota.toInforme() << std::endl;
+
+            int IDMascota, Edad, IDCliente;
+            std::string Nombre, Especie, Raza, Sexo;
+            float Peso;
+            bool Activo;
+            Fecha FechaNacimiento, fechavalidar;
+
+            Nombre = validarNombre();
+            Especie = validarEspecie();
+            Raza = validarRaza();
+            Edad = validarEdad();
+            Peso = validarPeso();
+            Sexo = validarSexo();
+            FechaNacimiento = fechavalidar.ValidacionFecha(FechaNacimiento);
+
+
+            std::cout << "Activo (1: Si / 0: No): ";
+            Activo = validar.validarBool();
+
+            mascota.setNombre(Nombre);
+            mascota.setEspecie(Especie);
+            mascota.setRaza(Raza);
+            mascota.setEdad(Edad);
+            mascota.setPeso(Peso);
+            mascota.setSexo(Sexo);
+            mascota.setActivo(Activo);
+
+            if (vArchivo.ModificarMascota(i, mascota))
+            {
+                std::cout << "Mascota modificada correctamente." << std::endl;
+            }
+            else
+            {
+                std::cout << "Error al modificar Mascota." << std::endl;
+            }
+            return;
+        }
+    }
+
+    std::cout << "No se encontro Mascota con ese ID." << std::endl;
+}
+>>>>>>> Stashed changes
 
 
 

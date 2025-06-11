@@ -4,6 +4,7 @@
 #include "Veterinarios.h"
 #include "FuncionesGlobales.h"
 #include "Validaciones.h"
+#include <cstring>
 
 
 class VeterinariosManager
@@ -22,6 +23,6 @@ public:
 	bool ConfirmarIngreso(Veterinarios veterinario, bool confirmar);
 	bool BajaVeterinario();
 	void ModificarVeterinarios();
-
+	int procesarEntradaMenu(int opcionMinima, int opcionMaxima);
 };
 

@@ -8,7 +8,7 @@ private:
 public:
     int validarNumero();
 	bool validarBool();
-	std::string validarNombre();
+	std::string validarLetra();
 	std::string validarNUMenString();
 
 };
