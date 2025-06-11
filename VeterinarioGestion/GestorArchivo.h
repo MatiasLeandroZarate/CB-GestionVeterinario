@@ -51,6 +51,7 @@ class GestorArchivo{
         bool GuardarTratamientos(Tratamientos tratamiento);
         Tratamientos LeerTratamientos(int posicion);
         int CantidadRegistrosTratamientos();
+        bool ModificarTratamiento(int pos, Tratamientos tratamiento);
 
         //Funciones para CONSULTAS
         bool GuardarConsultas(Consultas consultas);

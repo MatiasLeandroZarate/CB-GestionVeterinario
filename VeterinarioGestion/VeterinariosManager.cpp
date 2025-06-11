@@ -12,7 +12,7 @@ void VeterinariosManager::CargarVeterinarios()
     GestorArchivo eArchivo("especialidades.dat");
     int idveterinario = 0,matricula, idespecialidad;
     std::string DNI, Nombre, Apellido;
-    bool activo, confirmar = false, buscaDNI = false;
+    bool activo, confirmar = false, buscaDNI = false ,guardardato;
 
     std::cout << "Ingrese N° DNI: ";
     std::cin.ignore();
@@ -25,6 +25,7 @@ void VeterinariosManager::CargarVeterinarios()
                 {
                     std::cout << std::endl  << "Ya existe un Veterinario con el DNI ingresado." << std::endl;
                     confirmar = true;
+                    guardardato = false;
                 }
             else
                 {
@@ -70,12 +71,13 @@ void VeterinariosManager::CargarVeterinarios()
                     veterinarios = Veterinarios(idveterinario, matricula, DNI, Nombre, Apellido, especialidad, activo);
 
                     confirmar = ConfirmarIngreso(veterinarios, confirmar);
-
+                    guardardato = true;
                 }
-        }
-    while (!confirmar);
-    Guardar(veterinarios);
-
+        }while (!confirmar);
+    if (guardardato)
+    {
+        Guardar(veterinarios);
+    }
 }
 
 void VeterinariosManager::MostrarVeterinarioInforme()

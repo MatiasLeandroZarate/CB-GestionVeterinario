@@ -158,3 +158,67 @@ bool Validaciones::validarBool()
         }
     return Num;
 }
+
+float Validaciones::validarFloat()
+{
+    std::string floatIngresado;
+    bool floatValido = false;
+    float numdecimal = 0.0f;
+
+    while (!floatValido)
+    {
+        floatValido = true;
+        
+        std::getline(std::cin, floatIngresado);
+
+        if (floatIngresado.empty())  ///empty() , verifica si el str esta Vacio.
+        {
+            floatValido = false;
+        }
+        int i = 0;
+        int puntos = 0;
+
+        while (floatIngresado[i] != '\0')
+        {
+            char c = floatIngresado[i];
+
+            if (i == 0 && c == '.')  // Si ingresa sin querer el punto primero, lo toma como invalido
+            {
+                    floatValido = false;
+            }
+            else
+             if (c == '.')
+            {
+                puntos++;
+                if (puntos > 1)
+                {
+                    floatValido = false;
+                }
+            }
+             else if(c < '0' || c > '9' || (((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == ' ')))
+            {
+                floatValido = false;
+            }
+
+            i++;
+        }
+
+        if (floatValido)
+        {
+            numdecimal = std::stof(floatIngresado); // stof significa string to float, convierte el numero de formato string a float de forma mas facil
+
+            if (numdecimal <= 0)
+
+             floatValido = false;
+
+        }
+
+        if (!floatValido)
+        {
+            std::cout << "Dato inválido, Ingrese de nuevo" << std::endl;
+        }
+    }
+
+    return numdecimal;
+
+}

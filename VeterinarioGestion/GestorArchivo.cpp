@@ -223,8 +223,10 @@ int GestorArchivo::CantidadRegistrosVeterinario() {
 bool GestorArchivo::ModificarVeterinarios(int pos, Veterinarios veterinario) {
     FILE* p;
     p = fopen("veterinarios.dat", "rb+");
-    if (p == nullptr) return false;
-
+    if (p == nullptr)
+    {
+        return false;
+    }
     fseek(p, pos * sizeof(Veterinarios), SEEK_SET);
     bool escribio = fwrite(&veterinario, sizeof(Veterinarios), 1, p);
     fclose(p);
@@ -269,6 +271,20 @@ int GestorArchivo::CantidadRegistrosTratamientos() {
     int cantidadRegistros = ftell(pArchivo) / sizeof(Tratamientos);
     fclose(pArchivo);
     return cantidadRegistros;
+}
+
+bool GestorArchivo::ModificarTratamiento(int pos, Tratamientos tratamiento) {
+    FILE* p;
+    p = fopen("tratamientos.dat", "rb+");
+    if (p == nullptr)
+    {
+        return false;
+    }
+    fseek(p, pos * sizeof(Tratamientos), SEEK_SET);
+    bool escribio = fwrite(&tratamiento, sizeof(Tratamientos), 1, p);
+    fclose(p);
+
+    return escribio;
 }
 
 // ----------------------------------SECTOR CONSULTAS ----------------------------------
