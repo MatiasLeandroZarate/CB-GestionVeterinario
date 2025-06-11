@@ -2,7 +2,7 @@
 #include <string>
 
 
-std::string Validaciones::validarNombre()
+std::string Validaciones::validarLetra()
 {
     std::string str;
     bool strValido = false;
