@@ -5,6 +5,7 @@
 #include "FuncionesGlobales.h"
 #include "Validaciones.h"
 #include <cstring>
+#include "rlutil.h"
 
 
 class VeterinariosManager
@@ -24,5 +25,7 @@ public:
 	bool BajaVeterinario();
 	void ModificarVeterinarios();
 	int procesarEntradaMenu(int opcionMinima, int opcionMaxima);
+
+	void LocateTitulo();
 };
 
