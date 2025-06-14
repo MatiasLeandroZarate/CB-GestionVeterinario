@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include "Validaciones.h"
+#include "rlutil.h"
 
 class TratamientosManager
 {private:
@@ -20,5 +21,7 @@ public:
 	bool BajaTratamiento();
 	bool ConfirmarIngreso(Tratamientos tratamientos, bool confirmar);
 	bool BuscarTratamientoPorNombre(std::string Nombretratamiento);
+
+	void TituloLocate();
 };
 

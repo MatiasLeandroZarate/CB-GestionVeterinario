@@ -161,18 +161,38 @@ bool VeterinariosManager::ConfirmarIngreso(Veterinarios veterinario, bool confir
 {
     Validaciones validar;
     std::cout << "Veterinario Ingresado: " << std::endl;
-    std::cout << "ID Veterinario:" << "\t" + std::to_string(veterinario.getIDVeterinario()) << std::endl;
-    std::cout << "Matricula: " << "\t" + std::to_string(veterinario.getMatricula()) << std::endl;
-    std::cout << "DNI: " << "\t\t" + veterinario.getDNI() << std::endl;
-    std::cout << "Nombre: " << "\t" + veterinario.getNombre() << std::endl;
-    std::cout << "Apellido: " << "\t" + veterinario.getApellido() << std::endl;
-    std::cout << "IDEspecialidad: " << std::to_string(veterinario.getEspecialidad().getIDEspecialidad()) << std::endl;
-    std::cout << "Especialidad: " << "\t" + veterinario.getEspecialidad().getNombre() << std::endl;
-    std::cout << "Descripcion: " << "\t" + veterinario.getEspecialidad().getDescripcion() << std::endl;
-    std::cout << "Activo: " << "\t" + std::to_string(veterinario.getActivo()) << std::endl;
+    std::cout << "ID Veterinario:" << std::endl;
+    std::cout << "Matricula: " << std::endl;
+    std::cout << "DNI: " << std::endl;
+    std::cout << "Nombre: " << std::endl;
+    std::cout << "Apellido: " << std::endl;
+    std::cout << "IDEspecialidad: " << std::endl;
+    std::cout << "Especialidad: " << std::endl<< std::endl;
+    std::cout << "Descripcion: " << std::endl;
+    std::cout << "Activo: " << std::endl;
+    rlutil::locate(20, 2);
+    std::cout << std::to_string(veterinario.getIDVeterinario()) << std::endl;
+    rlutil::locate(20, 3);
+    std::cout << std::to_string(veterinario.getMatricula()) << std::endl;
+    rlutil::locate(20, 4);
+    std::cout << veterinario.getDNI() << std::endl;
+    rlutil::locate(20, 5);
+    std::cout << veterinario.getNombre() << std::endl;
+    rlutil::locate(20, 6);
+    std::cout << veterinario.getApellido() << std::endl;
+    rlutil::locate(20, 7);
+    std::cout << std::to_string(veterinario.getEspecialidad().getIDEspecialidad()) << std::endl;
+    rlutil::locate(20, 8);
+    std::cout << veterinario.getEspecialidad().getNombre() << std::endl;
+    rlutil::locate(20, 9);
+    std::cout << veterinario.getEspecialidad().getDescripcion() << std::endl;
+    rlutil::locate(20, 10);
+    std::cout << std::to_string(veterinario.getActivo()) << std::endl;
 
 
-    std::cout << "Confirma los datos ingresados? 1-Si, 0-No: " << std::endl;
+
+
+    std::cout << std::endl << "Confirma los datos ingresados? 1-Si, 0-No: " << std::endl;
     confirmar = validar.validarBool();
 
 
@@ -296,6 +316,8 @@ void VeterinariosManager::ListarVeterinariosActivos()
 {
     Veterinarios veterinario;
     GestorArchivo vArchivo("veterinarios.dat");
+    int activos = 0;
+
     int cantidadregistros = vArchivo.CantidadRegistrosVeterinario();
     if (cantidadregistros == 0)
         {
@@ -309,24 +331,25 @@ void VeterinariosManager::ListarVeterinariosActivos()
             veterinario = vArchivo.LeerVeterinario(i);
             if (veterinario.getActivo() == true)
                 {
-                rlutil::locate(1, i + 3);
+                rlutil::locate(1, activos + 3);
                 std::cout << veterinario.getIDVeterinario();
-                rlutil::locate(10, i + 3);
+                rlutil::locate(10, activos + 3);
                 std::cout << veterinario.getMatricula();
-                rlutil::locate(20, i + 3);
+                rlutil::locate(20, activos + 3);
                 std::cout << veterinario.getDNI();
-                rlutil::locate(31, i + 3);
+                rlutil::locate(31, activos + 3);
                 std::cout << veterinario.getNombre();
-                rlutil::locate(52, i + 3);
+                rlutil::locate(52, activos + 3);
                 std::cout << veterinario.getApellido();
-                rlutil::locate(80, i + 3);
+                rlutil::locate(80, activos + 3);
                 std::cout << veterinario.getEspecialidad().getIDEspecialidad();
-                rlutil::locate(87, i + 3);
+                rlutil::locate(87, activos + 3);
                 std::cout << veterinario.getEspecialidad().getNombre();
-                rlutil::locate(107, i + 3);
+                rlutil::locate(107, activos + 3);
                 std::cout << veterinario.getEspecialidad().getDescripcion();
-                rlutil::locate(135, i + 3);
+                rlutil::locate(135,activos + 3);
                 std::cout << veterinario.getActivo();
+                activos++;
                     //std::cout << veterinario.toInforme() << std::endl;
                 }
         }
