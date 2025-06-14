@@ -62,6 +62,7 @@ void TratamientosManager::MostrarTratamiento()
 	GestorArchivo tArchivo("tratamientos.dat");
 	int cantidadRegistros = tArchivo.CantidadRegistrosTratamientos();
 	bool crear;
+	int y = 4;
 	if (cantidadRegistros == 0)
 	{
 		std::cout << "No hay Tratamiento registrado." << std::endl;
@@ -76,12 +77,25 @@ void TratamientosManager::MostrarTratamiento()
 			std::cout << "No se cargó ningun tratamiento." << std::endl;
 		}
 	}
-	std::cout << "TRATAMIENTO:" << std::endl;
-	std::cout << "IDTrat.|NombreTrat. |\t Descripcion \t\t| D.Dias | Costo | Activo" << std::endl;
+	//std::cout << "TRATAMIENTO:" << std::endl;
+	//std::cout << "IDTrat.|NombreTrat. | Descripcion \t | DuracionDias | Costo | Activo" << std::endl;
+	TituloLocate();
 	for (int i = 0; i < cantidadRegistros; i++)
 	{
 		tratamiento = tArchivo.LeerTratamientos(i);
-		std::cout << tratamiento.toInforme() << std::endl;
+		rlutil::locate(1, i + y);
+		std::cout << tratamiento.getIDTratamiento();
+		rlutil::locate(11, i + y);
+		std::cout << tratamiento.getNombreTratamiento();
+		rlutil::locate(33, i + y);
+		std::cout << tratamiento.getDescripcion();
+		rlutil::locate(70, i + y);
+		std::cout << tratamiento.getDuracionDias();
+		rlutil::locate(80, i + y);
+		std::cout << tratamiento.getCosto();
+		rlutil::locate(89, i + y);
+		std::cout << tratamiento.getActivo();
+		//std::cout << tratamiento.toInforme() << std::endl;
 	}
 }
 
@@ -179,13 +193,23 @@ bool TratamientosManager::ConfirmarIngreso(Tratamientos tratamiento, bool confir
 {
 	Validaciones validar;
 	std::cout << "Tratamiento Ingresado: " << std::endl;
-	std::cout << "ID Tratamiento:" << "\t\t" + std::to_string(tratamiento.getIDTratamiento()) << std::endl;
-	std::cout << "Nombre Tratamiento: " << "\t" + tratamiento.getNombreTratamiento() << std::endl;
-	std::cout << "Descripcion: " << "\t\t" + tratamiento.getDescripcion() << std::endl;
-	std::cout << "Costo: " << "\t\t\t" + std::to_string(tratamiento.getCosto()) << std::endl;
-	std::cout << "Activo: " << "\t\t" + std::to_string(tratamiento.getActivo()) << std::endl;
+	std::cout << "ID Tratamiento:" << std::endl;
+	std::cout << "Nombre Tratamiento: "<< std::endl;
+	std::cout << "Descripcion: " << std::endl;
+	std::cout << "Costo: " << std::endl;
+	std::cout << "Activo: " << std::endl;
+	rlutil::locate(21, 2);
+	std::cout << tratamiento.getIDTratamiento();
+	rlutil::locate(21, 3);
+	std::cout << tratamiento.getNombreTratamiento();
+	rlutil::locate(21, 4);
+	std::cout << tratamiento.getDescripcion();
+	rlutil::locate(21, 5);
+	std::cout << tratamiento.getCosto();
+	rlutil::locate(21, 6);
+	std::cout << tratamiento.getActivo();
 	
-	std::cout << "Confirma los datos ingresados? 1-Si, 0-No: " << std::endl;
+	std::cout << std::endl << "Confirma los datos ingresados? 1-Si, 0-No: " << std::endl;
 	confirmar = validar.validarBool();
 
 
@@ -207,16 +231,30 @@ bool TratamientosManager::BuscarTratamientoPorNombre(std::string NombreTratamien
 	Tratamientos tratamiento;
 	bool TratEncontrado = false;
 	GestorArchivo tArchivo("tratamientos.dat");
+	
 	int cantidadRegistros = tArchivo.CantidadRegistrosTratamientos();
-
+	int y = 4;
 	for (int i = 0; i < cantidadRegistros; i++)
 	{
 		tratamiento = tArchivo.LeerTratamientos(i);
 		if (tratamiento.getNombreTratamiento() == NombreTratamiento)
 		{
 			TratEncontrado = true;
-			std::cout << "IDTrat.|NombreTrat. | Descripcion \t | DuracionDias | Costo | Activo" << std::endl;
-			std::cout << tratamiento.toInforme() << std::endl;
+			//std::cout << "IDTrat.|NombreTrat. | Descripcion \t | DuracionDias | Costo | Activo" << std::endl;
+			TituloLocate();
+			rlutil::locate(1,  y);
+			std::cout << tratamiento.getIDTratamiento();
+			rlutil::locate(11,  y);
+			std::cout << tratamiento.getNombreTratamiento();
+			rlutil::locate(33,  y);
+			std::cout << tratamiento.getDescripcion();
+			rlutil::locate(70,  y);
+			std::cout << tratamiento.getDuracionDias();
+			rlutil::locate(79,  y);
+			std::cout << tratamiento.getCosto();
+			rlutil::locate(90,  y);
+			std::cout << tratamiento.getActivo();
+			//std::cout << tratamiento.toInforme() << std::endl;
 			return TratEncontrado;
 		}
 	}
@@ -252,13 +290,15 @@ void TratamientosManager::ModificarTratamientos()
 	float costo;
 	bool activo;
 
-
 	GestorArchivo tArchivo("tratamientos.dat");
 	int cantidadRegistros = tArchivo.CantidadRegistrosTratamientos();
 
 	std::cout << "Ingrese el Nombre del Tratamiento a modificar: ";
 	std::cin.ignore();
+	MostrarTratamiento();
+	rlutil::locate(47, 1);
 	NombreTratamiento = validar.validarLetra();
+	limpiarPantalla();
 
 	for (int i = 0; i < cantidadRegistros; i++)
 	{
@@ -267,13 +307,27 @@ void TratamientosManager::ModificarTratamientos()
 		if (tratamiento.getNombreTratamiento() == NombreTratamiento)
 		{
 			do {
-				std::cout << "Datos actuales:" << std::endl;
-				std::cout << "IDTrat.|NombreTrat. | Descripcion \t | DuracionDias | Costo | Activo" << std::endl;
-				std::cout << tratamiento.toInforme();
+				std::cout << std::endl << "Datos actuales:" << std::endl;
+				//std::cout << "IDTrat.|NombreTrat. | Descripcion \t | DuracionDias | Costo | Activo" << std::endl;
+				TituloLocate();
+
+				rlutil::locate(1, 4);
+				std::cout << tratamiento.getIDTratamiento();
+				rlutil::locate(11, 4);
+				std::cout << tratamiento.getNombreTratamiento();
+				rlutil::locate(33, 4);
+				std::cout << tratamiento.getDescripcion();
+				rlutil::locate(70, 4);
+				std::cout << tratamiento.getDuracionDias();
+				rlutil::locate(79, 4);
+				std::cout << tratamiento.getCosto();
+				rlutil::locate(90, 4);
+				std::cout << tratamiento.getActivo();
+				//std::cout << tratamiento.toInforme();
 				//-----------------------------------------------------------------------------------------------------------------------
 
 				
-				std::cout << std::endl << "-----------------------------------------" << std::endl;
+				std::cout << std::endl << std::endl << std::endl << "-----------------------------------------" << std::endl;
 				
 				std::cout << OPC_NOMBRE_TRATAMIENTO << ". " << OPCION_NOMBRE_TRATAMIENTO<< std::endl;
 				std::cout << OPC_DESCRIPCION << ". " << OPCION_DESCRIPCION << std::endl;
@@ -294,6 +348,7 @@ void TratamientosManager::ModificarTratamientos()
 					NombreTratamiento = validar.validarLetra();
 										
 					tratamiento.setNombreTratamiento(NombreTratamiento);
+					limpiarPantalla();
 					modifico++;
 					break;
 
@@ -303,6 +358,7 @@ void TratamientosManager::ModificarTratamientos()
 					descripcion = validar.validarLetra();
 					
 					tratamiento.setDescripcion(descripcion);
+					limpiarPantalla();
 					modifico++;
 					break;
 				case OPC_DIAS:
@@ -311,6 +367,7 @@ void TratamientosManager::ModificarTratamientos()
 					dias = validar.validarNumero();
 
 					tratamiento.setDuracionDias(dias);
+					limpiarPantalla();
 					modifico++;
 					break;
 
@@ -320,6 +377,7 @@ void TratamientosManager::ModificarTratamientos()
 					costo = validar.validarFloat();
 
 					tratamiento.setCosto(costo);
+					limpiarPantalla();
 					modifico++;
 					break;
 
@@ -328,6 +386,7 @@ void TratamientosManager::ModificarTratamientos()
 					std::cout << std::endl << "Activo (1: Si / 0: No): ";
 					activo = validar.validarBool();
 					tratamiento.setActivo(activo);
+					limpiarPantalla();
 					modifico++;
 					break;
 
@@ -391,4 +450,21 @@ int TratamientosManager::procesarEntradaMenu(int opcionMinima, int opcionMaxima)
 			std::cin.ignore(10000, '\n');
 		}
 	}
+}
+
+void TratamientosManager::TituloLocate()
+{
+	rlutil::locate(1, 3);
+	std::cout << "IDTrat.";
+	rlutil::locate(9, 3);
+	std::cout << "| Nombre Trat.";
+	rlutil::locate(32, 3);
+	std::cout << "| Descripcion";
+	rlutil::locate(65, 3);
+	std::cout << "| Dur. Dias";
+	rlutil::locate(77, 3);
+	std::cout << "| Costo ";
+	rlutil::locate(86, 3);
+	std::cout << "| Activo";
+	
 }
