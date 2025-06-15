@@ -1,10 +1,11 @@
 #pragma once
 #include "GestorArchivo.h"
 #include "Tratamientos.h"
-#include <string>
+#include <cstring>
 #include <iostream>
 #include "Validaciones.h"
 #include "rlutil.h"
+#include <cctype>
 
 class TratamientosManager
 {private:
