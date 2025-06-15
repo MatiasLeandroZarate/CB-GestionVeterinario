@@ -229,15 +229,27 @@ bool TratamientosManager::ConfirmarIngreso(Tratamientos tratamiento, bool confir
 bool TratamientosManager::BuscarTratamientoPorNombre(std::string NombreTratamiento)
 {
 	Tratamientos tratamiento;
+
 	bool TratEncontrado = false;
 	GestorArchivo tArchivo("tratamientos.dat");
-	
 	int cantidadRegistros = tArchivo.CantidadRegistrosTratamientos();
 	int y = 4;
+	
+	std::string mayus, NombreMayus;
+	NombreMayus = NombreTratamiento;
+	for (int i = 0; i < NombreMayus.length(); i++) {
+		NombreMayus[i] = toupper(NombreMayus[i]);
+	}
+
 	for (int i = 0; i < cantidadRegistros; i++)
 	{
 		tratamiento = tArchivo.LeerTratamientos(i);
-		if (tratamiento.getNombreTratamiento() == NombreTratamiento)
+
+		mayus = tratamiento.getNombreTratamiento();
+		for (int j = 0; j < mayus.length(); j++) {
+			mayus[j] = toupper(mayus[j]);
+		}
+		if (mayus == NombreMayus)
 		{
 			TratEncontrado = true;
 			//std::cout << "IDTrat.|NombreTrat. | Descripcion \t | DuracionDias | Costo | Activo" << std::endl;
@@ -300,11 +312,23 @@ void TratamientosManager::ModificarTratamientos()
 	NombreTratamiento = validar.validarLetra();
 	limpiarPantalla();
 
+
+	std::string mayus, NombreMayus;
+	NombreMayus = NombreTratamiento;
+	for (int i = 0; i < NombreMayus.length(); i++) {
+		NombreMayus[i] = toupper(NombreMayus[i]);
+	}
+
 	for (int i = 0; i < cantidadRegistros; i++)
 	{
 		tratamiento = tArchivo.LeerTratamientos(i);
 
-		if (tratamiento.getNombreTratamiento() == NombreTratamiento)
+		mayus = tratamiento.getNombreTratamiento();
+		for (int j = 0; j < mayus.length(); j++) {
+			mayus[j] = toupper(mayus[j]);
+		}
+
+		if (mayus == NombreMayus)
 		{
 			do {
 				std::cout << std::endl << "Datos actuales:" << std::endl;
