@@ -169,10 +169,7 @@ void MenuManager::procesarSubmenuClientes(){
 
                 std::cin >> dniBuscado;
 				limpiarPantalla();
-                std::cout << "--------------------" << std::endl;
-				std::cout << "CLIENTE: " << std::endl;
-				std::cout << "ID\t| DNI\t\t|Nombre\t|Apellido\t|Telefono\t|Email" << std::endl;
-				std::cout << "-------------------------------------------------------------------------------------" << std::endl;
+
 
 				clienteMan.BuscarClientePorDNI(dniBuscado);
 
@@ -434,6 +431,8 @@ void MenuManager::procesarSubmenuVacunas(){
 }
 
 void MenuManager::procesarSubmenuTratamientos(){
+    TratamientosManager tratamientos;
+
     const int OPCION_ALTA = 1;
     const int OPCION_MODIFICAR = 2;
     const int OPCION_BAJA = 3;
@@ -461,12 +460,20 @@ void MenuManager::procesarSubmenuTratamientos(){
 
         switch (opcion) {
             case OPCION_ALTA:
+                limpiarPantalla();
+				tratamientos.CargarTratamiento();
                 break;
             case OPCION_MODIFICAR:
+                limpiarPantalla();
+                tratamientos.ModificarTratamientos();
                 break;
             case OPCION_BAJA:
+                limpiarPantalla();
+                tratamientos.BajaTratamiento();
                 break;
             case OPCION_LISTAR:
+                limpiarPantalla();
+                tratamientos.MostrarTratamiento();
                 break;
             case OPCION_ATRAS_SALIR:
                 break;

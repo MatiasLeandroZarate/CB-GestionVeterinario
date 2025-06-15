@@ -533,6 +533,8 @@ float MascotaManager::validarPeso()
 
 }
 
+
+
 int MascotaManager::GenerarIdAutomatico()
 {
 
@@ -540,8 +542,8 @@ int MascotaManager::GenerarIdAutomatico()
     int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
 
     return cantidadRegistros + 1; // CONSULTAR SI ES POSIBLE BORRAR UN REGISTRO ENTERO EN UN ARCHIVO.
-
 }
+
 bool MascotaManager::DarDeBajaMascota()
 {
     Validaciones validar;
