@@ -9,7 +9,7 @@
 class ConsultasManager
 {
 private:
-    void imprimirEncabezadoListado();
+    void imprimirListado();
     bool confirmarVistaPrevia(Consultas consulta);
     bool validarNuevaConsulta(Consultas consulta);
 public:
@@ -23,5 +23,6 @@ public:
 	void consultarPorVeterinario();
 	void consultarPorCliente();
 	int BuscarConsultaPorID(int idBuscado);
+	int obtenerProximoId();
 };
 

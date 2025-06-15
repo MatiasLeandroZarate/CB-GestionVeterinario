@@ -20,87 +20,94 @@ void ConsultasManager::altaConsulta() {
     Sucursales Sucursales;
     Fecha fechaConsulta, fechaProximaVisita;
 
-    cout << "---- Alta de consulta medica ----" << endl;
-    cout << "A continuacion debera ingresar los datos del nuevo registro de consulta medica..." << endl;
-    esperarCualquierTecla();
-    limpiarPantalla();
+    do{
+        cout << "A continuacion debera ingresar los datos del nuevo registro de consulta medica..." << endl;
+        esperarCualquierTecla();
+        limpiarPantalla();
 
-    cout << "Ingrese el ID de la Mascota: ";
-    cin >> idMascota;
+        cout << "---- Alta de consulta medica ----" << endl;
+        cout << "Ingrese el ID de la Mascota: ";
+        cin >> idMascota;
 
-    cout << "-> Ingrese la fecha de la consulta: ";
-    cout << "Ingrese dia: ";
-    cin >> diaConsulta;
-    cout << endl;
-
-    cout << "Ingrese mes:";
-    cin >> mesConsulta;
-    cout << endl;
-
-    cout << "Ingrese año:";
-    cin >> anioConsulta;
-    cout << endl;
-
-    fechaConsulta = Fecha(diaConsulta,mesConsulta,anioConsulta);
-
-    cin.ignore();
-
-    cout << "Ingrese los sintomas: ";
-    getline(cin, sintomas);
-
-    cout << "Ingrese el diagnostico: ";
-    getline(cin, diagnostico);
-
-    cout << "Ingrese el ID del Tratamiento: ";
-    cin >> idTratamiento;
-
-    cout << "Ingrese el ID del veterinario: ";
-    cin >> idVeterinario;
-
-    cout << "Ingrese el ID de la sucursal: ";
-    cin >> idSucursal;
-
-    cout << "Desea registrar una proxima visita? (S/N)";
-    cin >> respuestaProximaVisita;
-
-    if(respuestaProximaVisita == 'S')
-    {
-        cout << "Ingrese la Fecha de la proxima visita: ";
-        cout << "-> Ingrese la fecha de la consulta: ";
-        cout << "Ingrese dia: ";
-        cin >> diaProximaConsulta;
+        cout << "Ingrese la fecha de la consulta: " << endl;
+        cout << "Dia: ";
+        cin >> diaConsulta;
         cout << endl;
 
-        cout << "Ingrese mes:";
-        cin >> mesProximaConsulta;
+        cout << "Mes:";
+        cin >> mesConsulta;
         cout << endl;
 
-        cout << "Ingrese año:";
-        cin >> anioProximaConsulta;
+        cout << "Anio:";
+        cin >> anioConsulta;
         cout << endl;
 
-        fechaProximaVisita = Fecha(diaProximaConsulta, mesProximaConsulta, anioProximaConsulta);
-    }
+        fechaConsulta = Fecha(diaConsulta,mesConsulta,anioConsulta);
 
-    Consultas consulta = Consultas(1, idMascota, fechaConsulta, sintomas, diagnostico, tratamiento, fechaProximaVisita, idVeterinario, idSucursal);
+        cin.ignore();
 
-    nuevaConsultaEsValida = validarNuevaConsulta(consulta);
+        cout << "Ingrese los sintomas: ";
+        getline(cin, sintomas);
 
-    if(nuevaConsultaEsValida){
-        aceptaNuevoRegistro = confirmarVistaPrevia(consulta);
+        cout << "Ingrese el diagnostico: ";
+        getline(cin, diagnostico);
 
-        if(aceptaNuevoRegistro){
-          if (archivoConsultas.GuardarConsultas(consulta)) {
-                cout << "Consulta registrada exitosamente.";
+        cout << "Ingrese el ID del Tratamiento: ";
+        cin >> idTratamiento;
+
+        cout << "Ingrese el ID del veterinario: ";
+        cin >> idVeterinario;
+
+        cout << "Ingrese el ID de la sucursal: ";
+        cin >> idSucursal;
+
+        cout << "Desea registrar una proxima visita? (S/N)";
+        cin >> respuestaProximaVisita;
+
+        if(respuestaProximaVisita == 'S')
+        {
+            cout << "Ingrese la Fecha de la proxima visita: ";
+            cout << "-> Ingrese la fecha de la consulta: ";
+            cout << "Ingrese dia: ";
+            cin >> diaProximaConsulta;
+            cout << endl;
+
+            cout << "Ingrese mes:";
+            cin >> mesProximaConsulta;
+            cout << endl;
+
+            cout << "Ingrese año:";
+            cin >> anioProximaConsulta;
+            cout << endl;
+
+            fechaProximaVisita = Fecha(diaProximaConsulta, mesProximaConsulta, anioProximaConsulta);
+        }
+
+        Consultas consulta = Consultas(obtenerProximoId(), idMascota, fechaConsulta, sintomas, diagnostico, tratamiento, fechaProximaVisita, idVeterinario, idSucursal);
+
+        nuevaConsultaEsValida = validarNuevaConsulta(consulta);
+
+        if(nuevaConsultaEsValida){
+            aceptaNuevoRegistro = confirmarVistaPrevia(consulta);
+
+            if(aceptaNuevoRegistro){
+              if (archivoConsultas.GuardarConsultas(consulta)) {
+                    cout << "Consulta creada exitosamente.";
+                    esperarCualquierTecla();
+                } else {
+                    cout << "Ocurrio un error al guardar la consulta, intente de nuevo mas tarde.";
+                    esperarCualquierTecla();
+                    limpiarPantalla();
+                }
             } else {
-                cout << "Ocurrio un error al guardar la consulta, intente de nuevo mas tarde.";
+                cout << "Porfavor, ingrese todos los datos nuevamente.";
+                esperarCualquierTecla();
             }
         } else {
-
+            cout << "Porfavor, corrija los datos indicados, e intente nuevamente.";
+            esperarCualquierTecla();
         }
-    } else {
-        cout << "Porfavor, corrija los datos indicados, e intente nuevamente.";
-    }
+    } while(!nuevaConsultaEsValida && !aceptaNuevoRegistro);
 }
 
 void ConsultasManager::modificarConsulta() {
@@ -284,26 +291,34 @@ int ConsultasManager::BuscarConsultaPorID(int idBuscado) {
     return -1;
 }
 
-void ConsultasManager::imprimirEncabezadoListado() {
-    cout << "ID Mascota | AAA | BBB | CCC";
+void ConsultasManager::imprimirListado() {
+    cout << "ID Consulta | Mascota ID | Diagnostico | Estado | Fecha | Fecha proxima visita | Sucursal | Veterinario | Sintomas | Tratamiento";
 }
 
 bool ConsultasManager::confirmarVistaPrevia(Consultas consulta) {
     cout << " ------- Se dara de alta la siguiente consulta, porfavor confirme -------";
-    cout << consulta.getIDMascotas();
-    cout << consulta.getDiagnostico();
-    cout << consulta.getEstado();
-    cout << consulta.getFecha().toString();
-    cout << consulta.getFechaproximavisita().toString();
-    cout << consulta.getIDConsultas();
-    cout << consulta.getIDSucursal();
-    cout << consulta.getIDVeterinario();
-    cout << consulta.getSintomas();
-    cout << consulta.getTratamiento().getIDTratamiento();
+    cout << "ID de consulta: " << consulta.getIDConsultas() << endl;
+    cout << "Mascota: " << consulta.getIDMascotas() << endl;
+    cout << "Diagnostico: " << consulta.getDiagnostico()<< endl;
+    cout << "Estado: " << consulta.getEstado() << endl;
+    cout << "Fecha: " << consulta.getFecha().toString() << endl;
+    cout << "Fecha proxima visita: " << consulta.getFechaproximavisita().toString() << endl;
+    cout << "Consulta: " << consulta.getIDConsultas() << endl;
+    cout << "Sucursal: " << consulta.getIDSucursal() << endl;
+    cout << "Veterinario: " << consulta.getIDVeterinario() << endl;
+    cout << "Sintomas: " << consulta.getSintomas() << endl;
+    cout << "Tratamiento: " << consulta.getTratamiento().getIDTratamiento() << endl;
 }
 
 bool ConsultasManager::validarNuevaConsulta(Consultas consulta) {
     cout << " ------- Verificando los datos ingresados... -------";
+    return true;
 }
+
+int ConsultasManager::obtenerProximoId() {
+    return 1;
+}
+
+
 
 
