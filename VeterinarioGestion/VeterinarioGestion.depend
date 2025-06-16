@@ -506,7 +506,7 @@
 	<string>
 	<iostream>
 
-1749480860 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\gestorarchivo.h
+1750003691 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\gestorarchivo.h
 	<iostream>
 	"Cliente.h"
 	"Mascotas.h"
@@ -540,7 +540,7 @@
 	"Persona.h"
 	"Especialidades.h"
 
-1749321445 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultas.h
+1750015675 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultas.h
 	<iostream>
 	<string>
 	"Fecha.h"
@@ -549,7 +549,7 @@
 	"Veterinarios.h"
 	"Tratamientos.h"
 
-1747952062 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\tratamientos.h
+1750003691 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\tratamientos.h
 	<iostream>
 	<string>
 
@@ -570,28 +570,39 @@
 	"Mascotas.h"
 	"Veterinarios.h"
 
-1749564037 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultas.cpp
+1750037105 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultas.cpp
 	"Consultas.h"
 	<cstring>
 
-1749565341 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.cpp
+1750036602 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.cpp
 	"ConsultasManager.h"
+	"MascotaManager.h"
+	"SucursalManager.h"
+	"VeterinariosManager.h"
+	"TratamientosManager.h"
 
-1749565521 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.h
+1750034126 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.h
 	<iostream>
 	<string>
+	"Fecha.h"
 	"Consultas.h"
 	"GestorArchivo.h"
+	"MascotaManager.h"
+	"SucursalManager.h"
+	"VeterinariosManager.h"
 	"TratamientosManager.h"
-	"Fecha.h"
 
-1747952062 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\tratamientosmanager.h
+1750016863 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\tratamientosmanager.h
 	"GestorArchivo.h"
 	"Tratamientos.h"
-	<string>
+	<cstring>
 	<iostream>
+	"Validaciones.h"
+	"rlutil.h"
+	<cctype>
+	"optional"
 
-1749321467 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\especialidadmanager.cpp
+1750003691 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\especialidadmanager.cpp
 	"EspecialidadManager.h"
 
 1747952062 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\especialidadmanager.h
@@ -603,39 +614,34 @@
 1747952062 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\fecha.cpp
 	"Fecha.h"
 
-1749480860 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\gestorarchivo.cpp
+1750003691 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\gestorarchivo.cpp
 	"GestorArchivo.h"
 
-1749481045 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\main.cpp
+1750033950 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\main.cpp
 	<iostream>
-	"MascotaManager.h"
-	"ClienteManager.h"
-	"SucursalManager.h"
-	"EspecialidadManager.h"
-	"VeterinariosManager.h"
-	"TratamientosManager.h"
-	"ConsultasManager.h"
-	"PagosManager.h"
-	"VacunasManager.h"
-	"VacunacionesManager.h"
 	"MenuManager.h"
 
-1749480860 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\mascotamanager.h
+1750034036 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\mascotamanager.h
 	"GestorArchivo.h"
 	"Mascotas.h"
 	<string>
 	<iostream>
+	<optional>
 
-1747952062 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\sucursalmanager.h
+1750015863 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\sucursalmanager.h
 	"GestorArchivo.h"
 	"Sucursales.h"
+	<optional>
 
-1749321467 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\veterinariosmanager.h
+1750032960 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\veterinariosmanager.h
 	"GestorArchivo.h"
 	"EspecialidadManager.h"
 	"Veterinarios.h"
 	"FuncionesGlobales.h"
 	"Validaciones.h"
+	<cstring>
+	"rlutil.h"
+	<optional>
 
 1747952062 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\pagosmanager.h
 	<iostream>
@@ -658,9 +664,10 @@
 	"VeterinariosManager.h"
 	"Fecha.h"
 
-1749480860 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\mascotamanager.cpp
+1750034421 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\mascotamanager.cpp
 	"MascotaManager.h"
 	"Cliente.h"
+	<optional>
 
 1749480860 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\mascotas.cpp
 	"Mascotas.h"
@@ -675,10 +682,10 @@
 	"Especialidades.h"
 	<cstring>
 
-1747952062 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\sucursalmanager.cpp
+1750034455 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\sucursalmanager.cpp
 	"SucursalManager.h"
 
-1747952062 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\tratamientosmanager.cpp
+1750034521 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\tratamientosmanager.cpp
 	"TratamientosManager.h"
 
 1747952062 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\vacunaciones.cpp
@@ -690,7 +697,7 @@
 1747952062 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\vacunasmanager.cpp
 	"VacunasManager.h"
 
-1749321467 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\veterinariosmanager.cpp
+1750034479 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\veterinariosmanager.cpp
 	"VeterinariosManager.h"
 
 1748565248 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\persona.cpp
@@ -701,7 +708,7 @@
 	"Sucursales.h"
 	<cstring>
 
-1748565248 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\tratamientos.cpp
+1750003691 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\tratamientos.cpp
 	"Tratamientos.h"
 	<cstring>
 
@@ -719,7 +726,7 @@
 
 1748565248 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\funcionesglobales.h
 
-1749480860 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\menumanager.cpp
+1750004707 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\menumanager.cpp
 	<iostream>
 	<string>
 	"MenuManager.h"
@@ -735,7 +742,7 @@
 	"VacunasManager.h"
 	"VacunacionesManager.h"
 
-1749321445 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\menumanager.h
+1750004731 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\menumanager.h
 
 1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\funcionesglobales.cpp
 	<iostream>
@@ -1044,12 +1051,26 @@
 	"Validaciones.h"
 	<string>
 
-1749321467 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\validaciones.h
+1750003691 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\validaciones.h
 	<iostream>
 	<cstring>
 	"FuncionesGlobales.h"
 
-1749321467 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\validaciones.cpp
+1750003691 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\validaciones.cpp
 	"Validaciones.h"
 	<string>
+
+1750003691 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
 

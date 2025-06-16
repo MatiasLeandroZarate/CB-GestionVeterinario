@@ -1,21 +1,28 @@
 #include <iostream>
-#include "MascotaManager.h"
-#include "ClienteManager.h"
-#include "SucursalManager.h"
-#include "EspecialidadManager.h"
-#include "VeterinariosManager.h"
-#include "TratamientosManager.h"
-#include "ConsultasManager.h"
-#include "PagosManager.h"
-#include "VacunasManager.h"
-#include "VacunacionesManager.h"
 #include "MenuManager.h"
 
 using namespace std;
 
-int main()
-{
+int main() {
+    const string MENSAJE_ERROR_ADMINISTRADOR = " - Porfavor comuniquese con el administrador del sistema.";
+    bool salirMenu = false;
+
     MenuManager menuManager;
-    menuManager.procesarMenuPrincipal();
+
+    do{
+        try {
+            salirMenu = menuManager.procesarMenuPrincipal();
+            if (salirMenu){
+                break;
+            }
+        }
+        catch (const exception& ex) {
+            cerr << "Se produjo un error: " << ex.what() << MENSAJE_ERROR_ADMINISTRADOR << endl;
+        }
+        catch (...) {
+            cerr << "Se produjo un error desconocido." << MENSAJE_ERROR_ADMINISTRADOR  << endl;
+        }
+    } while(!salirMenu);
+
     return 0;
 }

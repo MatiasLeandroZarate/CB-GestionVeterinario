@@ -3,6 +3,7 @@
 #include "Mascotas.h"
 #include <string>
 #include <iostream>
+#include <optional>
 
 class MascotaManager
 {
@@ -11,6 +12,7 @@ public:
 	void CargarMascota();
 	void MostrarMascota();
 	int BuscarMascotaPorID(int idBuscado);
+	std::optional<Mascotas> obtenerMascotaPorId(int idBuscado);
 	void MostrarMascotaPorID();
 	int validarEdad();
 	float validarPeso();
