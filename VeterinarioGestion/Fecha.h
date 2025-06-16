@@ -20,4 +20,6 @@ class Fecha{
     std::string toString();
 
     Fecha ValidacionFecha(Fecha validar);
+    bool equals(Fecha fecha);
+    bool isBetween(Fecha desde,Fecha hasta);
 };

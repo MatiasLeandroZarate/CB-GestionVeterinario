@@ -147,19 +147,33 @@ void ConsultasManager::modificarConsulta() {
 }
 
 void ConsultasManager::listarConsultas() {
+   listarConsultasConFiltro(sinFiltro);
+}
+
+void ConsultasManager::listarConsultasConFiltro(bool (*filtro)(Consultas)) {
     GestorArchivo archivoConsultas("consultas.dat");
     Consultas consulta;
 
     int totalRegistros = archivoConsultas.CantidadRegistrosConsultas();
 
     if (totalRegistros == 0) {
-        cout << "No hay consultas registradas.\n";
+        cout << "No existen registros cargados." << endl;
         return;
     }
 
+    int contadorRegistrosEncontrados = 0;
+
     for (int i = 0; i < totalRegistros; i++) {
         consulta = archivoConsultas.LeerConsultas(i);
-        cout << consulta.toCSV() << endl;
+
+        if (filtro(consulta) && consulta.getEstado() == true) {
+            contadorRegistrosEncontrados++;
+            cout << consulta.toCSV() << endl;
+        }
+    }
+
+    if (contadorRegistrosEncontrados == 0) {
+        cout << "No existen registros que coincidan con el filtro especificado." << endl;
     }
 }
 
@@ -168,15 +182,22 @@ void ConsultasManager::bajaConsulta() {
     cout << "Ingrese el ID de la consulta a dar de baja: ";
     cin >> id;
 
-    GestorArchivo archivoConsultas("consultas.dat");
-    int pos = BuscarConsultaPorID(id);
-    if (pos == -1) return;
+    optional<Consultas> consultaOptional = obtenerConsultaPorId(id);
 
-    Consultas consulta = archivoConsultas.LeerConsultas(pos);
+    if(!consultaOptional.has_value()){
+        cout << "No existe ninguna consulta asociada a ese ID, porfavor ingrese uno valido." << endl;
+        return;
+    }
+
+    Consultas consulta = consultaOptional.value();
     consulta.setEstado(false);
 
-    if (archivoConsultas.GuardarConsultas(consulta)) {
-        cout << "Consulta dada de baja exitosamente." << endl;
+    GestorArchivo archivoConsultas("consultas.dat");
+
+    int posicionConsultaArchivo = BuscarConsultaPorID(id);
+
+    if (archivoConsultas.ModificarConsulta(posicionConsultaArchivo,consulta)) {
+        cout << "Consulta dada de baja exitosamente, no aparecera mas en los listados." << endl;
     } else {
         cout << "Error al dar de baja la consulta." << endl;
     }
@@ -186,6 +207,7 @@ void ConsultasManager::consultarPorMascota() {
     int idMascota;
     cout << "Ingrese ID de la mascota: ";
     cin >> idMascota;
+
 
     GestorArchivo archivo("consultas.dat");
     Consultas consulta;
@@ -225,24 +247,50 @@ void ConsultasManager::consultarPorFecha() {
     }
 }
 
+int ConsultasManager::idMascotaFiltro = 0;
+Fecha ConsultasManager::fechaDesdeFiltro = Fecha();
+Fecha ConsultasManager::fechaHastaFiltro = Fecha();
+int ConsultasManager::idSucursalFiltro = 0;
+int ConsultasManager::idVeterinarioFiltro = 0;
+int ConsultasManager::idClienteFiltro = 0;
+
+bool ConsultasManager::sinFiltro(Consultas consulta) {
+    return true;
+}
+
+bool ConsultasManager::filtroPorMascota(Consultas consulta) {
+    return consulta.getIDMascotas() == idMascotaFiltro;
+}
+
+bool ConsultasManager::filtroPorRangoDeFecha(Consultas consulta) {
+    return consulta.getFecha().isBetween(fechaDesdeFiltro,fechaHastaFiltro);
+}
+
+bool ConsultasManager::filtroPorSucursal(Consultas consulta) {
+    return consulta.getIDSucursal() == idSucursalFiltro;
+}
+
+bool ConsultasManager::filtroPorVeterinario(Consultas consulta) {
+    return consulta.getIDVeterinario() == idVeterinarioFiltro;
+}
+
+bool ConsultasManager::filtroPorCliente(Consultas consulta) {
+  //  mascotasManager.obtenerMascotaPorId(consulta.getIDMascotas()).
+    return consulta.getIDMascotas() == idSucursalFiltro;
+}
+
 void ConsultasManager::consultarPorSucursal() {
-    int id;
     cout << "Ingrese el ID de la sucursal: ";
-    cin >> id;
+    cin >> idSucursalFiltro;
 
-    GestorArchivo archivo("consultas.dat");
-    Consultas consulta;
-    bool encontrado = false;
+    optional<Sucursales> sucursalOptional = sucursalesManager.obtenerSucursalPorId(idSucursalFiltro);
 
-    for (int i = 0; i < archivo.CantidadRegistrosConsultas(); i++) {
-        consulta = archivo.LeerConsultas(i);
-        if (consulta.getIDSucursal() == id) {
-            cout << consulta.toCSV() << endl;
-            encontrado = true;
-        }
+    if(!sucursalOptional.has_value()){
+        cout << "No existe una sucursal con el ID especificado." << endl;
+        return;
     }
 
-    if (!encontrado) cout << "No se encontraron consultas para esa sucursal.\n";
+    listarConsultasConFiltro(filtroPorSucursal);
 }
 
 void ConsultasManager::consultarPorVeterinario() {
@@ -339,4 +387,21 @@ int ConsultasManager::BuscarConsultaPorID(int idBuscado) {
 
     cout << "Consulta con ID " << idBuscado << " no encontrada.\n";
     return -1;
+}
+
+std::optional<Consultas> ConsultasManager::obtenerConsultaPorId(int idBuscado){
+    GestorArchivo archivoConsultas("consultas.dat");
+    Consultas consulta;
+	int cantidadRegistros = archivoConsultas.CantidadRegistrosConsultas();
+
+	for (int i = 0; i < cantidadRegistros; i++)
+        {
+		consulta = archivoConsultas.LeerConsultas(i);
+
+		if (consulta.getIDConsultas() == idBuscado){
+            return consulta;
+        }
+    }
+
+    return std::nullopt;
 }

@@ -103,3 +103,21 @@ Fecha Fecha::ValidacionFecha(Fecha validar)
 	validacion = Fecha(dia, mes, anio);
 	return validacion;
 }
+
+bool Fecha::equals(Fecha fecha){
+    if(_anio == fecha.getAnio() && _mes == fecha.getMes() && _dia == fecha.getDia()){
+            return true;
+    }
+
+    return false;
+}
+
+bool Fecha::isBetween(Fecha desde,Fecha hasta) {
+    int valorFechaParametro = _anio * 10000 + _mes * 100 + _dia;
+    int valorDesde = desde.getAnio() * 10000 + desde.getMes() * 100 + desde.getDia();
+    int valorHasta = hasta.getAnio() * 10000 + hasta.getMes() * 100 + hasta.getDia();
+
+    return valorFechaParametro >= valorDesde && valorFechaParametro <= valorHasta;
+}
+
+
