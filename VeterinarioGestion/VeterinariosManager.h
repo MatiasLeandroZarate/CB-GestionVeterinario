@@ -6,7 +6,7 @@
 #include "Validaciones.h"
 #include <cstring>
 #include "rlutil.h"
-
+#include <optional>
 
 class VeterinariosManager
 {private:
@@ -19,7 +19,7 @@ public:
 
 	int SiguienteID();
 	int BuscarVeterinariosPorID(int idBuscado);
-
+	std::optional<Veterinarios> obtenerVeterinarioPorId(int idBuscado);
 	bool BuscarVeterinarioPorDNI(std::string dniBuscado);
 	bool ConfirmarIngreso(Veterinarios veterinario, bool confirmar);
 	bool BajaVeterinario();

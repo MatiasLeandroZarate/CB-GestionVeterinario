@@ -40,7 +40,7 @@ const static string SEPARADOR_TITULO_PRINCIPAL = " ======= ";
 //MENSAJES COMUNES
 const static string MENSAJE_SELECCIONE_OPCION = "Seleccione una opcion: ";
 
-void MenuManager::procesarMenuPrincipal() {
+bool MenuManager::procesarMenuPrincipal() {
     const int OPCION_GESTION_CLIENTES = 1;
     const int OPCION_GESTION_MASCOTAS = 2;
     const int OPCION_CONSULTAS_MEDICAS = 3;
@@ -105,6 +105,8 @@ void MenuManager::procesarMenuPrincipal() {
                 break;
         }
     } while (opcion != OPCION_ATRAS_SALIR);
+
+    return true;
 }
 
 void MenuManager::realizarOperacionPostSeleccion(int opcionSeleccionada){

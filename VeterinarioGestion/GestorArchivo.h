@@ -57,6 +57,7 @@ class GestorArchivo{
         bool GuardarConsultas(Consultas consultas);
         Consultas LeerConsultas(int posicion);
         int CantidadRegistrosConsultas();
+        bool ModificarConsulta(int pos, Consultas consulta);
 
         //Funciones para Pagos
         bool GuardarPagos(Pagos pagos);

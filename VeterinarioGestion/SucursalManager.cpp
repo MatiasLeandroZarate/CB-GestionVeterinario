@@ -19,7 +19,7 @@ void SucursalManager::CargarSucursal()
 	sucursal = Sucursales(Idsucursal, Nombre, Direccion);
 
 	if (sArchivo.GuardarSucursal(sucursal))
-	{	
+	{
 		std::cout << std::endl;
 		std::cout << "La sucursal se guardo correctamente." << std::endl;
 	}
@@ -62,4 +62,21 @@ int SucursalManager::BuscarSucursalPorID(int idBuscado)
 	}
 	std::cout << "No se encontró el ID de la Sucursal." << std::endl;
 	return -1;
+}
+
+
+std::optional<Sucursales> SucursalManager::obtenerSucursalPorId(int idBuscado){
+    Sucursales sucursal;
+	GestorArchivo sArchivo("sucursales.dat");
+
+	int cantidadRegistros = sArchivo.CantidadRegistrosSucursales();
+
+    for (int i = 0; i < cantidadRegistros; i++) {
+		sucursal = sArchivo.LeerSucursal(i);
+        if (sucursal.getIDSucursal() == idBuscado) {
+            return sucursal;
+        }
+    }
+
+    return std::nullopt;
 }

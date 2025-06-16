@@ -115,7 +115,7 @@ void VeterinariosManager::MostrarVeterinarioInforme()
             std::cout << veterinario.getEspecialidad().getDescripcion();
 			rlutil::locate(135, i + 3);
             std::cout << veterinario.getActivo();
- 
+
             //std::cout << veterinario.toInforme() << std::endl;
         }
 }
@@ -155,6 +155,23 @@ int VeterinariosManager::BuscarVeterinariosPorID(int idBuscado)
         }
     std::cout << "No se encontro el ID del Veterinarios." << std::endl;
     return -1;
+}
+
+std::optional<Veterinarios> VeterinariosManager::obtenerVeterinarioPorId(int idBuscado){
+    Veterinarios veterinarios;
+    GestorArchivo vArchivo("veterinarios.dat");
+
+    int cantidadRegistros = vArchivo.CantidadRegistrosVeterinario();
+
+    for (int i = 0; i < cantidadRegistros; i++) {
+        veterinarios = vArchivo.LeerVeterinario(i);
+
+        if (veterinarios.getIDVeterinario() == idBuscado) {
+            return veterinarios;
+        }
+    }
+
+    return std::nullopt;
 }
 
 bool VeterinariosManager::ConfirmarIngreso(Veterinarios veterinario, bool confirmar)
@@ -503,7 +520,7 @@ void VeterinariosManager::ModificarVeterinarios()
                     limpiarPantalla();
                 break;
             }
-        
+
         }while(opcion!=OPC_ATRAS_SALIR);
 
 

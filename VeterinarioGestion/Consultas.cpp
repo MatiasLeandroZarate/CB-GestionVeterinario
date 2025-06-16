@@ -4,25 +4,25 @@
 Consultas::Consultas()
 {
 	_IDConsultas =0;
-	_IDMascota =0;
+	_IDMascota = 0;
 	_Fecha = Fecha();
 	std::strcpy(_Sintomas,"");
 	std::strcpy(_Diagnostico,"");
-	_Tratamiento = Tratamientos();
+	_IDTratamiento = 0;
 	_FechaProximaVisita = Fecha();
 	_IDVeterinario = 0;
 	_IDSucursal = 0;
 	_Estado = true;
 }
 
-Consultas::Consultas(int idconsultas, int idmascotas, Fecha fecha, std::string sintomas, std::string diagnostico, Tratamientos tratamiento, Fecha fechaproximavisita, int idveterinario, int idsucursal)
+Consultas::Consultas(int idconsultas, int idmascotas, Fecha fecha, std::string sintomas, std::string diagnostico, int idtratamiento, Fecha fechaproximavisita, int idveterinario, int idsucursal)
 {
 	setIDConsultas(idconsultas);
 	setIDMascotas(idmascotas);
 	setFecha(fecha);
 	setSintomas(sintomas);
 	setDiagnostico(diagnostico);
-	setTratamiento(tratamiento);
+	setIDTratamiento(idtratamiento);
 	setFechaproximavisita(fechaproximavisita);
 	setIDVeterinario(idveterinario);
 	setIDSucursal(idsucursal);
@@ -48,9 +48,9 @@ void Consultas::setDiagnostico(std::string diagnostico)
 {
 	std::strcpy(_Diagnostico, diagnostico.c_str());
 }
-void Consultas::setTratamiento(Tratamientos tratamiento)
+void Consultas::setIDTratamiento(int idtratamiento)
 {
-	_Tratamiento = tratamiento;
+	_IDTratamiento = idtratamiento;
 }
 void Consultas::setFechaproximavisita(Fecha fechaproximavisita)
 {
@@ -90,9 +90,9 @@ std::string Consultas::getDiagnostico()
 {
 	return _Diagnostico;
 }
-Tratamientos Consultas::getTratamiento()
+int Consultas::getIDTratamiento()
 {
-	return _Tratamiento;
+	return _IDTratamiento;
 }
 Fecha Consultas::getFechaproximavisita()
 {
@@ -113,5 +113,8 @@ bool Consultas::getEstado()
 
 std::string Consultas::toCSV()
 {
-	return std::to_string(_IDConsultas) + "," + std::to_string(_IDMascota) + "," + _Fecha.toString() + "," + _Sintomas + "," + _Diagnostico + "," + _Tratamiento.toCSV() + "," + _FechaProximaVisita.toString() + "," + std::to_string(_IDVeterinario) + "," + std::to_string(_IDSucursal), "," + _Estado;
+	return std::to_string(_IDConsultas) + "," + std::to_string(_IDMascota) + "," + _Fecha.toString()
+	+ "," + _Sintomas + "," + _Diagnostico + "," + std::to_string(_IDTratamiento)
+	+ "," + _FechaProximaVisita.toString() + "," + std::to_string(_IDVeterinario) + "," + std::to_string(_IDSucursal)
+	+ "," + std::to_string(_Estado);
 }

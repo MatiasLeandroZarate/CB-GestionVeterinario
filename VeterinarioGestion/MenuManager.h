@@ -3,7 +3,7 @@
 
 class MenuManager {
 public:
-    void procesarMenuPrincipal();
+    bool procesarMenuPrincipal();
 private:
     void realizarOperacionPostSeleccion(int opcionSeleccionada);
     void procesarSubmenuClientes();

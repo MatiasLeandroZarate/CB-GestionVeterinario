@@ -13,7 +13,7 @@ void TratamientosManager::CargarTratamiento()
 	std::cout << "Ingrese el Nombre del Tratamiento: ";
 	std::cin.ignore();
 	NombreTratamiento = validar.validarLetra();
-	
+
 	do {
 		ComparaNombre = BuscarTratamientoPorNombre(NombreTratamiento);
 		if (ComparaNombre)
@@ -24,7 +24,7 @@ void TratamientosManager::CargarTratamiento()
 		}
 		else
 		{
-		
+
 		IDTratamiento = SiguienteID();
 
 		std::cout << "Ingrese la Descripcion: ";
@@ -35,14 +35,14 @@ void TratamientosManager::CargarTratamiento()
 		Costo = validar.validarFloat();
 		std::cout << std::endl;
 		limpiarPantalla();
-		
+
 		tratamiento = Tratamientos(IDTratamiento, NombreTratamiento, Descripcion, DuracionDias, Costo, Activo);
 		confirmar = ConfirmarIngreso(tratamiento, confirmar);
 		guardardato = true;
 		}
 
 	} while (!confirmar);
-	
+
 	if(guardardato){
 	if (tArchivo.GuardarTratamientos(tratamiento))
 		{
@@ -145,6 +145,23 @@ int TratamientosManager::BuscarTratamientoPorID(int idBuscado)
 	return -1;
 }
 
+std::optional<Tratamientos> TratamientosManager::obtenerTratamientoPorId(int idBuscado){
+  	Tratamientos tratamiento;
+	GestorArchivo tArchivo("tratamientos.dat");
+	int cantidadRegistros = tArchivo.CantidadRegistrosTratamientos();
+
+	for (int i = 0; i < cantidadRegistros; i++)
+        {
+		tratamiento = tArchivo.LeerTratamientos(i);
+
+		if (tratamiento.getIDTratamiento() == idBuscado){
+            return tratamiento;
+        }
+    }
+
+    return std::nullopt;
+}
+
 int TratamientosManager::SiguienteID()
 {
 	Tratamientos ultimotratamiento;
@@ -208,7 +225,7 @@ bool TratamientosManager::ConfirmarIngreso(Tratamientos tratamiento, bool confir
 	std::cout << tratamiento.getCosto();
 	rlutil::locate(21, 6);
 	std::cout << tratamiento.getActivo();
-	
+
 	std::cout << std::endl << "Confirma los datos ingresados? 1-Si, 0-No: " << std::endl;
 	confirmar = validar.validarBool();
 
@@ -234,7 +251,7 @@ bool TratamientosManager::BuscarTratamientoPorNombre(std::string NombreTratamien
 	GestorArchivo tArchivo("tratamientos.dat");
 	int cantidadRegistros = tArchivo.CantidadRegistrosTratamientos();
 	int y = 4;
-	
+
 	std::string mayus, NombreMayus;
 	NombreMayus = NombreTratamiento;
 	for (int i = 0; i < NombreMayus.length(); i++) {
@@ -350,9 +367,9 @@ void TratamientosManager::ModificarTratamientos()
 				//std::cout << tratamiento.toInforme();
 				//-----------------------------------------------------------------------------------------------------------------------
 
-				
+
 				std::cout << std::endl << std::endl << std::endl << "-----------------------------------------" << std::endl;
-				
+
 				std::cout << OPC_NOMBRE_TRATAMIENTO << ". " << OPCION_NOMBRE_TRATAMIENTO<< std::endl;
 				std::cout << OPC_DESCRIPCION << ". " << OPCION_DESCRIPCION << std::endl;
 				std::cout << OPC_DIAS<< ". " << OPCION_DIAS<< std::endl;
@@ -366,11 +383,11 @@ void TratamientosManager::ModificarTratamientos()
 				switch (opcion)
 				{
 				case OPC_NOMBRE_TRATAMIENTO:
-					
+
 					std::cout << std::endl << "Nombre actual del Tratamiento: " << tratamiento.getNombreTratamiento();
 					std::cout << std::endl << "Ingrese nuevo Nombre del Tratamiento: ";
 					NombreTratamiento = validar.validarLetra();
-										
+
 					tratamiento.setNombreTratamiento(NombreTratamiento);
 					limpiarPantalla();
 					modifico++;
@@ -380,7 +397,7 @@ void TratamientosManager::ModificarTratamientos()
 					std::cout << std::endl << "Descripcion actual: " << tratamiento.getDescripcion();
 					std::cout << std::endl << "Ingrese la nueva Descripcion: ";
 					descripcion = validar.validarLetra();
-					
+
 					tratamiento.setDescripcion(descripcion);
 					limpiarPantalla();
 					modifico++;
@@ -490,5 +507,5 @@ void TratamientosManager::TituloLocate()
 	std::cout << "| Costo ";
 	rlutil::locate(86, 3);
 	std::cout << "| Activo";
-	
+
 }
