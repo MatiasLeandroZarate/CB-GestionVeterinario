@@ -9,6 +9,7 @@
 #include "VeterinariosManager.h"
 #include "TratamientosManager.h"
 #include "optional"
+#include "rlutil.h"
 
 class ConsultasManager
 {
@@ -18,11 +19,12 @@ private:
 	VeterinariosManager veterinariosManager;
 	TratamientosManager tratamientosManager;
 
-    void imprimirListado();
+    void imprimirEncabezadoListado();
     void imprimirConsulta(Consultas consulta);
     void listarConsultasConFiltro(bool (*filtro)(Consultas));
 
-    bool validarNuevaConsulta(Consultas consulta);
+    bool esConsultaValida(Consultas consulta);
+    bool confirmaAccion();
 
     static int idMascotaFiltro;
     static Fecha fechaDesdeFiltro;

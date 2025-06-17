@@ -3,8 +3,28 @@
 #include "SucursalManager.h"
 #include "VeterinariosManager.h"
 #include "TratamientosManager.h"
+#include "Validaciones.h"
 
 using namespace std;
+
+const string ENCABEZADO_ALTA_CONSULTA = "========== Alta de consulta medica ==========";
+const string ENCABEZADO_MODIFICACION_CONSULTA = "========== Modificacion de consulta medica ==========";
+const string ENCABEZADO_LISTADO_CONSULTAS = "========== Listado de consultas medicas activas ==========";
+const string ENCABEZADO_BAJA_CONSULTA = "========== Baja de consulta medica ==========";
+const string ENCABEZADO_LISTADO_CONSULTAS_POR_MASCOTA = "========== Listado de consultas medicas por mascota ==========";
+const string ENCABEZADO_LISTADO_CONSULTAS_POR_FECHAS = "========== Listado de consultas medicas por rango de fechas ==========";
+const string ENCABEZADO_LISTADO_CONSULTAS_POR_SUCURSAL = "========== Listado de consultas medicas por sucursal ==========";
+const string ENCABEZADO_LISTADO_CONSULTAS_POR_VETERINARIO = "========== Listado de consultas medicas por veterinario ==========";
+const string ENCABEZADO_LISTADO_CONSULTAS_POR_CLIENTE = "========== Listado de consultas medicas por cliente ==========";
+
+const string MENSAJE_CONFIRMACION_DATOS = "========== Confirma que los datos y la accion a realizar son correctos? (S/N) ==========";
+
+int ConsultasManager::idMascotaFiltro = 0;
+Fecha ConsultasManager::fechaDesdeFiltro = Fecha();
+Fecha ConsultasManager::fechaHastaFiltro = Fecha();
+int ConsultasManager::idSucursalFiltro = 0;
+int ConsultasManager::idVeterinarioFiltro = 0;
+int ConsultasManager::idClienteFiltro = 0;
 
 void ConsultasManager::altaConsulta() {
     GestorArchivo archivoConsultas("consultas.dat");
@@ -23,14 +43,22 @@ void ConsultasManager::altaConsulta() {
     Sucursales Sucursales;
     Fecha fechaConsulta, fechaProximaVisita;
 
-    do{
-        cout << "A continuacion debera ingresar los datos del nuevo registro de consulta medica..." << endl;
-        esperarCualquierTecla();
-        limpiarPantalla();
+    Validaciones validador;
 
-        cout << "========== Alta de consulta medica ==========" << endl;
+    do{
+        cout << ENCABEZADO_ALTA_CONSULTA << endl;
         cout << "Ingrese el ID de la Mascota: ";
-        cin >> idMascota;
+        idMascota = validador.validarNumero();
+
+        optional<Mascotas> mascotaOptional = mascotasManager.obtenerMascotaPorId(idMascota);
+
+        if(!mascotaOptional.has_value()){
+            cout << "La mascota ingresada no existe" << endl;
+            break;
+        } else {
+            cout << "La mascota encontrada es: " << mascotaOptional.value().getNombre() << endl;
+            //Confirmar o reingresar...
+        };
 
         //Validar y confirmar mascota.
 
@@ -93,10 +121,12 @@ void ConsultasManager::altaConsulta() {
 
         Consultas consulta = Consultas(obtenerProximoId(), idMascota, fechaConsulta, sintomas, diagnostico, idTratamiento, fechaProximaVisita, idVeterinario, idSucursal);
 
-        nuevaConsultaEsValida = validarNuevaConsulta(consulta);
+        nuevaConsultaEsValida = esConsultaValida(consulta);
 
         if(nuevaConsultaEsValida){
+            cout << MENSAJE_CONFIRMACION_DATOS << endl;
             imprimirConsulta(consulta);
+
             aceptaNuevoRegistro = true;
 
             if(aceptaNuevoRegistro){
@@ -124,6 +154,7 @@ void ConsultasManager::altaConsulta() {
 }
 
 void ConsultasManager::modificarConsulta() {
+    cout << ENCABEZADO_MODIFICACION_CONSULTA << endl;
     int id;
     cout << "Ingrese el ID de la consulta a modificar: ";
     cin >> id;
@@ -135,7 +166,7 @@ void ConsultasManager::modificarConsulta() {
     Consultas consulta = archivo.LeerConsultas(pos);
 
     string nuevoDiagnostico;
-    cout << "Diagnóstico actual: " << consulta.getDiagnostico() << "\n";
+    cout << "Diagnostico actual: " << consulta.getDiagnostico() << "\n";
     cout << "Nuevo diagnóstico: ";
     cin.ignore();
     getline(cin, nuevoDiagnostico);
@@ -143,11 +174,50 @@ void ConsultasManager::modificarConsulta() {
     consulta.setDiagnostico(nuevoDiagnostico);
     archivo.GuardarConsultas(consulta);
 
-    cout << "Consulta modificada con éxito.\n";
+    cout << "Consulta modificada con exito.\n";
 }
 
 void ConsultasManager::listarConsultas() {
+    cout << ENCABEZADO_LISTADO_CONSULTAS << endl;
    listarConsultasConFiltro(sinFiltro);
+}
+
+
+bool ConsultasManager::sinFiltro(Consultas consulta) {
+    return true;
+}
+
+bool ConsultasManager::filtroPorMascota(Consultas consulta) {
+    return consulta.getIDMascotas() == idMascotaFiltro;
+}
+
+bool ConsultasManager::filtroPorRangoDeFecha(Consultas consulta) {
+    return consulta.getFecha().isBetween(fechaDesdeFiltro, fechaHastaFiltro);
+}
+
+bool ConsultasManager::filtroPorSucursal(Consultas consulta) {
+    return consulta.getIDSucursal() == idSucursalFiltro;
+}
+
+bool ConsultasManager::filtroPorVeterinario(Consultas consulta) {
+    return consulta.getIDVeterinario() == idVeterinarioFiltro;
+}
+
+bool ConsultasManager::filtroPorCliente(Consultas consulta) {
+    Mascotas mascota;
+    GestorArchivo archivoMascotas("mascotas.dat");
+    int cantidadRegistros = archivoMascotas.CantidadRegistrosMascotas();
+
+    for (int i = 0; i < cantidadRegistros; i++)
+    {
+        mascota = archivoMascotas.LeerMascota(i);
+
+        if(mascota.getIDMascota() == consulta.getIDMascotas()){
+            return mascota.getIDCliente() == idClienteFiltro;
+        } else {
+            return false;
+        }
+    }
 }
 
 void ConsultasManager::listarConsultasConFiltro(bool (*filtro)(Consultas)) {
@@ -157,39 +227,73 @@ void ConsultasManager::listarConsultasConFiltro(bool (*filtro)(Consultas)) {
     int totalRegistros = archivoConsultas.CantidadRegistrosConsultas();
 
     if (totalRegistros == 0) {
+        limpiarPantalla();
         cout << "No existen registros cargados." << endl;
         return;
     }
 
+    int filaPantalla = 4;
     int contadorRegistrosEncontrados = 0;
+
+    imprimirEncabezadoListado();
 
     for (int i = 0; i < totalRegistros; i++) {
         consulta = archivoConsultas.LeerConsultas(i);
 
-        if (filtro(consulta) && consulta.getEstado() == true) {
+        if (filtro(consulta) && consulta.getEstado()) {
             contadorRegistrosEncontrados++;
-            cout << consulta.toCSV() << endl;
+
+            optional<Mascotas> mascotaOptional = mascotasManager.obtenerMascotaPorId(consulta.getIDMascotas());
+            optional<Sucursales> sucursalOptional = sucursalesManager.obtenerSucursalPorId(consulta.getIDSucursal());
+            optional<Veterinarios> veterinarioOptional = veterinariosManager.obtenerVeterinarioPorId(consulta.getIDVeterinario());
+            optional<Tratamientos> tratamientoOptional = tratamientosManager.obtenerTratamientoPorId(consulta.getIDTratamiento());
+
+            rlutil::locate(1, filaPantalla);    cout << consulta.getIDConsultas();
+            rlutil::locate(6, filaPantalla);    cout << mascotaOptional.value().getNombre().substr(0, 13);
+            rlutil::locate(20, filaPantalla);   cout << consulta.getDiagnostico().substr(0, 15);
+            rlutil::locate(37, filaPantalla);   cout << (consulta.getEstado() ? "Activo" : "Baja");
+            rlutil::locate(46, filaPantalla);   cout << consulta.getFecha().toString();
+            rlutil::locate(59, filaPantalla);   cout << consulta.getFechaproximavisita().toString();
+            rlutil::locate(76, filaPantalla);   cout << sucursalOptional.value().getNombre().substr(0, 15);
+            rlutil::locate(92, filaPantalla);   cout << veterinarioOptional.value().getNombre().substr(0, 15);
+            rlutil::locate(109, filaPantalla);  cout << consulta.getSintomas().substr(0, 16);
+            rlutil::locate(126, filaPantalla);  cout << tratamientoOptional.value().getNombreTratamiento().substr(0, 15);
+
+            filaPantalla++;
         }
     }
 
     if (contadorRegistrosEncontrados == 0) {
+        limpiarPantalla();
         cout << "No existen registros que coincidan con el filtro especificado." << endl;
     }
 }
 
 void ConsultasManager::bajaConsulta() {
+    bool usuarioConfirmaAccion = false;
+    Consultas consulta;
     int id;
-    cout << "Ingrese el ID de la consulta a dar de baja: ";
-    cin >> id;
 
-    optional<Consultas> consultaOptional = obtenerConsultaPorId(id);
+    do{
+        limpiarPantalla();
+        cout << ENCABEZADO_BAJA_CONSULTA << endl;
+        cout << "Ingrese el ID de la consulta a dar de baja: ";
+        cin >> id;
 
-    if(!consultaOptional.has_value()){
-        cout << "No existe ninguna consulta asociada a ese ID, porfavor ingrese uno valido." << endl;
-        return;
-    }
+        optional<Consultas> consultaOptional = obtenerConsultaPorId(id);
 
-    Consultas consulta = consultaOptional.value();
+
+        if(!consultaOptional.has_value()){
+            cout << "No existe ninguna consulta asociada a ese ID, porfavor ingrese uno valido." << endl;
+            return;
+        }
+
+        consulta = consultaOptional.value();
+
+        imprimirConsulta(consulta);
+        usuarioConfirmaAccion = confirmaAccion();
+    }while(!usuarioConfirmaAccion);
+
     consulta.setEstado(false);
 
     GestorArchivo archivoConsultas("consultas.dat");
@@ -203,83 +307,42 @@ void ConsultasManager::bajaConsulta() {
     }
 }
 
-void ConsultasManager::consultarPorMascota() {
-    int idMascota;
-    cout << "Ingrese ID de la mascota: ";
-    cin >> idMascota;
+bool ConsultasManager::confirmaAccion() {
+    cout << MENSAJE_CONFIRMACION_DATOS << endl;
+    Validaciones validador;
+    string letra = validador.validarLetra();
 
-
-    GestorArchivo archivo("consultas.dat");
-    Consultas consulta;
-    bool encontrado = false;
-
-    for (int i = 0; i < archivo.CantidadRegistrosConsultas(); i++) {
-        consulta = archivo.LeerConsultas(i);
-        if (consulta.getIDMascotas() == idMascota) {
-            cout << consulta.toCSV() << endl;
-            encontrado = true;
-        }
+    if(letra == "S" || letra == "s"){
+        return true;
     }
 
-    if (!encontrado) cout << "No se encontraron consultas para la mascota indicada.\n";
+    return false;
+}
+
+
+void ConsultasManager::consultarPorMascota() {
+    cout << ENCABEZADO_LISTADO_CONSULTAS_POR_MASCOTA << endl;
+    cout << "Ingrese ID de la mascota: ";
+    Validaciones validador;
+    idMascotaFiltro = validador.validarNumero();
+    listarConsultasConFiltro(filtroPorMascota);
 }
 
 void ConsultasManager::consultarPorFecha() {
-    Fecha f;
-    f = f.ValidacionFecha(f);
+    cout << ENCABEZADO_LISTADO_CONSULTAS_POR_FECHAS << endl;
+    Fecha fecha;
+    cout << "======================================= " << endl;
+    cout << "Ingrese fecha desde: " << endl;
+    fechaDesdeFiltro = fecha.ValidacionFecha(fecha);
+    cout << "======================================= " << endl;
+    cout << "Ingrese fecha hasta: " << endl;
+    fechaHastaFiltro = fecha.ValidacionFecha(fecha);
 
-    GestorArchivo archivoConsultas("consultas.dat");
-    Consultas consulta;
-    bool encontrado = false;
-
-    for (int i = 0; i < archivoConsultas.CantidadRegistrosConsultas(); i++) {
-        consulta = archivoConsultas.LeerConsultas(i);
-        if (consulta.getFecha().getAnio() == f.getAnio()
-            && consulta.getFecha().getMes() == f.getMes()
-            && consulta.getFecha().getAnio() == f.getAnio()) {
-            cout << consulta.toCSV() << endl;
-            encontrado = true;
-        }
-    }
-
-    if (!encontrado) {
-        cout << "No se encontraron consultas en esa fecha." << endl;
-    }
-}
-
-int ConsultasManager::idMascotaFiltro = 0;
-Fecha ConsultasManager::fechaDesdeFiltro = Fecha();
-Fecha ConsultasManager::fechaHastaFiltro = Fecha();
-int ConsultasManager::idSucursalFiltro = 0;
-int ConsultasManager::idVeterinarioFiltro = 0;
-int ConsultasManager::idClienteFiltro = 0;
-
-bool ConsultasManager::sinFiltro(Consultas consulta) {
-    return true;
-}
-
-bool ConsultasManager::filtroPorMascota(Consultas consulta) {
-    return consulta.getIDMascotas() == idMascotaFiltro;
-}
-
-bool ConsultasManager::filtroPorRangoDeFecha(Consultas consulta) {
-    return consulta.getFecha().isBetween(fechaDesdeFiltro,fechaHastaFiltro);
-}
-
-bool ConsultasManager::filtroPorSucursal(Consultas consulta) {
-    return consulta.getIDSucursal() == idSucursalFiltro;
-}
-
-bool ConsultasManager::filtroPorVeterinario(Consultas consulta) {
-    return consulta.getIDVeterinario() == idVeterinarioFiltro;
-}
-
-bool ConsultasManager::filtroPorCliente(Consultas consulta) {
-  //  mascotasManager.obtenerMascotaPorId(consulta.getIDMascotas()).
-    return consulta.getIDMascotas() == idSucursalFiltro;
+    listarConsultasConFiltro(filtroPorRangoDeFecha);
 }
 
 void ConsultasManager::consultarPorSucursal() {
+    cout << ENCABEZADO_LISTADO_CONSULTAS_POR_SUCURSAL << endl;
     cout << "Ingrese el ID de la sucursal: ";
     cin >> idSucursalFiltro;
 
@@ -294,61 +357,38 @@ void ConsultasManager::consultarPorSucursal() {
 }
 
 void ConsultasManager::consultarPorVeterinario() {
-    int id;
+    cout << ENCABEZADO_LISTADO_CONSULTAS_POR_VETERINARIO << endl;
     cout << "Ingrese el ID del veterinario: ";
-    cin >> id;
-
-    GestorArchivo archivo("consultas.dat");
-    Consultas consulta;
-    bool encontrado = false;
-
-    for (int i = 0; i < archivo.CantidadRegistrosConsultas(); i++) {
-        consulta = archivo.LeerConsultas(i);
-        if (consulta.getIDVeterinario() == id) {
-            cout << consulta.toCSV() << endl;
-            encontrado = true;
-        }
-    }
-
-    if (!encontrado) cout << "No se encontraron consultas para ese veterinario.\n";
+    cin >> idVeterinarioFiltro;
+    listarConsultasConFiltro(filtroPorVeterinario);
 }
 
 void ConsultasManager::consultarPorCliente() {
-    int id;
+    cout << ENCABEZADO_LISTADO_CONSULTAS_POR_CLIENTE << endl;
     cout << "Ingrese el ID del cliente: ";
-    cin >> id;
-
-    GestorArchivo archivo("consultas.dat");
-    GestorArchivo archivoMascotas("mascotas.dat");
-
-    Consultas consulta;
-    bool encontrado = false;
-
-    /*
-    for (int i = 0; i < archivo.CantidadRegistrosConsultas(); i++) {
-        consulta = archivo.LeerConsultas(i);
-        consulta.getIDMascotas()
-        if (consulta.getIDMascotas() == id) {
-            cout << consulta.toCSV() << endl;
-            encontrado = true;
-        }
-    }
-    */
-
-    if (!encontrado) cout << "No se encontraron consultas para ese cliente.\n";
+    cin >> idClienteFiltro;
+    listarConsultasConFiltro(filtroPorCliente);
 }
 
-void ConsultasManager::imprimirListado() {
-    cout << "ID Consulta | Mascota ID | Diagnostico | Estado | Fecha | Fecha proxima visita | Sucursal | Veterinario | Sintomas | Tratamiento";
+void ConsultasManager::imprimirEncabezadoListado() {
+    rlutil::locate(1, 2);   cout << "ID";
+    rlutil::locate(6, 2);   cout << "| Mascota";
+    rlutil::locate(20, 2);  cout << "| Diagnostico";
+    rlutil::locate(37, 2);  cout << "| Estado";
+    rlutil::locate(46, 2);  cout << "| Fecha";
+    rlutil::locate(59, 2);  cout << "| Prox. Visita";
+    rlutil::locate(76, 2);  cout << "| Sucursal";
+    rlutil::locate(92, 2);  cout << "| Veterinario";
+    rlutil::locate(109, 2); cout << "| Sntomas";
+    rlutil::locate(126, 2); cout << "| Tratamiento";
 }
 
 void ConsultasManager::imprimirConsulta(Consultas consulta) {
-    cout << " ===== Consulta ====" << endl;
     cout << "ID de consulta: " << consulta.getIDConsultas() << endl;
     cout << "Fecha: " << consulta.getFecha().toString() << endl;
     cout << "Sintomas: " << consulta.getSintomas() << endl;
     cout << "Diagnostico: " << consulta.getDiagnostico() << endl;
-    cout << "Estado: " << consulta.getEstado() << endl;
+    cout << "Estado: " <<  (consulta.getEstado() ? "Activo" : "Baja");
     cout << "Fecha proxima visita: " << consulta.getFechaproximavisita().toString() << endl;
 
     optional<Mascotas> mascotaOptional = mascotasManager.obtenerMascotaPorId(consulta.getIDMascotas());
@@ -362,9 +402,13 @@ void ConsultasManager::imprimirConsulta(Consultas consulta) {
     cout << "Tratamiento: " << tratamientoOptional.value().getNombreTratamiento() << endl;
 }
 
-bool ConsultasManager::validarNuevaConsulta(Consultas consulta) {
-    cout << " ------- Verificando los datos ingresados... -------" << endl;
-    //Validar que la mascota cliente no tenga otra consulta para el mismo dia y veterinario.
+bool ConsultasManager::esConsultaValida(Consultas consulta) {
+    cout << "Atencion: Verificando los datos ingresados..." << endl;
+    //Validar que la mascota no tenga otra consulta para el mismo dia, sucursal y veterinario.
+   //  if(esConsultaDuplicada(consulta)){
+   //     return false;
+   // }
+
     return true;
 }
 
