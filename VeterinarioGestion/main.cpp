@@ -24,5 +24,5 @@ int main() {
         }
     } while(!salirMenu);
 
-    return 0;
+    return 0;   
 }
