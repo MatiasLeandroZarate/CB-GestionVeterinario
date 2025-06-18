@@ -42,9 +42,11 @@ int Validaciones::validarNumero()
     bool numValido = false;
     int Num;
 
+    std::cin.clear();
+
     while (!numValido)
         {
-         std::cin.ignore();
+         std::cin.clear();
          std::getline(std::cin, numIngresado);
          numValido = true;
          int i = 0;
