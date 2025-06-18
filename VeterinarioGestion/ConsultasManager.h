@@ -1,16 +1,18 @@
 #pragma once
 #include <iostream>
+#include "Sucursales.h"
 #include <string>
 #include "Fecha.h"
 #include "Consultas.h"
+#include "Mascotas.h"
+#include "Validaciones.h"
 #include "GestorArchivo.h"
 #include "MascotaManager.h"
 #include "SucursalManager.h"
 #include "VeterinariosManager.h"
 #include "TratamientosManager.h"
 #include "ClienteManager.h"
-#include "optional"
-#include "Mascotas.h"
+#include <optional>
 #include "rlutil.h"
 
 class ConsultasManager
@@ -27,6 +29,7 @@ private:
     void listarConsultasConFiltro(bool (*filtro)(Consultas));
 
     bool esConsultaValida(Consultas consulta);
+    bool esConsultaDuplicada(Consultas consulta);
     bool confirmaAccion();
 
     static int idMascotaFiltro;
@@ -47,6 +50,7 @@ private:
     std::optional<Sucursales> solicitarSucursalValidada();
     std::optional<Veterinarios> solicitarVeterinarioValidado();
     std::optional<Cliente> solicitarClienteValidado();
+    std::optional<Tratamientos> solicitarTratamientoValidado();
 public:
 	void altaConsulta();
 	void modificarConsulta();

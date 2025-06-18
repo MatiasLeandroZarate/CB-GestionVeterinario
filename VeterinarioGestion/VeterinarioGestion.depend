@@ -583,19 +583,21 @@
 	"TratamientosManager.h"
 	"Validaciones.h"
 
-1750215626 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.h
+1750225003 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.h
 	<iostream>
+	"Sucursales.h"
 	<string>
 	"Fecha.h"
 	"Consultas.h"
+	"Mascotas.h"
+	"Validaciones.h"
 	"GestorArchivo.h"
 	"MascotaManager.h"
 	"SucursalManager.h"
 	"VeterinariosManager.h"
 	"TratamientosManager.h"
 	"ClienteManager.h"
-	"optional"
-	"Mascotas.h"
+	<optional>
 	"rlutil.h"
 
 1750016863 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\tratamientosmanager.h
