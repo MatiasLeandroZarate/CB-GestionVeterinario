@@ -17,7 +17,9 @@ const string ENCABEZADO_LISTADO_CONSULTAS_POR_SUCURSAL = "========== Listado de 
 const string ENCABEZADO_LISTADO_CONSULTAS_POR_VETERINARIO = "========== Listado de consultas medicas por veterinario ==========";
 const string ENCABEZADO_LISTADO_CONSULTAS_POR_CLIENTE = "========== Listado de consultas medicas por cliente ==========";
 
-const string MENSAJE_CONFIRMACION_DATOS = "========== Confirma que los datos y la accion a realizar son correctos? (S/N) ==========";
+const string MENSAJE_AVISO_RETORNO_MENU = "ATENCION: Sera regresado al menu anterior.";
+const string MENSAJE_CONFIRMACION_DATOS = "-> Confirma que los datos y la accion a realizar son correctos? (S/N): ";
+const int MAXIMOS_REINTENTOS_ENTRADA_DATOS = 3;
 
 int ConsultasManager::idMascotaFiltro = 0;
 Fecha ConsultasManager::fechaDesdeFiltro = Fecha();
@@ -308,7 +310,8 @@ void ConsultasManager::bajaConsulta() {
 }
 
 bool ConsultasManager::confirmaAccion() {
-    cout << MENSAJE_CONFIRMACION_DATOS << endl;
+    cout << MENSAJE_CONFIRMACION_DATOS;
+
     Validaciones validador;
     string letra = validador.validarLetra();
 
@@ -322,10 +325,143 @@ bool ConsultasManager::confirmaAccion() {
 
 void ConsultasManager::consultarPorMascota() {
     cout << ENCABEZADO_LISTADO_CONSULTAS_POR_MASCOTA << endl;
-    cout << "Ingrese ID de la mascota: ";
-    Validaciones validador;
-    idMascotaFiltro = validador.validarNumero();
-    listarConsultasConFiltro(filtroPorMascota);
+
+    optional<Mascotas> mascotaOptional = solicitarMascotaValidada();
+
+    if(mascotaOptional.has_value()){
+        listarConsultasConFiltro(filtroPorMascota);
+    } else {
+        cout << MENSAJE_AVISO_RETORNO_MENU << endl;
+    }
+}
+
+std::optional<Mascotas> ConsultasManager::solicitarMascotaValidada() {
+    bool usuarioConfirmaAccion = false;
+    optional<Mascotas> mascotasOptional = nullopt;
+    int cantidadIntentosIngreso = 0;
+
+    do {
+        cantidadIntentosIngreso++;
+        cout << "Ingrese ID de la mascota: ";
+        Validaciones validador;
+        idMascotaFiltro = validador.validarNumero();
+
+         mascotasOptional = mascotasManager.obtenerMascotaPorId(idMascotaFiltro);
+
+        if(mascotasOptional.has_value()){
+            cout << "Mascota encontrada: " << mascotasOptional.value().getNombre() << endl;
+            usuarioConfirmaAccion = confirmaAccion();
+
+            if(usuarioConfirmaAccion){
+                return mascotasOptional.value();
+            }
+        } else {
+            cout << "No existe una mascota con el ID especificado..." << endl;
+            esperarCualquierTecla();
+        }
+    } while (cantidadIntentosIngreso < MAXIMOS_REINTENTOS_ENTRADA_DATOS);
+
+    if(mascotasOptional.has_value()){
+         return mascotasOptional.value();
+    } else {
+        return std::nullopt;
+   }
+}
+
+std::optional<Sucursales> ConsultasManager::solicitarSucursalValidada() {
+    bool usuarioConfirmaAccion = false;
+    optional<Sucursales> sucursalOptional = nullopt;
+    int cantidadIntentosIngreso = 0;
+
+    do {
+        cantidadIntentosIngreso++;
+        cout << "Ingrese ID de la sucursal: ";
+        Validaciones validador;
+        idSucursalFiltro = validador.validarNumero();
+        sucursalOptional = sucursalesManager.obtenerSucursalPorId(idSucursalFiltro);
+
+        if(sucursalOptional.has_value()){
+            cout << "Sucursal encontrada: " << sucursalOptional.value().getNombre() << endl;
+            usuarioConfirmaAccion = confirmaAccion();
+
+            if(usuarioConfirmaAccion){
+                return sucursalOptional.value();
+            }
+        } else {
+            cout << "No existe una sucursal con el ID especificado..." << endl;
+            esperarCualquierTecla();
+        }
+    } while (cantidadIntentosIngreso < MAXIMOS_REINTENTOS_ENTRADA_DATOS);
+
+    if(sucursalOptional.has_value()){
+         return sucursalOptional.value();
+    } else {
+        return std::nullopt;
+   }
+}
+
+std::optional<Veterinarios> ConsultasManager::solicitarVeterinarioValidado() {
+    bool usuarioConfirmaAccion = false;
+    optional<Veterinarios> veterinarioOptional = nullopt;
+    int cantidadIntentosIngreso = 0;
+
+    do {
+        cantidadIntentosIngreso++;
+        cout << "Ingrese ID de veterinario: ";
+        Validaciones validador;
+        idVeterinarioFiltro = validador.validarNumero();
+        veterinarioOptional = veterinariosManager.obtenerVeterinarioPorId(idVeterinarioFiltro);
+
+        if(veterinarioOptional.has_value()){
+            cout << "Veterinario encontrado: " << veterinarioOptional.value().getNombre() << endl;
+            usuarioConfirmaAccion = confirmaAccion();
+
+            if(usuarioConfirmaAccion){
+                return veterinarioOptional.value();
+            }
+        } else {
+            cout << "No existe un veterinario con el ID especificado..." << endl;
+            esperarCualquierTecla();
+        }
+    } while (cantidadIntentosIngreso < MAXIMOS_REINTENTOS_ENTRADA_DATOS);
+
+    if(veterinarioOptional.has_value()){
+         return veterinarioOptional.value();
+    } else {
+        return std::nullopt;
+   }
+}
+
+std::optional<Cliente> ConsultasManager::solicitarClienteValidado() {
+    bool usuarioConfirmaAccion = false;
+    optional<Cliente> clienteOptional = nullopt;
+    int cantidadIntentosIngreso = 0;
+
+    do {
+        cantidadIntentosIngreso++;
+        cout << "Ingrese ID de cliente: ";
+        Validaciones validador;
+        idClienteFiltro = validador.validarNumero();
+        clienteOptional = clientesManager.obtenerClientePorId(idClienteFiltro);
+
+        if(clienteOptional.has_value()){
+            cout << "Cliente encontrado: " << clienteOptional.value().getNombre() << endl;
+            usuarioConfirmaAccion = confirmaAccion();
+
+            if(usuarioConfirmaAccion){
+                return clienteOptional.value();
+            }
+        } else {
+            cout << "No existe un cliente con el ID especificado..." << endl;
+            esperarCualquierTecla();
+        }
+    } while (cantidadIntentosIngreso < MAXIMOS_REINTENTOS_ENTRADA_DATOS);
+
+    if(clienteOptional.has_value()){
+         return clienteOptional.value();
+    } else {
+        return std::nullopt;
+   }
 }
 
 void ConsultasManager::consultarPorFecha() {
@@ -343,31 +479,39 @@ void ConsultasManager::consultarPorFecha() {
 
 void ConsultasManager::consultarPorSucursal() {
     cout << ENCABEZADO_LISTADO_CONSULTAS_POR_SUCURSAL << endl;
-    cout << "Ingrese el ID de la sucursal: ";
-    cin >> idSucursalFiltro;
 
-    optional<Sucursales> sucursalOptional = sucursalesManager.obtenerSucursalPorId(idSucursalFiltro);
+    optional<Sucursales> sucursalOptional = solicitarSucursalValidada();
 
-    if(!sucursalOptional.has_value()){
-        cout << "No existe una sucursal con el ID especificado." << endl;
-        return;
+    if(sucursalOptional.has_value()){
+        listarConsultasConFiltro(filtroPorSucursal);
+    } else {
+        cout << MENSAJE_AVISO_RETORNO_MENU << endl;
     }
-
-    listarConsultasConFiltro(filtroPorSucursal);
 }
 
 void ConsultasManager::consultarPorVeterinario() {
     cout << ENCABEZADO_LISTADO_CONSULTAS_POR_VETERINARIO << endl;
-    cout << "Ingrese el ID del veterinario: ";
-    cin >> idVeterinarioFiltro;
-    listarConsultasConFiltro(filtroPorVeterinario);
+
+    optional<Veterinarios> veterinarioOptional = solicitarVeterinarioValidado();
+
+    if(veterinarioOptional.has_value()){
+        listarConsultasConFiltro(filtroPorVeterinario);
+    } else {
+        cout << MENSAJE_AVISO_RETORNO_MENU << endl;
+    }
 }
 
 void ConsultasManager::consultarPorCliente() {
     cout << ENCABEZADO_LISTADO_CONSULTAS_POR_CLIENTE << endl;
-    cout << "Ingrese el ID del cliente: ";
-    cin >> idClienteFiltro;
-    listarConsultasConFiltro(filtroPorCliente);
+
+
+    optional<Cliente> clienteOptional = solicitarClienteValidado();
+
+    if(clienteOptional.has_value()){
+        listarConsultasConFiltro(filtroPorCliente);
+    } else {
+        cout << MENSAJE_AVISO_RETORNO_MENU << endl;
+    }
 }
 
 void ConsultasManager::imprimirEncabezadoListado() {

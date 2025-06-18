@@ -8,7 +8,9 @@
 #include "SucursalManager.h"
 #include "VeterinariosManager.h"
 #include "TratamientosManager.h"
+#include "ClienteManager.h"
 #include "optional"
+#include "Mascotas.h"
 #include "rlutil.h"
 
 class ConsultasManager
@@ -18,6 +20,7 @@ private:
 	SucursalManager sucursalesManager;
 	VeterinariosManager veterinariosManager;
 	TratamientosManager tratamientosManager;
+	ClienteManager clientesManager;
 
     void imprimirEncabezadoListado();
     void imprimirConsulta(Consultas consulta);
@@ -39,6 +42,11 @@ private:
     static bool filtroPorSucursal(Consultas consulta);
     static bool filtroPorVeterinario(Consultas consulta);
     static bool filtroPorCliente(Consultas consulta);
+
+    std::optional<Mascotas> solicitarMascotaValidada();
+    std::optional<Sucursales> solicitarSucursalValidada();
+    std::optional<Veterinarios> solicitarVeterinarioValidado();
+    std::optional<Cliente> solicitarClienteValidado();
 public:
 	void altaConsulta();
 	void modificarConsulta();

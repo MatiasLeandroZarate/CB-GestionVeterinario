@@ -22,13 +22,13 @@ void ClienteManager::CargarCliente()
 	std::getline(std::cin, Telefono);
 	std::cout << "Ingrese el Email: ";
 	std::getline(std::cin, Email);
-	
 
-	
+
+
 
 	cliente = Cliente(ID, DNI, Nombre, Apellido, Telefono, Email,Activo);
 
-	if (gArchivo.GuardarClientes(cliente)) 
+	if (gArchivo.GuardarClientes(cliente))
 	{
 		std::cout << std::endl;
 		std::cout << "Cliente guardado correctamente." << std::endl;
@@ -70,11 +70,11 @@ int ClienteManager::BuscarClientePorID(int idBuscado)
         cliente = gArchivo.LeerClientes(i);
         if (cliente.getIDCliente() == idBuscado)
         {
-            return i; 
+            return i;
         }
     }
 	std::cout << "No se encontró el ID del Cliente." << std::endl;
-    return -1; 
+    return -1;
 }
 
 int ClienteManager::ObtenerSiguienteID()
@@ -82,7 +82,7 @@ int ClienteManager::ObtenerSiguienteID()
 	GestorArchivo gArchivo("clientes.dat");
 	int cantidadRegistros = gArchivo.CantidadRegistrosClientes();
 	if (cantidadRegistros == 0)
-	{	
+	{
 		return 1;
 	}
 	Cliente ultimoCliente = gArchivo.LeerClientes(cantidadRegistros - 1);
@@ -108,4 +108,21 @@ void ClienteManager::BuscarClientePorDNI(std::string dniBuscado)
 		{
 		std::cout << "No se encontró el Cliente con el DNI: " << dniBuscado << std::endl;
 		}
+}
+
+std::optional<Cliente> ClienteManager::obtenerClientePorId(int idBuscado){
+  	Cliente cliente;
+	GestorArchivo archivoClientes("clientes.dat");
+	int cantidadRegistros = archivoClientes.CantidadRegistrosClientes();
+
+	for (int i = 0; i < cantidadRegistros; i++)
+        {
+		cliente = archivoClientes.LeerClientes(i);
+
+		if (cliente.getIDCliente() == idBuscado){
+            return cliente;
+        }
+    }
+
+    return std::nullopt;
 }
