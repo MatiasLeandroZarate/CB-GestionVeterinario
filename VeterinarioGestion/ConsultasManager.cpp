@@ -137,28 +137,47 @@ void ConsultasManager::altaConsulta() {
 }
 
 void ConsultasManager::modificarConsulta() {
-    cout << ENCABEZADO_MODIFICACION_CONSULTA << endl;
-    int idConsulta;
+    bool usuarioConfirmaAccion = false;
+    Consultas consulta;
+    int id;
 
-    optional<Consultas> consultaOptional = solicitarConsultaPorId();
+    do{
+        limpiarPantalla();
+        cout << ENCABEZADO_MODIFICACION_CONSULTA << endl;
+        optional<Consultas> consultaOptional = solicitarConsultaPorId();
 
-    if(consultaOptional.has_value()){
-        idConsulta = consultaOptional.value().getIDConsultas();
-    } else {
-         cout << MENSAJE_AVISO_RETORNO_MENU << endl;
-         //break;
-    }
+        if(consultaOptional.has_value()){
+            cout << "No existe ninguna consulta asociada a ese ID, porfavor ingrese uno valido." << endl;
+            return;
+        } else {
+            cout << MENSAJE_AVISO_RETORNO_MENU << endl;
+            return;
+        }
 
- /*   string nuevoDiagnostico;
-    cout << "Diagnostico actual: " << consulta.getDiagnostico() << "\n";
+        consulta = consultaOptional.value();
+
+        imprimirConsulta(consulta);
+
+        cin.ignore();
+        usuarioConfirmaAccion = confirmaAccion();
+    }while(!usuarioConfirmaAccion);
+
+    string nuevoDiagnostico;
+    cout << "Diagnostico actual: " << consulta.getDiagnostico() << endl;
     cout << "Nuevo diagnóstico: ";
     cin.ignore();
     getline(cin, nuevoDiagnostico);
 
     consulta.setDiagnostico(nuevoDiagnostico);
-    archivo.GuardarConsultas(consulta);
+    GestorArchivo archivoConsultas("consultas.dat");
 
-    cout << "Consulta modificada con exito.\n"; */
+    int posicionConsultaArchivo = BuscarConsultaPorID(id);
+
+    if (archivoConsultas.ModificarConsulta(posicionConsultaArchivo, consulta)) {
+        cout << "Consulta modificada exitosamente." << endl;
+    } else {
+        cout << "Error al modificar la consulta." << endl;
+    }
 }
 
 void ConsultasManager::listarConsultas() {
@@ -261,14 +280,13 @@ void ConsultasManager::bajaConsulta() {
     do{
         limpiarPantalla();
         cout << ENCABEZADO_BAJA_CONSULTA << endl;
-        cout << "Ingrese el ID de la consulta a dar de baja: ";
-        cin >> id;
+        optional<Consultas> consultaOptional = solicitarConsultaPorId();
 
-        optional<Consultas> consultaOptional = obtenerConsultaPorId(id);
-
-
-        if(!consultaOptional.has_value()){
+        if(consultaOptional.has_value()){
             cout << "No existe ninguna consulta asociada a ese ID, porfavor ingrese uno valido." << endl;
+            return;
+        } else {
+            cout << MENSAJE_AVISO_RETORNO_MENU << endl;
             return;
         }
 
