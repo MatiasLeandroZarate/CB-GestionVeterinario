@@ -51,6 +51,7 @@ private:
     std::optional<Veterinarios> solicitarVeterinarioValidado();
     std::optional<Cliente> solicitarClienteValidado();
     std::optional<Tratamientos> solicitarTratamientoValidado();
+    std::optional<Consultas> solicitarConsultaPorId();
 public:
 	void altaConsulta();
 	void modificarConsulta();

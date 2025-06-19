@@ -15,6 +15,7 @@ private:
     void procesarSubmenuSucursales();
     void procesarSubmenuPagos();
     void procesarSubmenuAcercaDe();
+    void procesarSubmenuExportaciones();
     int procesarEntradaMenu(int opcionMinima, int opcionMaxima);
 };
 

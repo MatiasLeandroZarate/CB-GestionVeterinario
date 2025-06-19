@@ -25,6 +25,7 @@ const static string TITULO_GESTION_VACUNAS = "Gestion de vacunas";
 const static string TITULO_GESTION_TRATAMIENTOS = "Gestion de tratamientos";
 const static string TITULO_GESTION_SUCURSALES = "Gestion de sucursales";
 const static string TITULO_GESTION_PAGOS = "Gestion de pagos";
+const static string TITULO_EXPORTACIONES = "Exportacion de datos";
 const static string TITULO_ACERCA_DE = "Acerca del aplicativo";
 const static string TITULO_SALIR = "Salir";
 
@@ -49,7 +50,8 @@ bool MenuManager::procesarMenuPrincipal() {
     const int OPCION_GESTION_VETERINARIOS = 6;
     const int OPCION_GESTION_SUCURSALES = 7;
     const int OPCION_PAGOS = 8;
-    const int OPCION_ACERCA_DE = 9;
+    const int OPCION_EXPORTACIONES = 9;
+    const int OPCION_ACERCA_DE = 10;
 
     int opcion ;
 
@@ -65,6 +67,7 @@ bool MenuManager::procesarMenuPrincipal() {
         cout << OPCION_GESTION_VETERINARIOS << ". " << TITULO_GESTION_VETERINARIOS << endl;
         cout << OPCION_GESTION_SUCURSALES << ". " << TITULO_GESTION_SUCURSALES << endl;
         cout << OPCION_PAGOS << ". " << TITULO_GESTION_PAGOS << endl;
+        cout << OPCION_EXPORTACIONES << ". " << TITULO_EXPORTACIONES << endl;
         cout << OPCION_ACERCA_DE << ". " << TITULO_ACERCA_DE << endl;
         cout << OPCION_ATRAS_SALIR << ". " << TITULO_SALIR << endl;
 
@@ -94,6 +97,9 @@ bool MenuManager::procesarMenuPrincipal() {
                 break;
             case OPCION_PAGOS:
                 procesarSubmenuPagos();
+                break;
+            case OPCION_EXPORTACIONES:
+                procesarSubmenuExportaciones();
                 break;
             case OPCION_ACERCA_DE:
                 procesarSubmenuAcercaDe();
@@ -407,9 +413,8 @@ void MenuManager::procesarSubmenuVacunas(){
         cout << OPCION_REGISTRAR << ". " << TITULO_REGISTRAR << endl;
         cout << OPCION_LISTAR << ". " << TITULO_LISTAR << endl;
         cout << OPCION_ATRAS_SALIR << ". " << TITULO_OPCION_MENU_ANTERIOR << endl;
-        cout << endl << MENSAJE_SELECCIONE_OPCION;
 
-        cin >> opcion;
+        opcion = procesarEntradaMenu(OPCION_ATRAS_SALIR, OPCION_LISTAR);
 
         switch (opcion) {
             case OPCION_ALTA:
@@ -456,9 +461,8 @@ void MenuManager::procesarSubmenuTratamientos(){
         cout << OPCION_BAJA << ". " << TITULO_BAJA << endl;
         cout << OPCION_LISTAR << ". " << TITULO_LISTAR << endl;
         cout << OPCION_ATRAS_SALIR << ". " << TITULO_OPCION_MENU_ANTERIOR << endl;
-        cout << endl << MENSAJE_SELECCIONE_OPCION;
 
-        cin >> opcion;
+        opcion = procesarEntradaMenu(OPCION_ATRAS_SALIR, OPCION_LISTAR);
 
         switch (opcion) {
             case OPCION_ALTA:
@@ -505,9 +509,8 @@ void MenuManager::procesarSubmenuPagos(){
         cout << OPCION_RECAUDACION_POR_CLIENTE << ". " << TITULO_RECAUDACION_POR_CLIENTE << endl;
         cout << OPCION_RECAUDACION_POR_SUCURSAL << ". " << TITULO_RECAUDACION_POR_SUCURSAL << endl;
         cout << OPCION_ATRAS_SALIR << ". " << TITULO_OPCION_MENU_ANTERIOR << endl;
-        cout << endl << MENSAJE_SELECCIONE_OPCION;
 
-        cin >> opcion;
+        opcion = procesarEntradaMenu(OPCION_ATRAS_SALIR, OPCION_RECAUDACION_POR_SUCURSAL);
 
         switch (opcion) {
             case OPCION_RECAUDACION_ANUAL:
@@ -547,9 +550,8 @@ void MenuManager::procesarSubmenuSucursales(){
         cout << OPCION_BAJA << ". " << TITULO_BAJA << endl;
         cout << OPCION_LISTAR << ". " << TITULO_LISTAR << endl;
         cout << OPCION_ATRAS_SALIR << ". " << TITULO_OPCION_MENU_ANTERIOR << endl;
-        cout << endl << MENSAJE_SELECCIONE_OPCION;
 
-        cin >> opcion;
+        opcion = procesarEntradaMenu(OPCION_ATRAS_SALIR, OPCION_LISTAR);
 
         switch (opcion) {
             case OPCION_ALTA:
@@ -585,6 +587,82 @@ void MenuManager::procesarSubmenuAcercaDe(){
     cout << "- Lara Campos, Brian - Ayudante" << endl;
     cout << "- Carbonari, Veronica - Ayudante" << endl;
     cout << endl;
+    esperarCualquierTecla();
+}
+
+void MenuManager::procesarSubmenuExportaciones(){
+    cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_EXPORTACIONES << SEPARADOR_TITULO_PRINCIPAL << endl;
+    const int OPCION_CLIENTES = 1;
+    const int OPCION_CONSULTAS = 2;
+    const int OPCION_ESPECIALIDADES= 3;
+    const int OPCION_MASCOTAS = 4;
+    const int OPCION_PAGOS = 5;
+    const int OPCION_SUCURSALES = 6;
+    const int OPCION_TRATAMIENTOS = 7;
+    const int OPCION_VACUNACIONES = 8;
+    const int OPCION_VACUNAS = 9;
+    const int OPCION_VETERINARIOS = 10;
+
+    const string TITULO_CLIENTES = "Exportar clientes";
+    const string TITULO_CONSULTAS = "Exportar consultas";
+    const string TITULO_ESPECIALIDADES = "Exportar especialidades";
+    const string TITULO_MASCOTAS = "Exportar mascotas";
+    const string TITULO_PAGOS = "Exportar pagos";
+    const string TITULO_SUCURSALES = "Exportar sucursales";
+    const string TITULO_TRATAMIENTOS = "Exportar tratamientos";
+    const string TITULO_VACUNACIONES = "Exportar vacunaciones";
+    const string TITULO_VACUNAS = "Exportar vacunas";
+    const string TITULO_VETERINARIOS = "Exportar veterinarios";
+
+    int opcion;
+    limpiarPantalla();
+
+    do {
+        limpiarPantalla();
+        cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_EXPORTACIONES << SEPARADOR_TITULO_PRINCIPAL << endl;
+        cout << OPCION_CLIENTES << ". " << TITULO_CLIENTES << endl;
+        cout << OPCION_CONSULTAS << ". " << TITULO_CONSULTAS << endl;
+        cout << OPCION_ESPECIALIDADES << ". " << TITULO_ESPECIALIDADES << endl;
+        cout << OPCION_MASCOTAS << ". " << TITULO_MASCOTAS << endl;
+        cout << OPCION_PAGOS << ". " << TITULO_PAGOS << endl;
+        cout << OPCION_SUCURSALES << ". " << TITULO_SUCURSALES << endl;
+        cout << OPCION_TRATAMIENTOS << ". " << TITULO_TRATAMIENTOS << endl;
+        cout << OPCION_VACUNACIONES << ". " << TITULO_VACUNACIONES << endl;
+        cout << OPCION_VACUNAS << ". " << TITULO_VACUNAS << endl;
+        cout << OPCION_VETERINARIOS << ". " << TITULO_VETERINARIOS << endl;
+        cout << OPCION_ATRAS_SALIR << ". " << TITULO_OPCION_MENU_ANTERIOR << endl;
+
+        opcion = procesarEntradaMenu(OPCION_ATRAS_SALIR, OPCION_VETERINARIOS);
+
+        switch (opcion) {
+            case OPCION_CLIENTES:
+                break;
+            case OPCION_CONSULTAS:
+                break;
+            case OPCION_ESPECIALIDADES:
+                break;
+            case OPCION_MASCOTAS:
+                break;
+            case OPCION_PAGOS:
+                break;
+            case OPCION_SUCURSALES:
+                break;
+            case OPCION_TRATAMIENTOS:
+                break;
+            case OPCION_VACUNACIONES:
+                break;
+            case OPCION_VACUNAS:
+                break;
+            case OPCION_VETERINARIOS:
+                break;
+            case OPCION_ATRAS_SALIR:
+                break;
+        }
+
+        realizarOperacionPostSeleccion(opcion);
+
+    } while (opcion != OPCION_ATRAS_SALIR);
+
     esperarCualquierTecla();
 }
 
