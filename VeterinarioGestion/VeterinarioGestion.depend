@@ -575,15 +575,10 @@
 	"Consultas.h"
 	<cstring>
 
-1750215841 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.cpp
+1750296978 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.cpp
 	"ConsultasManager.h"
-	"MascotaManager.h"
-	"SucursalManager.h"
-	"VeterinariosManager.h"
-	"TratamientosManager.h"
-	"Validaciones.h"
 
-1750225003 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.h
+1750289847 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.h
 	<iostream>
 	"Sucursales.h"
 	<string>
@@ -734,7 +729,7 @@
 
 1748565248 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\funcionesglobales.h
 
-1750004707 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\menumanager.cpp
+1750299506 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\menumanager.cpp
 	<iostream>
 	<string>
 	"MenuManager.h"
@@ -750,7 +745,7 @@
 	"VacunasManager.h"
 	"VacunacionesManager.h"
 
-1750004731 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\menumanager.h
+1750298486 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\menumanager.h
 
 1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\funcionesglobales.cpp
 	<iostream>
