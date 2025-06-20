@@ -5,6 +5,7 @@ using namespace std;
 const string ENCABEZADO_ALTA_CONSULTA = "========== Alta de consulta medica ==========";
 const string ENCABEZADO_MODIFICACION_CONSULTA = "========== Modificacion de consulta medica ==========";
 const string ENCABEZADO_LISTADO_CONSULTAS = "========== Listado de consultas medicas activas ==========";
+const string ENCABEZADO_DETALLE_CONSULTA = "========== Detalle de consulta medica por ID ==========";
 const string ENCABEZADO_BAJA_CONSULTA = "========== Baja de consulta medica ==========";
 const string ENCABEZADO_LISTADO_CONSULTAS_POR_MASCOTA = "========== Listado de consultas medicas por mascota ==========";
 const string ENCABEZADO_LISTADO_CONSULTAS_POR_FECHAS = "========== Listado de consultas medicas por rango de fechas ==========";
@@ -13,7 +14,7 @@ const string ENCABEZADO_LISTADO_CONSULTAS_POR_VETERINARIO = "========== Listado 
 const string ENCABEZADO_LISTADO_CONSULTAS_POR_CLIENTE = "========== Listado de consultas medicas por cliente ==========";
 
 const string MENSAJE_AVISO_RETORNO_MENU = "ATENCION: Sera regresado al menu anterior.";
-const string MENSAJE_CONFIRMACION_DATOS = "-> Confirma que los datos y la accion a realizar son correctos? (S/N): ";
+const string MENSAJE_CONFIRMACION_DATOS = "-> Confirma que los datos y/o la accion a realizar son correctos? (S/N): ";
 const int MAXIMOS_REINTENTOS_ENTRADA_DATOS = 3;
 
 int ConsultasManager::idMascotaFiltro = 0;
@@ -27,7 +28,7 @@ void ConsultasManager::altaConsulta() {
     GestorArchivo archivoConsultas("consultas.dat");
 
     int idMascota, idTratamiento, idVeterinario, idSucursal;
-    int contadorIntentosCreacion = 0;
+    int contadorIntentosCreacion = 1;
     string sintomas, diagnostico,respuestaProximaVisita;
     bool registraProximaVisita, nuevaConsultaEsValida, aceptaNuevoRegistro;
 
@@ -38,6 +39,11 @@ void ConsultasManager::altaConsulta() {
     Validaciones validador;
 
     do{
+        if(contadorIntentosCreacion > MAXIMOS_REINTENTOS_ENTRADA_DATOS){
+            cout << MENSAJE_AVISO_RETORNO_MENU << endl;
+            break;
+        }
+
         contadorIntentosCreacion++;
 
         cout << ENCABEZADO_ALTA_CONSULTA << endl;
@@ -62,9 +68,11 @@ void ConsultasManager::altaConsulta() {
         //Obtencion de fecha de consulta
         fechaConsulta = fechaConsulta.ValidacionFecha(fechaConsulta);
 
+        cin.ignore();
         cout << "Ingrese los sintomas: ";
         getline(cin, sintomas);
 
+        cin.ignore();
         cout << "Ingrese el diagnostico: ";
         getline(cin, diagnostico);
 
@@ -118,19 +126,14 @@ void ConsultasManager::altaConsulta() {
                 esperarCualquierTecla();
             }
         } else {
-            cout << "Ya existe una consulta para los datos ingresados, corrija e intente nuevamente.";
+            cout << "Ya existe una consulta activa para los datos ingresados, corrija e intente nuevamente.";
             esperarCualquierTecla();
         }
 
         if(!aceptaNuevoRegistro){
             limpiarPantalla();
         }
-
-        if(contadorIntentosCreacion == MAXIMOS_REINTENTOS_ENTRADA_DATOS){
-            cout << MENSAJE_AVISO_RETORNO_MENU << endl;
-            break;
-        }
-    } while(!nuevaConsultaEsValida || !aceptaNuevoRegistro);
+    } while(!nuevaConsultaEsValida && !aceptaNuevoRegistro);
 
     esperarCualquierTecla();
     limpiarPantalla();
@@ -183,6 +186,16 @@ void ConsultasManager::modificarConsulta() {
 void ConsultasManager::listarConsultas() {
     cout << ENCABEZADO_LISTADO_CONSULTAS << endl;
    listarConsultasConFiltro(sinFiltro);
+}
+
+void ConsultasManager::mostrarDetalleConsultaPorId(){
+    cout << ENCABEZADO_DETALLE_CONSULTA << endl;
+    optional<Consultas> consultaOptional = solicitarConsultaPorId();
+
+    if(!consultaOptional.has_value()){
+      cout << "No existe ninguna consulta asociada a ese ID, porfavor ingrese uno valido." << endl;
+      return;
+    }
 }
 
 
@@ -638,7 +651,8 @@ bool ConsultasManager::esConsultaDuplicada(Consultas consulta) {
 
 		if(consulta.getIDConsultas() != consultaFichero.getIDConsultas()
         && consulta.getIDSucursal() == consultaFichero.getIDSucursal()
-        && consulta.getIDVeterinario() == consultaFichero.getIDVeterinario()){
+        && consulta.getIDVeterinario() == consultaFichero.getIDVeterinario()
+        && consulta.getEstado()){
             return true;
         }
     }
