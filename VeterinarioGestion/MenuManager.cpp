@@ -411,10 +411,13 @@ void MenuManager::procesarSubmenuVacunas(){
 
         switch (opcion) {
             case OPCION_ALTA:
+                vacunasMan.CargarVacunas();
                 break;
             case OPCION_MODIFICAR:
+                vacunasMan.ModificarVacunas();
                 break;
             case OPCION_BAJA:
+				vacunasMan.BajaVacuna();
                 break;
             case OPCION_REGISTRAR:
                 break;
@@ -586,6 +589,91 @@ void MenuManager::procesarSubmenuAcercaDe(){
     esperarCualquierTecla();
 }
 
+<<<<<<< Updated upstream
+=======
+void MenuManager::procesarSubmenuExportaciones(){
+    cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_EXPORTACIONES << SEPARADOR_TITULO_PRINCIPAL << endl;
+    const int OPCION_CLIENTES = 1;
+    const int OPCION_CONSULTAS = 2;
+    const int OPCION_ESPECIALIDADES= 3;
+    const int OPCION_MASCOTAS = 4;
+    const int OPCION_PAGOS = 5;
+    const int OPCION_SUCURSALES = 6;
+    const int OPCION_TRATAMIENTOS = 7;
+    const int OPCION_VACUNACIONES = 8;
+    const int OPCION_VACUNAS = 9;
+    const int OPCION_VETERINARIOS = 10;
+
+    const string TITULO_CLIENTES = "Exportar clientes";
+    const string TITULO_CONSULTAS = "Exportar consultas";
+    const string TITULO_ESPECIALIDADES = "Exportar especialidades";
+    const string TITULO_MASCOTAS = "Exportar mascotas";
+    const string TITULO_PAGOS = "Exportar pagos";
+    const string TITULO_SUCURSALES = "Exportar sucursales";
+    const string TITULO_TRATAMIENTOS = "Exportar tratamientos";
+    const string TITULO_VACUNACIONES = "Exportar vacunaciones";
+    const string TITULO_VACUNAS = "Exportar vacunas";
+    const string TITULO_VETERINARIOS = "Exportar veterinarios";
+
+    TratamientosManager TrataMan;
+    VacunasManager VacuMan;
+    VeterinariosManager VeteMan;
+    int opcion;
+    limpiarPantalla();
+
+    do {
+        limpiarPantalla();
+        cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_EXPORTACIONES << SEPARADOR_TITULO_PRINCIPAL << endl;
+        cout << OPCION_CLIENTES << ". " << TITULO_CLIENTES << endl;
+        cout << OPCION_CONSULTAS << ". " << TITULO_CONSULTAS << endl;
+        cout << OPCION_ESPECIALIDADES << ". " << TITULO_ESPECIALIDADES << endl;
+        cout << OPCION_MASCOTAS << ". " << TITULO_MASCOTAS << endl;
+        cout << OPCION_PAGOS << ". " << TITULO_PAGOS << endl;
+        cout << OPCION_SUCURSALES << ". " << TITULO_SUCURSALES << endl;
+        cout << OPCION_TRATAMIENTOS << ". " << TITULO_TRATAMIENTOS << endl;
+        cout << OPCION_VACUNACIONES << ". " << TITULO_VACUNACIONES << endl;
+        cout << OPCION_VACUNAS << ". " << TITULO_VACUNAS << endl;
+        cout << OPCION_VETERINARIOS << ". " << TITULO_VETERINARIOS << endl;
+        cout << OPCION_ATRAS_SALIR << ". " << TITULO_OPCION_MENU_ANTERIOR << endl;
+
+        opcion = procesarEntradaMenu(OPCION_ATRAS_SALIR, OPCION_VETERINARIOS);
+
+        switch (opcion) {
+            case OPCION_CLIENTES:
+                break;
+            case OPCION_CONSULTAS:
+                break;
+            case OPCION_ESPECIALIDADES:
+                break;
+            case OPCION_MASCOTAS:
+                break;
+            case OPCION_PAGOS:
+                break;
+            case OPCION_SUCURSALES:
+                break;
+            case OPCION_TRATAMIENTOS:
+                TrataMan.MostrarTratamientoExportable();
+                break;
+            case OPCION_VACUNACIONES:
+                break;
+            case OPCION_VACUNAS:
+                VacuMan.MostrarVacunasExportable();
+                break;
+            case OPCION_VETERINARIOS:
+                VeteMan.MostrarVeterinarioExportable();
+                break;
+            case OPCION_ATRAS_SALIR:
+                break;
+        }
+
+        realizarOperacionPostSeleccion(opcion);
+
+    } while (opcion != OPCION_ATRAS_SALIR);
+
+    esperarCualquierTecla();
+}
+
+>>>>>>> Stashed changes
 int MenuManager::procesarEntradaMenu(int opcionMinima, int opcionMaxima){
     int opcion;
 

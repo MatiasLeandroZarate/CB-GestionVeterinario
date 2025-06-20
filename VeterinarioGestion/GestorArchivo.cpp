@@ -404,7 +404,20 @@ int GestorArchivo::CantidadRegistrosVacunas() {
     return cantidadRegistros;
 }
 
-// ----------------------------------SECTOR VACUNACIONES  ----------------------------------
+bool GestorArchivo::ModificarVacuna(int pos, Vacunas vacuna) {
+    FILE* p;
+    p = fopen("vacunas.dat", "rb+");
+    if (p == nullptr)
+    {
+        return false;
+    }
+    fseek(p, pos * sizeof(Vacunas), SEEK_SET);
+    bool escribio = fwrite(&vacuna, sizeof(Vacunas), 1, p);
+    fclose(p);
+
+    return escribio;
+}
+    // ----------------------------------SECTOR VACUNACIONES  ----------------------------------
 bool GestorArchivo::GuardarVacunaciones(Vacunaciones vacunaciones)
 {
     FILE* pArchivo;

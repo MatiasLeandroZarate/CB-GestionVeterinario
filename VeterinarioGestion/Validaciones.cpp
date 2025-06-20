@@ -11,7 +11,11 @@ std::string Validaciones::validarLetra()
         {
             int i = 0;
             strValido = true;
+<<<<<<< Updated upstream
 
+=======
+           // std::cin.ignore();
+>>>>>>> Stashed changes
             std::getline(std::cin, str);
 
             if(str.empty())  ///empty() , verifica si el str esta Vacio.

@@ -129,7 +129,7 @@ void VeterinariosManager::MostrarVeterinarioExportable()
         {
             std::cout << "No hay Veterinarioss registrados." << std::endl;
         }
-    std::cout << "VETERINARIO: " << std::endl;
+
     std::cout << "IDVeterinario,MatriculaVete,DNIVete,NombreVete,ApellidoVete,IDEspe.,NombreEspe.,Descripcion,Activo" << std::endl;
 
     for (int i = 0; i < cantidadregistros; i++)
