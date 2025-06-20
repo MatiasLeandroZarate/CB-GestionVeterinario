@@ -7,6 +7,7 @@ void SucursalManager::CargarSucursal()
 
 	int Idsucursal;
 	std::string Nombre, Direccion;
+    float recaudacion;
 
 	std::cout << "Ingrese el ID de la Sucursal: ";
 	std::cin >> Idsucursal;
@@ -16,7 +17,7 @@ void SucursalManager::CargarSucursal()
 	std::cout << "Ingrese la Direccion: ";
 	std::getline(std::cin, Direccion);
 
-	sucursal = Sucursales(Idsucursal, Nombre, Direccion);
+	sucursal = Sucursales(Idsucursal, Nombre, Direccion,recaudacion);
 
 	if (sArchivo.GuardarSucursal(sucursal))
 	{

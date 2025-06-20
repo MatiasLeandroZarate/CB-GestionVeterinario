@@ -239,11 +239,12 @@
 	"Fecha.h"
 	"Cliente.h"
 
-1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\fecha.h
+1750452685 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\fecha.h
 	<iostream>
 	<string>
+	"Validaciones.h"
 
-1748556778 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\cliente.h
+1750449619 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\cliente.h
 	<iostream>
 	<cstring>
 	"Persona.h"
@@ -252,11 +253,11 @@
 	<iostream>
 	<string>
 
-1749420894 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\consultas.cpp
+1750449619 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\consultas.cpp
 	"Consultas.h"
 	<cstring>
 
-1749676990 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\consultas.h
+1750449619 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\consultas.h
 	<iostream>
 	<string>
 	"Fecha.h"
@@ -265,35 +266,35 @@
 	"Veterinarios.h"
 	"Tratamientos.h"
 
-1749676990 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\mascotas.h
+1750449619 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\mascotas.h
 	<iostream>
 	<cstring>
 	"Fecha.h"
 
-1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\sucursales.h
+1750449971 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\sucursales.h
 	<iostream>
 	<string>
 
-1748556778 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\veterinarios.h
+1750449619 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\veterinarios.h
 	<iostream>
 	<string>
 	"Persona.h"
 	"Especialidades.h"
 
-1749420894 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\especialidades.h
+1750449619 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\especialidades.h
 	<iostream>
 	<string>
 	"Validaciones.h"
 
-1749676990 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\tratamientos.h
+1750449619 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\tratamientos.h
 	<iostream>
 	<string>
 
-1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\especialidades.cpp
+1750449619 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\especialidades.cpp
 	"Especialidades.h"
 	<cstring>
 
-1749598699 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\especialidadmanager.cpp
+1749602267 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\especialidadmanager.cpp
 	"EspecialidadManager.h"
 
 1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\especialidadmanager.h
@@ -302,7 +303,7 @@
 	<iostream>
 	<string>
 
-1749676990 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\gestorarchivo.h
+1750383543 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\gestorarchivo.h
 	<iostream>
 	"Cliente.h"
 	"Mascotas.h"
@@ -316,16 +317,16 @@
 	"Vacunas.h"
 	"Vacunaciones.h"
 
-1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\pagos.h
+1750449619 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\pagos.h
 	<iostream>
 	<cstring>
 	"Fecha.h"
 
-1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunas.h
+1750449619 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunas.h
 	<iostream>
 	<string>
 
-1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunaciones.h
+1750449619 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunaciones.h
 	<iostream>
 	<string>
 	"Vacunas.h"
@@ -333,143 +334,161 @@
 	"Mascotas.h"
 	"Veterinarios.h"
 
-1749427839 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\gestorarchivo.cpp
+1750383543 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\gestorarchivo.cpp
 	"GestorArchivo.h"
 
-1749427839 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\mascotas.cpp
+1750449619 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\mascotas.cpp
 	"Mascotas.h"
 
 1748556778 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\persona.cpp
 	"Persona.h"
 	<cstring>
 
-1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\sucursales.cpp
+1750451212 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\sucursales.cpp
 	"Sucursales.h"
 	<cstring>
 
-1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\sucursalmanager.cpp
+1750451504 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\sucursalmanager.cpp
 	"SucursalManager.h"
 
-1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\sucursalmanager.h
+1750383543 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\sucursalmanager.h
 	"GestorArchivo.h"
 	"Sucursales.h"
+	<optional>
 
-1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\tratamientos.cpp
+1750449619 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\tratamientos.cpp
 	"Tratamientos.h"
 	<cstring>
 
-1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\tratamientosmanager.cpp
+1750383543 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\tratamientosmanager.cpp
 	"TratamientosManager.h"
 
-1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\tratamientosmanager.h
+1750383543 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\tratamientosmanager.h
 	"GestorArchivo.h"
 	"Tratamientos.h"
-	<string>
+	<cstring>
 	<iostream>
+	"Validaciones.h"
+	"rlutil.h"
+	<cctype>
+	"optional"
 
-1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunaciones.cpp
+1750449619 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunaciones.cpp
 	"Vacunaciones.h"
 
-1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunas.cpp
+1750449619 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunas.cpp
 	"Vacunas.h"
 	<cstring>
 
-1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunasmanager.cpp
+1750382769 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunasmanager.cpp
 	"VacunasManager.h"
 
-1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunasmanager.h
+1750382769 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunasmanager.h
 	<iostream>
 	<string>
 	"GestorArchivo.h"
 	"Vacunas.h"
+	"rlutil.h"
 
-1748556778 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\veterinarios.cpp
+1750449619 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\veterinarios.cpp
 	"Veterinarios.h"
 	<cstring>
 
-1749601757 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\veterinariosmanager.cpp
+1750452685 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\veterinariosmanager.cpp
 	"VeterinariosManager.h"
 
-1749602267 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\veterinariosmanager.h
+1750383543 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\veterinariosmanager.h
 	"GestorArchivo.h"
 	"EspecialidadManager.h"
 	"Veterinarios.h"
 	"FuncionesGlobales.h"
 	"Validaciones.h"
 	<cstring>
+	"rlutil.h"
+	<optional>
 
-1748556778 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\clientemanager.cpp
+1750383543 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\clientemanager.cpp
 	"ClienteManager.h"
 
-1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\clientemanager.h
+1750383543 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\clientemanager.h
 	"GestorArchivo.h"
 	"Cliente.h"
 	<string>
 	<iostream>
+	"optional"
 
-1749420894 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\consultasmanager.cpp
+1750383543 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\consultasmanager.cpp
 	"ConsultasManager.h"
 
-1749420894 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\consultasmanager.h
+1750383543 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\consultasmanager.h
 	<iostream>
+	"Sucursales.h"
 	<string>
+	"Fecha.h"
 	"Consultas.h"
+	"Mascotas.h"
+	"Validaciones.h"
 	"GestorArchivo.h"
-	"TratamientosManager.h"
-	"Fecha.h"
-
-1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\fecha.cpp
-	"Fecha.h"
-
-1749420894 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\main.cpp
-	<iostream>
 	"MascotaManager.h"
-	"ClienteManager.h"
 	"SucursalManager.h"
-	"EspecialidadManager.h"
 	"VeterinariosManager.h"
 	"TratamientosManager.h"
-	"ConsultasManager.h"
-	"PagosManager.h"
-	"VacunasManager.h"
-	"VacunacionesManager.h"
+	"ClienteManager.h"
+	<optional>
+	"rlutil.h"
+
+1750452685 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\fecha.cpp
+	"Fecha.h"
+
+1750383543 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\main.cpp
+	<iostream>
 	"MenuManager.h"
 
-1749676990 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\mascotamanager.h
+1750450580 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\mascotamanager.h
 	"GestorArchivo.h"
 	"Mascotas.h"
+	"Cliente.h"
+	"Validaciones.h"
+	"rlutil.h"
 	<string>
 	<iostream>
+	<optional>
 
-1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\pagosmanager.h
+1750451405 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\pagosmanager.h
 	<iostream>
 	"Pagos.h"
 	"GestorArchivo.h"
+	"Validaciones.h"
+	"Consultas.h"
+	"Sucursales.h"
 
-1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunacionesmanager.h
+1750452685 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunacionesmanager.h
 	<iostream>
 	<string>
 	"Vacunaciones.h"
-	"GestorArchivo.h"
 	"VacunasManager.h"
+	"GestorArchivo.h"
 	"MascotaManager.h"
 	"VeterinariosManager.h"
 	"Fecha.h"
+	"Validaciones.h"
+	"rlutil.h"
 
-1749500513 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\mascotamanager.cpp
+1750450919 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\mascotamanager.cpp
 	"MascotaManager.h"
 	"Cliente.h"
+	<optional>
 
-1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\pagosmanager.cpp
+1750451504 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\pagosmanager.cpp
 	"PagosManager.h"
 
-1748556778 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\cliente.cpp
+1750449619 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\cliente.cpp
 	"Cliente.h"
 
-1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunacionesmanager.cpp
+1750452685 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\vacunacionesmanager.cpp
 	"VacunacionesManager.h"
 
-1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\pagos.cpp
+1750449619 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\pagos.cpp
 	"Pagos.h"
 
 1747952062 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\animal.cpp
@@ -754,10 +773,11 @@
 
 1748379848 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\funcionesglobales.h
 
-1749427839 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\menumanager.cpp
-	<iostream>
-	<string>
+1750452685 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\menumanager.cpp
 	"MenuManager.h"
+
+1750449619 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\menumanager.h
+	"ExportacionesManager.h"
 	"FuncionesGlobales.h"
 	"MascotaManager.h"
 	"ClienteManager.h"
@@ -769,8 +789,8 @@
 	"PagosManager.h"
 	"VacunasManager.h"
 	"VacunacionesManager.h"
-
-1749426101 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\menumanager.h
+	<iostream>
+	<string>
 
 1748303596 source:c:\users\usuario\documents\github\cb-gestionveterinario\veterinariogestion\animal.cpp
 	"Animal.h"
@@ -1037,12 +1057,15 @@
 	"MascotaManager.h"
 	"Cliente.h"
 
-1749676990 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\validaciones.h
+1750452685 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\validaciones.h
 	<iostream>
 	<cstring>
+	<algorithm>
+	<string>
+	<cctype>
 	"FuncionesGlobales.h"
 
-1749595606 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\validaciones.cpp
+1750449971 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\validaciones.cpp
 	"Validaciones.h"
 	<string>
 
@@ -1087,6 +1110,37 @@
 	"ExportacionesManager.h"
 
 1750384099 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\exportacionesmanager.h
+	<iostream>
+	"GestorArchivo.h"
+	"Cliente.h"
+	"Consultas.h"
+	"Especialidades.h"
+	"Mascotas.h"
+	"Pagos.h"
+	"Sucursales.h"
+	"Tratamientos.h"
+	"Vacunaciones.h"
+	"Vacunas.h"
+	"Veterinarios.h"
+
+1749678566 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1750449619 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\exportacionesmanager.cpp
+	"ExportacionesManager.h"
+
+1750449619 c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\exportacionesmanager.h
 	<iostream>
 	"GestorArchivo.h"
 	"Cliente.h"

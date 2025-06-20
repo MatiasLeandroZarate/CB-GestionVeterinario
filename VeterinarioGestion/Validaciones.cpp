@@ -33,7 +33,7 @@ std::string Validaciones::validarLetra()
 
             if (!strValido)
                 {
-                    std::cout << "Dato Invalido, Ingresar Nuevamente." << std::endl;
+                    std::cout << "Dato Invalido, Ingresar Nuevamente: " << std::endl;
                 }
         }
     return str;
@@ -80,7 +80,7 @@ int Validaciones::validarNumero()
 
             if (!numValido)
                 {
-                    std::cout << "Dato invalido, Ingrese de nuevo." << std::endl;
+                    std::cout << "Dato invalido, Ingrese de nuevo: " << std::endl;
                 }
         }
     return Num;
@@ -113,7 +113,7 @@ std::string Validaciones::validarNUMenString()
                     }
             if (!strValido)
                 {
-                    std::cout << "Dato Invalido, Ingresar Nuevamente." << std::endl;
+                    std::cout << "Dato Invalido, Ingresar Nuevamente: " << std::endl;
                 }
         }
     return str;
@@ -158,7 +158,7 @@ bool Validaciones::validarBool()
 
             if (!numValido)
                 {
-                    std::cout << "Dato inválido, Ingrese de nuevo." << std::endl;
+                    std::cout << "Dato inválido, Ingrese de nuevo: " << std::endl;
                 }
         }
     return Num;
@@ -220,7 +220,7 @@ float Validaciones::validarFloat()
 
         if (!floatValido)
         {
-            std::cout << "Dato inválido, Ingrese de nuevo" << std::endl;
+            std::cout << "Dato inválido, Ingrese de nuevo: " << std::endl;
         }
     }
 

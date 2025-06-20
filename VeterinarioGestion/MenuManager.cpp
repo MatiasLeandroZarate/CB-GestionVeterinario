@@ -388,6 +388,7 @@ void MenuManager::procesarSubmenuVacunas(){
     const string TITULO_LISTAR = "Listado de vacunas";
 
     VacunasManager vacunasMan;
+    VacunacionesManager vacunacionesMan;
 
     int opcion;
     limpiarPantalla();
@@ -414,6 +415,7 @@ void MenuManager::procesarSubmenuVacunas(){
 				              vacunasMan.BajaVacuna();
                 break;
             case OPCION_REGISTRAR:
+            vacunacionesMan.CargarVacunaciones();
                 break;
             case OPCION_LISTAR:
                       vacunasMan.MostrarVacunas();
