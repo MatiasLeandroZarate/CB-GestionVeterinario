@@ -493,6 +493,7 @@ void MenuManager::procesarSubmenuPagos(){
 
     int opcion;
     limpiarPantalla();
+    PagosManager pagosman;
 
     do {
         limpiarPantalla();
@@ -508,6 +509,7 @@ void MenuManager::procesarSubmenuPagos(){
             case OPCION_RECAUDACION_ANUAL:
                 break;
             case OPCION_RECAUDACION_POR_CLIENTE:
+                pagosman.RecaudacionPorCliente();
                 break;
             case OPCION_RECAUDACION_POR_SUCURSAL:
                 break;

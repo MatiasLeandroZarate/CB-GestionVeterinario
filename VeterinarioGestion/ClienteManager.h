@@ -3,7 +3,8 @@
 #include "Cliente.h"
 #include <string>
 #include <iostream>
-#include "optional"
+#include <optional>
+
 
 class ClienteManager
 {
@@ -14,5 +15,5 @@ public:
 	int BuscarClientePorID(int idBuscado);
 	int ObtenerSiguienteID();
 	void BuscarClientePorDNI(std::string dniBuscado);
-    std::optional<Cliente> obtenerClientePorId(int idBuscado);
+  std::optional<Cliente> obtenerClientePorId(int idBuscado);
 };
