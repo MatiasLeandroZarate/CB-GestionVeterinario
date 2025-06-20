@@ -575,7 +575,7 @@
 	"Consultas.h"
 	<cstring>
 
-1750454236 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.cpp
+1750454830 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.cpp
 	"ConsultasManager.h"
 
 1750453932 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.h
@@ -1066,7 +1066,7 @@
 	<cctype>
 	"FuncionesGlobales.h"
 
-1750434090 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\validaciones.cpp
+1750454711 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\validaciones.cpp
 	"Validaciones.h"
 	<string>
 

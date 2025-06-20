@@ -14,7 +14,7 @@ const string ENCABEZADO_LISTADO_CONSULTAS_POR_VETERINARIO = "========== Listado 
 const string ENCABEZADO_LISTADO_CONSULTAS_POR_CLIENTE = "========== Listado de consultas medicas por cliente ==========";
 
 const string MENSAJE_AVISO_RETORNO_MENU = "ATENCION: Sera regresado al menu anterior.";
-const string MENSAJE_CONFIRMACION_DATOS = "-> Confirma que los datos y/o la accion a realizar son correctos? (S/N): ";
+const string MENSAJE_CONFIRMACION_DATOS = "\n -> Confirma que los datos y/o la accion a realizar son correctos? (S/N): ";
 const int MAXIMOS_REINTENTOS_ENTRADA_DATOS = 3;
 
 int ConsultasManager::idMascotaFiltro = 0;
@@ -357,8 +357,7 @@ std::optional<Mascotas> ConsultasManager::solicitarMascotaValidada() {
         cout << "Ingrese ID de la mascota: ";
         Validaciones validador;
         idMascotaFiltro = validador.validarNumero();
-
-         mascotasOptional = mascotasManager.obtenerMascotaPorId(idMascotaFiltro);
+        mascotasOptional = mascotasManager.obtenerMascotaPorId(idMascotaFiltro);
 
         if(mascotasOptional.has_value()){
             cout << "Mascota encontrada: " << mascotasOptional.value().getNombre() << endl;
@@ -389,6 +388,7 @@ std::optional<Sucursales> ConsultasManager::solicitarSucursalValidada() {
         cantidadIntentosIngreso++;
         cout << "Ingrese ID de la sucursal: ";
         Validaciones validador;
+
         idSucursalFiltro = validador.validarNumero();
         sucursalOptional = sucursalesManager.obtenerSucursalPorId(idSucursalFiltro);
 
@@ -421,6 +421,7 @@ std::optional<Veterinarios> ConsultasManager::solicitarVeterinarioValidado() {
         cantidadIntentosIngreso++;
         cout << "Ingrese ID de veterinario: ";
         Validaciones validador;
+
         idVeterinarioFiltro = validador.validarNumero();
         veterinarioOptional = veterinariosManager.obtenerVeterinarioPorId(idVeterinarioFiltro);
 
@@ -428,6 +429,7 @@ std::optional<Veterinarios> ConsultasManager::solicitarVeterinarioValidado() {
             cout << "Veterinario encontrado: " << veterinarioOptional.value().getNombre() << endl;
             usuarioConfirmaAccion = confirmaAccion();
 
+            cin.ignore();
             if(usuarioConfirmaAccion){
                 return veterinarioOptional.value();
             }
@@ -453,6 +455,7 @@ std::optional<Cliente> ConsultasManager::solicitarClienteValidado() {
         cantidadIntentosIngreso++;
         cout << "Ingrese ID de cliente: ";
         Validaciones validador;
+
         idClienteFiltro = validador.validarNumero();
         clienteOptional = clientesManager.obtenerClientePorId(idClienteFiltro);
 
@@ -460,6 +463,7 @@ std::optional<Cliente> ConsultasManager::solicitarClienteValidado() {
             cout << "Cliente encontrado: " << clienteOptional.value().getNombre() << endl;
             usuarioConfirmaAccion = confirmaAccion();
 
+            cin.ignore();
             if(usuarioConfirmaAccion){
                 return clienteOptional.value();
             }
@@ -486,6 +490,7 @@ std::optional<Tratamientos> ConsultasManager::solicitarTratamientoValidado() {
         cantidadIntentosIngreso++;
         cout << "Ingrese ID de tratamiento: ";
         Validaciones validador;
+
         idTratamiento = validador.validarNumero();
         tratamientoOptional = tratamientosManager.obtenerTratamientoPorId(idTratamiento);
 
@@ -493,6 +498,7 @@ std::optional<Tratamientos> ConsultasManager::solicitarTratamientoValidado() {
             cout << "Cliente encontrado: " << tratamientoOptional.value().getNombreTratamiento() << endl;
             usuarioConfirmaAccion = confirmaAccion();
 
+            cin.ignore();
             if(usuarioConfirmaAccion){
                 return tratamientoOptional.value();
             }
@@ -520,13 +526,13 @@ std::optional<Consultas> ConsultasManager::solicitarConsultaPorId() {
         cout << "Ingrese ID de Consulta: ";
         Validaciones validador;
 
-        cin.ignore();
         idConsulta = validador.validarNumero();
         consultaOptional = obtenerConsultaPorId(idConsulta);
 
         if(consultaOptional.has_value()){
             imprimirConsulta(consultaOptional.value());
 
+            cin.ignore();
             usuarioConfirmaAccion = confirmaAccion();
 
             if(usuarioConfirmaAccion){
