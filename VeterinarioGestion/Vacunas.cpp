@@ -57,3 +57,8 @@ std::string Vacunas::toCSV()
 {
 	return std::to_string(_IDVacuna) + "," + _NombreVacuna + "," + _Descripcion + "," + _Serial;
 }
+
+std::string Vacunas::toCSVHeader(){
+    return "id,nombre,descripcion,serial";
+}
+

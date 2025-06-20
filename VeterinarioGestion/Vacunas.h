@@ -25,5 +25,6 @@ public:
 	void setSerial(std::string serial);
 
 	std::string toCSV();
+    std::string toCSVHeader();
 };
 

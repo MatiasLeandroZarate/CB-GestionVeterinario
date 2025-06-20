@@ -10,7 +10,7 @@ Vacunaciones::Vacunaciones()
 }
 
 Vacunaciones::Vacunaciones(int vacunaciones,Vacunas vacuna, Mascotas mascota, Fecha fechaaplicacion, Veterinarios veterinarioaplicador)
-{	
+{
 	setIDVacunaciones(vacunaciones);
 	setVacuna(vacuna);
 	setMascota(mascota);
@@ -62,6 +62,10 @@ void Vacunaciones::setVeterinarioAplicador(Veterinarios veterinarioaplicador)
 }
 
 std::string Vacunaciones::toCSV()
-{	
-	return std::to_string(_IDVacunaciones)+ "," + _Vacuna.toCSV() + "," + _Mascota.toCSV() + "," + _FechaAplicacion.toString() + "," + _VeterinarioAplicador.toCSV();
+{
+	return std::to_string(_IDVacunaciones)+ "," + std::to_string(_Vacuna.getIDVacuna()) + "," + std::to_string(_Mascota.getIDMascota()) + "," + _FechaAplicacion.toString() + "," + std::to_string(_VeterinarioAplicador.getIDVeterinario());
+}
+
+std::string Vacunaciones::toCSVHeader(){
+    return "id,idVacuna,idMascota,fechaAplicacion,idVeterinarioAplicador";
 }

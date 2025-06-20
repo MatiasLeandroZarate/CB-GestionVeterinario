@@ -80,3 +80,7 @@ std::string Tratamientos::toInforme()
 {
 	return std::to_string(_IDTratamiento) + "\t" + std::string(_NombreTratamiento) + "\t" + std::string(_Descripcion) + "\t" + std::to_string(_DuracionDias) + "\t" + std::to_string(_Costo) + "\t" + std::to_string(_Activo);
 }
+
+std::string Tratamientos::toCSVHeader(){
+    return "id,nombre,descripcion,diasDuracion,costo,estado";
+}

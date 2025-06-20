@@ -15,7 +15,7 @@ Veterinarios::Veterinarios(int IDVeterinario, int Matricula, std::string DNI, st
 	setIDVeterinario(IDVeterinario);
 	setMatricula(Matricula);
 	setEspecialidad(especialidad);
-	
+
 }
 
 int Veterinarios::getIDVeterinario()
@@ -51,7 +51,13 @@ std::string Veterinarios::toCSV()
 	return std::to_string(_IDVeterinario) + "," + std::to_string(_Matricula) + "," + getDNI() + "," + getNombre() + "," + getApellido() + "," + _Especialidad.toCSV() + "," + std::to_string(_Activo);
 }
 
-std::string Veterinarios::toInforme() 
+std::string Veterinarios::toInforme()
 {
 	return std::to_string(_IDVeterinario) + "\t\t" + std::to_string(_Matricula) + "\t\t" + getDNI()+ " " + getNombre() + "\t\t" + getApellido() + "\t\t" + _Especialidad.toInforme() + "\t" + std::to_string(getActivo());
 }
+
+std::string Veterinarios::toCSVHeader(){
+    return "id,matricula,dni,nombre,apellido,idEspecialidad,estado";
+}
+
+

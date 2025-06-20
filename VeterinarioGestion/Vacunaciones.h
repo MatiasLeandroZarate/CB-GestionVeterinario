@@ -32,6 +32,6 @@ public:
 	void setVeterinarioAplicador(Veterinarios veterinarioaplicador);
 
 	std::string toCSV();
-
+    std::string toCSVHeader();
 };
 

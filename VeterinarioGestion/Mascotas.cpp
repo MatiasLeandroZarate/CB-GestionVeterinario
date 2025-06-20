@@ -125,3 +125,7 @@ std::string Mascotas::toCSV()
 {
     return std::to_string(_IDMascota) + "," + getNombre() + "," + getEspecie() + "," + getRaza() + "," + std::to_string(_Edad) + "," + std::to_string(_Peso) + "," + getSexo() + "," + _FechaNacimiento.toString() + "," + std::to_string(_IDCliente) + "," + std::to_string(getActivo());
 }
+
+std::string Mascotas::toCSVHeader(){
+    return "id,nombre,especie,raza,edad,peso,sexo,fechaNacimiento,idCliente,estado";
+}
