@@ -1,7 +1,16 @@
 #pragma once
 #include <iostream>
-#include "Cliente.h"
 #include "GestorArchivo.h"
+#include "Cliente.h"
+#include "Consultas.h"
+#include "Especialidades.h"
+#include "Mascotas.h"
+#include "Pagos.h"
+#include "Sucursales.h"
+#include "Tratamientos.h"
+#include "Vacunaciones.h"
+#include "Vacunas.h"
+#include "Veterinarios.h"
 
 class ExportacionesManager
 {

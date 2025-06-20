@@ -1086,8 +1086,17 @@
 1750383129 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\exportacionesmanager.cpp
 	"ExportacionesManager.h"
 
-1750383767 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\exportacionesmanager.h
+1750384099 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\exportacionesmanager.h
 	<iostream>
-	"Cliente.h"
 	"GestorArchivo.h"
+	"Cliente.h"
+	"Consultas.h"
+	"Especialidades.h"
+	"Mascotas.h"
+	"Pagos.h"
+	"Sucursales.h"
+	"Tratamientos.h"
+	"Vacunaciones.h"
+	"Vacunas.h"
+	"Veterinarios.h"
 
