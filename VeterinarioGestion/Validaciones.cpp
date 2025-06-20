@@ -11,7 +11,9 @@ std::string Validaciones::validarLetra()
         {
             int i = 0;
             strValido = true;
-            std::cin.ignore();
+
+           // std::cin.ignore();
+
             std::getline(std::cin, str);
 
             if(str.empty())  ///empty() , verifica si el str esta Vacio.
@@ -156,7 +158,7 @@ bool Validaciones::validarBool()
 
             if (!numValido)
                 {
-                    std::cout << "Dato inválido, Ingrese de nuevo." << std::endl;
+                    std::cout << "Dato invÃ¡lido, Ingrese de nuevo." << std::endl;
                 }
         }
     return Num;
@@ -218,7 +220,7 @@ float Validaciones::validarFloat()
 
         if (!floatValido)
         {
-            std::cout << "Dato inválido, Ingrese de nuevo" << std::endl;
+            std::cout << "Dato invÃ¡lido, Ingrese de nuevo" << std::endl;
         }
     }
 

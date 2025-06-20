@@ -7,14 +7,16 @@ Vacunas::Vacunas()
 	strcpy(_NombreVacuna, "");
 	strcpy(_Descripcion, "");
 	strcpy(_Serial, "");
+	_Activo = false;
 }
 
-Vacunas::Vacunas(int idvacuna, std::string nombrevacuna, std::string descripcion, std::string serial)
+Vacunas::Vacunas(int idvacuna, std::string nombrevacuna, std::string descripcion, std::string serial, bool activo)
 {
 	setIDVacuna(idvacuna);
 	setNombreVacuna(nombrevacuna);
 	setDescripcion(descripcion);
 	setSerial(serial);
+	setActivo(activo);
 }
 
 int Vacunas::getIDVacuna()
@@ -32,6 +34,10 @@ std::string Vacunas::getDescripcion()
 std::string Vacunas::getSerial()
 {
 	return _Serial;
+}
+bool Vacunas::getActivo()
+{
+	return _Activo;
 }
 
 
@@ -51,11 +57,15 @@ void Vacunas::setSerial(std::string serial)
 {
 	strcpy(_Serial, serial.c_str());
 }
+void Vacunas::setActivo(bool activo)
+{
+	_Activo = activo;
+}
 
 
 std::string Vacunas::toCSV()
 {
-	return std::to_string(_IDVacuna) + "," + _NombreVacuna + "," + _Descripcion + "," + _Serial;
+	return std::to_string(_IDVacuna) + "," + _NombreVacuna + "," + _Descripcion + "," + _Serial + "," + std::to_string(_Activo);
 }
 
 std::string Vacunas::toCSVHeader(){

@@ -66,7 +66,7 @@ void TratamientosManager::MostrarTratamiento()
 	if (cantidadRegistros == 0)
 	{
 		std::cout << "No hay Tratamiento registrado." << std::endl;
-		std::cout << "Desea agregar un tratamiento? 1- Si . 2- No: ";
+		std::cout << "Desea agregar un tratamiento? 1- Si . 0- No: ";
 		crear = validar.validarBool();
 		if (crear == 1)
 		{
@@ -120,7 +120,7 @@ void TratamientosManager::MostrarTratamientoExportable()
 			std::cout << "No se cargó ningun tratamiento." << std::endl;
 		}
 	}
-	std::cout << "TRATAMIENTO:" << std::endl;
+
 	std::cout << "IDTrat.,NombreTrat.,Descripcion,DuracionDias,Costo,Activo" << std::endl;
 	for (int i = 0; i < cantidadRegistros; i++)
 	{
