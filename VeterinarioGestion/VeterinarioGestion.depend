@@ -485,7 +485,7 @@
 	<iostream>
 	<string>
 
-1748565248 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\cliente.h
+1750383226 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\cliente.h
 	<iostream>
 	<cstring>
 	"Persona.h"
@@ -494,7 +494,7 @@
 	<iostream>
 	<string>
 
-1748565248 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\cliente.cpp
+1750383512 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\cliente.cpp
 	"Cliente.h"
 
 1750215824 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\clientemanager.cpp
@@ -575,7 +575,7 @@
 	"Consultas.h"
 	<cstring>
 
-1750296978 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.cpp
+1750300336 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.cpp
 	"ConsultasManager.h"
 
 1750289847 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\consultasmanager.h
@@ -729,10 +729,11 @@
 
 1748565248 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\funcionesglobales.h
 
-1750299506 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\menumanager.cpp
-	<iostream>
-	<string>
+1750381841 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\menumanager.cpp
 	"MenuManager.h"
+
+1750381585 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\menumanager.h
+	"ExportacionesManager.h"
 	"FuncionesGlobales.h"
 	"MascotaManager.h"
 	"ClienteManager.h"
@@ -744,8 +745,8 @@
 	"PagosManager.h"
 	"VacunasManager.h"
 	"VacunacionesManager.h"
-
-1750298486 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\menumanager.h
+	<iostream>
+	<string>
 
 1748379848 source:c:\users\mzara\onedrive\documents\github\cbveterinariogestion\cb-gestionveterinario\veterinariogestion\funcionesglobales.cpp
 	<iostream>
@@ -1081,4 +1082,12 @@
 	<sys/ioctl.h>
 	<sys/types.h>
 	<sys/time.h>
+
+1750383129 source:d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\exportacionesmanager.cpp
+	"ExportacionesManager.h"
+
+1750383767 d:\data\local\devrepository\own\cb-gestionveterinario\veterinariogestion\exportacionesmanager.h
+	<iostream>
+	"Cliente.h"
+	"GestorArchivo.h"
 
