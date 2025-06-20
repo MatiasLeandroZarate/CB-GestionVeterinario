@@ -118,7 +118,7 @@ void ConsultasManager::altaConsulta() {
                 esperarCualquierTecla();
             }
         } else {
-            cout << "Ya existe una consulta para los datos ingresadoS, corrija e intente nuevamente.";
+            cout << "Ya existe una consulta para los datos ingresados, corrija e intente nuevamente.";
             esperarCualquierTecla();
         }
 
@@ -512,7 +512,6 @@ std::optional<Consultas> ConsultasManager::solicitarConsultaPorId() {
         consultaOptional = obtenerConsultaPorId(idConsulta);
 
         if(consultaOptional.has_value()){
-            cout << "Consulta encontrada: " << endl;
             imprimirConsulta(consultaOptional.value());
 
             usuarioConfirmaAccion = confirmaAccion();
@@ -597,11 +596,12 @@ void ConsultasManager::imprimirEncabezadoListado() {
 }
 
 void ConsultasManager::imprimirConsulta(Consultas consulta) {
+    cout << " ============== Consulta =================== " << endl;
     cout << "ID de consulta: " << consulta.getIDConsultas() << endl;
     cout << "Fecha: " << consulta.getFecha().toString() << endl;
     cout << "Sintomas: " << consulta.getSintomas() << endl;
     cout << "Diagnostico: " << consulta.getDiagnostico() << endl;
-    cout << "Estado: " <<  (consulta.getEstado() ? "Activo" : "Baja");
+    cout << "Estado: " <<  (consulta.getEstado() ? "Activo" : "Baja") << endl;
     cout << "Fecha proxima visita: " << consulta.getFechaproximavisita().toString() << endl;
 
     optional<Mascotas> mascotaOptional = mascotasManager.obtenerMascotaPorId(consulta.getIDMascotas());
@@ -613,6 +613,7 @@ void ConsultasManager::imprimirConsulta(Consultas consulta) {
     cout << "Sucursal: " << sucursalOptional.value().getNombre() << endl;
     cout << "Veterinario: " << veterinarioOptional.value().getNombre() << endl;
     cout << "Tratamiento: " << tratamientoOptional.value().getNombreTratamiento() << endl;
+    cout << " ============================================== " << endl;
 }
 
 bool ConsultasManager::esConsultaValida(Consultas consulta) {
