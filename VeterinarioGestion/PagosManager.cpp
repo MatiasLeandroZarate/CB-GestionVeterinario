@@ -28,14 +28,14 @@ void PagosManager::CargarPagos()
     pago = Pagos(IDPagos, IDConsulta, Monto, Fechapago, MedioPago);
 
     if (pArchivo.GuardarPagos(pago))
-        {
-            std::cout << std::endl;
-            std::cout << "El Pago fue guardado correctamente." << std::endl;
-        }
+    {
+        std::cout << std::endl;
+        std::cout << "El Pago fue guardado correctamente." << std::endl;
+    }
     else
-        {
-            std::cout << "Error al guardar el Pago." << std::endl;
-        }
+    {
+        std::cout << "Error al guardar el Pago." << std::endl;
+    }
 }
 
 void PagosManager::MostrarPagos()
@@ -44,17 +44,17 @@ void PagosManager::MostrarPagos()
     GestorArchivo cArchivo("pagos.dat");
     int cantidadregistros = cArchivo.CantidadRegistrosPagos();
     if (cantidadregistros == 0)
-        {
-            std::cout << "No hay Pagos registrados." << std::endl;
-        }
+    {
+        std::cout << "No hay Pagos registrados." << std::endl;
+    }
 
     for (int i = 0; i < cantidadregistros; i++)
-        {
-            pago = cArchivo.LeerPagos(i);
+    {
+        pago = cArchivo.LeerPagos(i);
 
-            std::cout << pago.toInforme() << std::endl;
-            //std::cout << pago.toCSV() << std::endl;
-        }
+        std::cout << pago.toInforme() << std::endl;
+        //std::cout << pago.toCSV() << std::endl;
+    }
 }
 
 int PagosManager::BuscarPagosPorID(int idBuscado)
@@ -63,13 +63,13 @@ int PagosManager::BuscarPagosPorID(int idBuscado)
     GestorArchivo cArchivo("pagos.dat");
     int cantidadRegistros = cArchivo.CantidadRegistrosPagos();
     for (int i = 0; i < cantidadRegistros; i++)
+    {
+        pago = cArchivo.LeerPagos(i);
+        if (pago.getIDPagos() == idBuscado)
         {
-            pago = cArchivo.LeerPagos(i);
-            if (pago.getIDPagos() == idBuscado)
-                {
-                    return i;
-                }
+            return i;
         }
+    }
     std::cout << "No se encontró el ID del Pago." << std::endl;
     return -1;
 }
@@ -125,26 +125,32 @@ void PagosManager::RecaudacionPorCliente()
     GestorArchivo gArchivo("clientes.dat");
     int cantidadRegistros = gArchivo.CantidadRegistrosClientes();
     bool IDValido = false;
+    Validaciones validar;
 
+std::cin.ignore();
     while (!IDValido)
+    {
+        std::cout << "Ingrese ID del Cliente: ";
+        IDCliente = validar.validarNumero();
+        for (int i = 0; i < cantidadRegistros; i++)
         {
-
-            std::cout << "Ingrese ID del Cliente: ";
-            for (int i = 0; i < cantidadRegistros; i++)
-                {
-                    cliente = gArchivo.LeerClientes(i);
-                    if (cliente.getIDCliente() == IDCliente)
-                        {
-                            IDValido = true;
-                        }
-                }
-            if (!IDValido)
-                {
-                    std::cout << "ID invalido, Ingrese de nuevo." << std::endl;
-
-                }
+            cliente = gArchivo.LeerClientes(i);
+            if (cliente.getIDCliente() == IDCliente)
+            {
+                IDValido = true;
+            }
+        }
+        if (!IDValido)
+        {
+            std::cout << "ID no Encontrado, Ingrese de nuevo. " << std::endl;
 
         }
+
+    }
+    limpiarPantalla();
+    GestorArchivo tArchivo("tratamientos.dat");
+    Tratamientos tratamiento;
+    int cantidadRegistrosTratamientos = tArchivo.CantidadRegistrosTratamientos();
     Mascotas mascotas;
     GestorArchivo mArchivo("mascotas.dat");
     int cantidadRegistrosMascotas = mArchivo.CantidadRegistrosMascotas();
@@ -154,23 +160,33 @@ void PagosManager::RecaudacionPorCliente()
     int IDMascotaAux;
     cantidadRegistros = pArchivo.CantidadRegistrosConsultas();
     for (int i = 0; i < cantidadRegistros; i++)
+    {
+        consulta = pArchivo.LeerConsultas(i);
+        IDMascotaAux = consulta.getIDMascotas();
+
+        for (int j = 0; j < cantidadRegistrosMascotas; j++)
         {
-            consulta = pArchivo.LeerConsultas(i);
-            IDMascotaAux = consulta.getIDMascotas();
+            mascotas = mArchivo.LeerMascota(j);
 
-            for (int j = 0; j < cantidadRegistrosMascotas; j++)
+            if(mascotas.getIDCliente() == IDCliente && mascotas.getIDMascota() == IDMascotaAux)
+            {
+
+                for(int x =0; x<cantidadRegistrosTratamientos; x++)
                 {
-                    mascotas = gArchivo.LeerMascota(j);
+                    tratamiento = tArchivo.LeerTratamientos(x);
 
-                    if(mascotas.getIDCliente() == IDCliente && mascotas.getIDMascota() == IDMascotaAux)
-                        {
-                           // Sumatoria += consulta.getTratamiento().getCosto();
-                        }
-
+                    if(consulta.getIDTratamiento() == tratamiento.getIDTratamiento())
+                    {
+                        Sumatoria += tratamiento.getCosto();
+                    }
 
                 }
+            }
+
 
         }
+
+    }
     std::cout << "--------------------" << std::endl;
     std::cout << "CLIENTE: " << std::endl;
     std::cout << "ID\t| DNI\t\t|Nombre\t|Apellido\t|Telefono\t|Email" << std::endl;
@@ -197,28 +213,28 @@ void PagosManager::RecaudacionPorSucursal()
     int cantidadRegistros = pArchivo.CantidadRegistrosConsultas();
 
     for (int i = 0; i < cantidadRegistros; i++)
-        {
-            consulta = pArchivo.LeerConsultas(i);
-            sucursalAux = consulta.getIDSucursal();
+    {
+        consulta = pArchivo.LeerConsultas(i);
+        sucursalAux = consulta.getIDSucursal();
 
-            for(int j=0; j<cantidadRegistrosSucursales; j++)
-                {
-                    sucursal = sArchivo.LeerSucursal(i);
-
-                    if(sucursal.getIDSucursal()==sucursalAux)
-                        {
-                           // sucursal.setRecaudacion()+=consulta.getTratamiento().getCosto();
-                        }
-
-                }
-
-        }
-
-    for(int i=0; i<cantidadRegistrosSucursales; i++)
+        for(int j=0; j<cantidadRegistrosSucursales; j++)
         {
             sucursal = sArchivo.LeerSucursal(i);
-         //   std::cout << "RECAUDACION DE LA SUCURSAL " << sucursal.setIDSucursal() << " : $" << sucursal.getRecaudacion()<< std::endl;
+
+            if(sucursal.getIDSucursal()==sucursalAux)
+            {
+                // sucursal.setRecaudacion()+=consulta.getTratamiento().getCosto();
+            }
+
         }
+
+    }
+
+    for(int i=0; i<cantidadRegistrosSucursales; i++)
+    {
+        sucursal = sArchivo.LeerSucursal(i);
+        //   std::cout << "RECAUDACION DE LA SUCURSAL " << sucursal.setIDSucursal() << " : $" << sucursal.getRecaudacion()<< std::endl;
+    }
 }
 
 

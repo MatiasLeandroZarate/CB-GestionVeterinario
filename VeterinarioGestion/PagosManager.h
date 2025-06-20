@@ -5,6 +5,7 @@
 #include "Validaciones.h"
 #include "Consultas.h"
 #include "Sucursales.h"
+#include "Tratamientos.h"
 
 class PagosManager
 {
