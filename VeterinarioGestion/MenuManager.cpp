@@ -418,15 +418,18 @@ void MenuManager::procesarSubmenuVacunas(){
 
         switch (opcion) {
             case OPCION_ALTA:
+                vacunasMan.CargarVacunas();
                 break;
             case OPCION_MODIFICAR:
+                      vacunasMan.ModificarVacunas();
                 break;
             case OPCION_BAJA:
+				              vacunasMan.BajaVacuna();
                 break;
             case OPCION_REGISTRAR:
                 break;
             case OPCION_LISTAR:
-                     vacunasMan.MostrarVacunas();
+                      vacunasMan.MostrarVacunas();
                 break;
             case OPCION_ATRAS_SALIR:
                 break;
@@ -590,6 +593,7 @@ void MenuManager::procesarSubmenuAcercaDe(){
     esperarCualquierTecla();
 }
 
+
 void MenuManager::procesarSubmenuExportaciones(){
     cout << SEPARADOR_TITULO_PRINCIPAL << TITULO_EXPORTACIONES << SEPARADOR_TITULO_PRINCIPAL << endl;
     const int OPCION_CLIENTES = 1;
@@ -613,6 +617,11 @@ void MenuManager::procesarSubmenuExportaciones(){
     const string TITULO_VACUNACIONES = "Exportar vacunaciones";
     const string TITULO_VACUNAS = "Exportar vacunas";
     const string TITULO_VETERINARIOS = "Exportar veterinarios";
+
+
+    TratamientosManager TrataMan;
+    VacunasManager VacuMan;
+    VeterinariosManager VeteMan;
 
     int opcion;
     limpiarPantalla();
@@ -648,12 +657,15 @@ void MenuManager::procesarSubmenuExportaciones(){
             case OPCION_SUCURSALES:
                 break;
             case OPCION_TRATAMIENTOS:
+                TrataMan.MostrarTratamientoExportable();
                 break;
             case OPCION_VACUNACIONES:
                 break;
             case OPCION_VACUNAS:
+                VacuMan.MostrarVacunasExportable();
                 break;
             case OPCION_VETERINARIOS:
+                VeteMan.MostrarVeterinarioExportable();
                 break;
             case OPCION_ATRAS_SALIR:
                 break;
@@ -665,6 +677,7 @@ void MenuManager::procesarSubmenuExportaciones(){
 
     esperarCualquierTecla();
 }
+
 
 int MenuManager::procesarEntradaMenu(int opcionMinima, int opcionMaxima){
     int opcion;

@@ -68,6 +68,7 @@ class GestorArchivo{
         bool GuardarVacunas(Vacunas vacuna);
         Vacunas LeerVacunas(int posicion);
         int CantidadRegistrosVacunas();
+        bool ModificarVacuna(int pos, Vacunas vacuna);
 
         //Funciones para Vacunaciones
         bool GuardarVacunaciones(Vacunaciones vacunaciones);
