@@ -10,7 +10,7 @@ class Sucursales
 public:
 	Sucursales();
 	Sucursales(int idSucursal, std::string nombre, std::string direccion);
-	
+
 	void setIDSucursal(int IDSucursal);
 	void setNombre(std::string nombre);
 	void setDireccion(std::string direccion);
@@ -20,5 +20,6 @@ public:
 	std::string getDireccion();
 
 	std::string toCSV();
+    std::string toCSVHeader();
 };
 

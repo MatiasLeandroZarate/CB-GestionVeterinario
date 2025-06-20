@@ -48,5 +48,6 @@ public:
 
     std::string toInforme();
     std::string toCSV();
+    std::string toCSVHeader();
 };
 

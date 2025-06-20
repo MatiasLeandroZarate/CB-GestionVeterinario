@@ -118,3 +118,7 @@ std::string Consultas::toCSV()
 	+ "," + _FechaProximaVisita.toString() + "," + std::to_string(_IDVeterinario) + "," + std::to_string(_IDSucursal)
 	+ "," + std::to_string(_Estado);
 }
+
+std::string Consultas::toCSVHeader(){
+    return "id,idMascota,fechaConsulta,sintomas,diagnostico,idTratamiento,fechaProximaVisita,idVeterinario,idSucursal,estado";
+}

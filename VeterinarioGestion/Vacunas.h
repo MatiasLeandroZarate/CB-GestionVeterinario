@@ -28,5 +28,6 @@ public:
 	void setActivo(bool activo);
 
 	std::string toCSV();
+    std::string toCSVHeader();
 };
 

@@ -46,6 +46,8 @@
 		<Unit filename="EspecialidadManager.h" />
 		<Unit filename="Especialidades.cpp" />
 		<Unit filename="Especialidades.h" />
+		<Unit filename="ExportacionesManager.cpp" />
+		<Unit filename="ExportacionesManager.h" />
 		<Unit filename="Fecha.cpp" />
 		<Unit filename="Fecha.h" />
 		<Unit filename="FuncionesGlobales.cpp" />

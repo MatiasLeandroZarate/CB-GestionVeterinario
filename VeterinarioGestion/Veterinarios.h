@@ -9,7 +9,7 @@ class Veterinarios : public Persona
 	int _IDVeterinario;
     int _Matricula;
     Especialidades _Especialidad;
-	
+
 public:
 	Veterinarios();
 	Veterinarios(int IDVeterinario, int Matricula, std::string DNI, std::string Nombre, std::string Apellido, Especialidades especialidad, bool Activo);
@@ -25,6 +25,6 @@ public:
 
 	std::string toInforme();
 	std::string toCSV();
-  
+    std::string toCSVHeader();
 };
 

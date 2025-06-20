@@ -50,3 +50,7 @@ std::string Especialidades::toInforme()
 {
 	return std::to_string(_IDEspecialidad) + "\t" + std::string(_Nombre) + "\t" + std::string(_Descripcion);
 }
+
+std::string Especialidades::toCSVHeader(){
+    return "id,nombre,descripcion";
+}

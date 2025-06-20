@@ -46,3 +46,8 @@ std::string Sucursales::toCSV()
 {
 	return std::to_string(_IDSucursal) + "," + std::string(_Nombre) + "," + std::string(_Direccion);
 }
+
+
+std::string Sucursales::toCSVHeader(){
+    return "id,nombre,direccion";
+}

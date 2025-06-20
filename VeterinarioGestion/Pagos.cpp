@@ -68,3 +68,7 @@ std::string Pagos::toInforme()
 {
 	return std::to_string(_IDPago) + "\t"+std::to_string(_IDConsulta)  + "\t\t"  + std::to_string(int(_Monto)) + "\t"+  _FechaPago.toString()+ "\t" + _MedioPago;
 }
+
+std::string Pagos::toCSVHeader(){
+    return "id,idConsulta,monto,fecha,medioPago";
+}

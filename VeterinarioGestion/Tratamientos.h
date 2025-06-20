@@ -30,6 +30,7 @@ public:
 	bool getActivo();
 
 	std::string toCSV();
+    std::string toCSVHeader();
 	std::string toInforme();
 };
 

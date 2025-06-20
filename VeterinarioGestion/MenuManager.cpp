@@ -1,17 +1,4 @@
-#include <iostream>
-#include <string>
 #include "MenuManager.h"
-#include "FuncionesGlobales.h"
-#include "MascotaManager.h"
-#include "ClienteManager.h"
-#include "SucursalManager.h"
-#include "EspecialidadManager.h"
-#include "VeterinariosManager.h"
-#include "TratamientosManager.h"
-#include "ConsultasManager.h"
-#include "PagosManager.h"
-#include "VacunasManager.h"
-#include "VacunacionesManager.h"
 
 using namespace std;
 
@@ -624,6 +611,7 @@ void MenuManager::procesarSubmenuExportaciones(){
     VeterinariosManager VeteMan;
 
     int opcion;
+    ExportacionesManager exportacionesManager;
     limpiarPantalla();
 
     do {
@@ -645,27 +633,34 @@ void MenuManager::procesarSubmenuExportaciones(){
 
         switch (opcion) {
             case OPCION_CLIENTES:
+                exportacionesManager.exportarClientes();
                 break;
             case OPCION_CONSULTAS:
+                exportacionesManager.exportarConsultas();
                 break;
             case OPCION_ESPECIALIDADES:
+                exportacionesManager.exportarEspecialidades();
                 break;
             case OPCION_MASCOTAS:
+                exportacionesManager.exportarMascotas();
                 break;
             case OPCION_PAGOS:
+                exportacionesManager.exportarPagos();
                 break;
             case OPCION_SUCURSALES:
+                exportacionesManager.exportarSucursales();
                 break;
             case OPCION_TRATAMIENTOS:
-                TrataMan.MostrarTratamientoExportable();
+                exportacionesManager.exportarTratamientos();
                 break;
             case OPCION_VACUNACIONES:
+                exportacionesManager.exportarVacunaciones();
                 break;
             case OPCION_VACUNAS:
-                VacuMan.MostrarVacunasExportable();
+                exportacionesManager.exportarVacunas();
                 break;
             case OPCION_VETERINARIOS:
-                VeteMan.MostrarVeterinarioExportable();
+                exportacionesManager.exportarVeterinarios();
                 break;
             case OPCION_ATRAS_SALIR:
                 break;

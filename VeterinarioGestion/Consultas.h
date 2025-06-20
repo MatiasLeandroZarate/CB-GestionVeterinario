@@ -47,5 +47,6 @@ public:
 	bool getEstado();
 
 	std::string toCSV();
+    std::string toCSVHeader();
 };
 
