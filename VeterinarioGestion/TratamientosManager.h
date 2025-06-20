@@ -6,6 +6,7 @@
 #include "Validaciones.h"
 #include "rlutil.h"
 #include <cctype>
+#include "optional"
 
 class TratamientosManager
 {private:
@@ -16,6 +17,7 @@ public:
 	void ModificarTratamientos();
 
 	int BuscarTratamientoPorID(int idBuscado);
+    std::optional<Tratamientos> obtenerTratamientoPorId(int idBuscado);
 	int SiguienteID();
 	int procesarEntradaMenu(int opcionMinima, int opcionMaxima);
 

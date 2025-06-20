@@ -326,6 +326,18 @@ int GestorArchivo::CantidadRegistrosConsultas() {
     return cantidadRegistros;
 }
 
+bool GestorArchivo::ModificarConsulta(int pos, Consultas consulta) {
+    FILE* p;
+    p = fopen("consultas.dat", "rb+");
+    if (p == nullptr) return false;
+
+    fseek(p, pos * sizeof(Consultas), SEEK_SET);
+    bool escribio = fwrite(&consulta, sizeof(Consultas), 1, p);
+    fclose(p);
+
+    return escribio;
+}
+
 // ----------------------------------SECTOR PAGOS ----------------------------------
 bool GestorArchivo::GuardarPagos(Pagos pagos)
 {

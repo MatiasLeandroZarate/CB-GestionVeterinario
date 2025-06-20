@@ -1,6 +1,6 @@
 #include "MascotaManager.h"
 #include "Cliente.h"
-
+#include <optional>
 
 void MascotaManager::CargarMascota()
 {
@@ -218,6 +218,22 @@ int MascotaManager::BuscarMascotaPorID(int idBuscado)
     }
     std::cout << "No se encontró el ID de la Mascota." << std::endl;
     return -1;
+}
+
+std::optional<Mascotas> MascotaManager::obtenerMascotaPorId(int idBuscado) {
+    Mascotas mascota;
+    GestorArchivo archivoMascotas("mascotas.dat");
+
+    int cantidadRegistros = archivoMascotas.CantidadRegistrosMascotas();
+
+    for (int i = 0; i < cantidadRegistros; i++) {
+        mascota = archivoMascotas.LeerMascota(i);
+        if (mascota.getIDMascota() == idBuscado) {
+            return mascota;
+        }
+    }
+
+    return std::nullopt;
 }
 
 int MascotaManager::validarEdad()
@@ -638,8 +654,6 @@ void MascotaManager::ModificarMascota()
 
     std::cout << "No se encontro Mascota con ese ID." << std::endl;
 }
-
-
 
 //int ObtenerSiguienteID()
 //{
