@@ -45,28 +45,30 @@ Fecha Fecha::ValidacionFecha(Fecha validar)
 	Fecha validacion;
 	int dia, mes, anio;
 	bool fechaok = false;
+    Validaciones validador;
+
 	while (!fechaok)
 	{
 		std::cout << "Dia: ";
-		std::cin >> dia;
+		dia = validador.validarNumero();
 		while (dia < 1 || dia >31)
 		{
 			std::cout << "Dia invalido, por favor, ingrese un dia valido: ";
 			std::cin >> dia;
 		}
 		std::cout << "Mes: ";
-		std::cin >> mes;
+		mes = validador.validarNumero();
 		while (mes < 1 || mes > 12)
 		{
 			std::cout << "Mes invalido, por favor, ingrese un mes valido: ";
-			std::cin >> mes;
+		    mes = validador.validarNumero();
 		}
 		std::cout << "Anio: ";
-		std::cin >> anio;
+		anio = validador.validarNumero();
 		while (anio < 2010 || anio > 2025)
 		{
 			std::cout << "Anio invalido, por favor, ingrese un anio valido: ";
-			std::cin >> anio;
+            anio = validador.validarNumero();
 		}
 		// ES AÑO BISIESTO
 
@@ -75,12 +77,12 @@ Fecha Fecha::ValidacionFecha(Fecha validar)
 			while (mes == 2 && dia > 29)
 			{
 				std::cout << "Dia invalido, el Mes tiene 29 dias, ingrese Dia: ";
-				std::cin >> dia;
+                dia = validador.validarNumero();
 			}
 			while ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30)
 			{
 				std::cout << "Dia invalido, El mes tiene 30 días, ingrese Dia: ";
-				std::cin >> dia;
+                dia = validador.validarNumero();
 			}
 		}
 
@@ -89,12 +91,12 @@ Fecha Fecha::ValidacionFecha(Fecha validar)
 			while (mes == 2 && dia > 28)
 			{
 				std::cout << "Dia invalido, el Mes tiene 28 dias, ingrese Dia: ";
-				std::cin >> dia;
+                dia = validador.validarNumero();
 			}
 			while ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30)
 			{
 				std::cout << "Dia invalido, El mes tiene 30 días, ingrese Dia: ";
-				std::cin >> dia;
+                dia = validador.validarNumero();
 			}
 		}
 

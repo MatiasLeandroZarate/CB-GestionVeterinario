@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-
+#include "Validaciones.h"
 
 class Fecha{
     private:

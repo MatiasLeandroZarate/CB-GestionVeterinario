@@ -675,8 +675,6 @@ void MenuManager::procesarSubmenuExportaciones(){
         realizarOperacionPostSeleccion(opcion);
 
     } while (opcion != OPCION_ATRAS_SALIR);
-
-    esperarCualquierTecla();
 }
 
 
