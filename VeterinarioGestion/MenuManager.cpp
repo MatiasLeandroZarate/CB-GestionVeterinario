@@ -394,6 +394,7 @@ void MenuManager::procesarSubmenuVacunas(){
     const string TITULO_LISTAR = "Listado de vacunas";
 
     VacunasManager vacunasMan;
+    VacunacionesManager vacunacionesMan;
 
     int opcion;
     limpiarPantalla();
@@ -420,6 +421,7 @@ void MenuManager::procesarSubmenuVacunas(){
 				              vacunasMan.BajaVacuna();
                 break;
             case OPCION_REGISTRAR:
+            vacunacionesMan.CargarVacunaciones();
                 break;
             case OPCION_LISTAR:
                       vacunasMan.MostrarVacunas();
@@ -497,6 +499,7 @@ void MenuManager::procesarSubmenuPagos(){
 
     int opcion;
     limpiarPantalla();
+    PagosManager pagosman;
 
     do {
         limpiarPantalla();
@@ -512,6 +515,7 @@ void MenuManager::procesarSubmenuPagos(){
             case OPCION_RECAUDACION_ANUAL:
                 break;
             case OPCION_RECAUDACION_POR_CLIENTE:
+                pagosman.RecaudacionPorCliente();
                 break;
             case OPCION_RECAUDACION_POR_SUCURSAL:
                 break;

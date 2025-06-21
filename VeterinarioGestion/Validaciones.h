@@ -2,9 +2,7 @@
 #include <iostream>
 #include <cstring>
 #include <algorithm>
-#include <iostream>
 #include <string>
-#include <algorithm>
 #include <cctype>
 #include "FuncionesGlobales.h"
 

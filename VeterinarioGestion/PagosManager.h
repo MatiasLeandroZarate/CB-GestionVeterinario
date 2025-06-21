@@ -2,6 +2,10 @@
 #include <iostream>
 #include "Pagos.h"
 #include "GestorArchivo.h"
+#include "Validaciones.h"
+#include "Consultas.h"
+#include "Sucursales.h"
+#include "Tratamientos.h"
 
 class PagosManager
 {
@@ -11,6 +15,7 @@ public:
 	void MostrarPagos();
 	int BuscarPagosPorID(int idBuscado);
 	void FacturacionPorAnio();
-	
+	void RecaudacionPorCliente();
+	void RecaudacionPorSucursal();
 };
 
