@@ -123,9 +123,8 @@ void ConsultasManager::altaConsulta() {
                 }
             } else {
                 cout << "Ya existe una consulta activa para los datos ingresados, corrija e intente nuevamente porfavor." << endl;
+                esperarCualquierTecla();
             }
-
-            esperarCualquierTecla();
         } else {
             cout << "Porfavor, inicie de nuevo la carga de la nueva consulta." << endl;
             esperarCualquierTecla();
