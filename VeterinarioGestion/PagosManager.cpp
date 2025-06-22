@@ -220,7 +220,7 @@ void PagosManager::RecaudacionPorSucursal()
     for(int i=0; i<cantidadRegistrosSucursales; i++)
     {
         sucursal = sArchivo.LeerSucursal(i);
-          std::cout << "RECAUDACION DE LA SUCURSAL " << sucursal.setIDSucursal() << " : $" << sucursal.getRecaudacion()<< std::endl;
+       //   std::cout << "RECAUDACION DE LA SUCURSAL " << sucursal.setIDSucursal() << " : $" << sucursal.getRecaudacion()<< std::endl;
     }
 }
 
