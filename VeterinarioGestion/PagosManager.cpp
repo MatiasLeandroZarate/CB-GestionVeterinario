@@ -206,8 +206,12 @@ void PagosManager::RecaudacionPorSucursal()
     vecSucursales = new float [cantidadRegistrosSucursales];
     if(vecSucursales==nullptr)
     {
-        std::cout << "Error Al asginar memoria.";
+        std::cout << "Error Al asignar memoria.";
         return;
+    }
+         for (int i = 0; i < cantidadRegistrosSucursales; ++i)
+    {
+        vecSucursales[i] = 0.0f;
     }
     for (int i = 0; i < cantidadRegistros; i++)
     {
