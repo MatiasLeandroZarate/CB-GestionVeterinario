@@ -35,6 +35,7 @@ class GestorArchivo{
         bool GuardarSucursal(Sucursales sucursal);
         Sucursales LeerSucursal(int posicion);
         int CantidadRegistrosSucursales();
+        bool ModificarSucursal(int pos, Sucursales sucursales);
 
         //Funciones para Especialidades
         bool GuardarEspecialidad(Especialidades especialidad);

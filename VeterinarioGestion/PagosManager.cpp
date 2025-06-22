@@ -1,42 +1,6 @@
 #include "PagosManager.h"
 
-void PagosManager::CargarPagos()
-{
-    Pagos pago;
-    GestorArchivo pArchivo("pagos.dat");
 
-    int IDPagos, IDConsulta;
-    float Monto;
-    std::string MedioPago;
-    Fecha Fechapago, fechavalidar;
-
-    std::cout << "Ingrese el ID del Pago: ";
-    std::cin >> IDPagos;
-    std::cout << "Ingrese el ID de la Consulta: ";
-    std::cin >> IDConsulta;
-    std::cout << "Ingrese el Monto: ";
-    std::cin >> Monto;
-    std::cout << "Ingrese la Fecha del Pago: " << std::endl;
-
-    Fechapago = fechavalidar.ValidacionFecha(Fechapago);
-
-    std::cout << "Ingrese el Medio de Pago: ";
-    std::cin.ignore();
-    std::getline(std::cin, MedioPago);
-
-
-    pago = Pagos(IDPagos, IDConsulta, Monto, Fechapago, MedioPago);
-
-    if (pArchivo.GuardarPagos(pago))
-    {
-        std::cout << std::endl;
-        std::cout << "El Pago fue guardado correctamente." << std::endl;
-    }
-    else
-    {
-        std::cout << "Error al guardar el Pago." << std::endl;
-    }
-}
 
 void PagosManager::MostrarPagos()
 {
@@ -73,50 +37,73 @@ int PagosManager::BuscarPagosPorID(int idBuscado)
     std::cout << "No se encontró el ID del Pago." << std::endl;
     return -1;
 }
-/*
+
 void PagosManager::FacturacionPorAnio()
 {
+    GestorArchivo tArchivo("tratamientos.dat");
+    Tratamientos tratamiento;
+    int cantidadRegistrosTratamientos = tArchivo.CantidadRegistrosTratamientos();
     Validaciones validar;
     Consultas consulta;
     GestorArchivo pArchivo("consultas.dat");
     int cantidadRegistros = pArchivo.CantidadRegistrosConsultas();
     int anio;
     float vecContadorGananciaAnual[12] {};
-    float total;
+    float total=0;
     bool encontrado = false;
+    std::cin.ignore();
     std::cout << "Ingrese Anio: ";
     anio = validar.validarNumero();
 
 
     for (int i = 0; i < cantidadRegistros; i++)
-        {
-            consulta = pArchivo.LeerConsultas(i);
-            if(consulta.getFecha().getAnio() == anio)
-                {
+{
+    consulta = pArchivo.LeerConsultas(i);
 
-                    vecContadorGananciaAnual[consulta.getFecha().getMes()-1] += consulta.getIDTratamiento().getCosto();
+    if (consulta.getFecha().getAnio() == anio)
+    {
+        int IDTrat = consulta.getIDTratamiento();
+
+
+        for (int x = 0; x < cantidadRegistrosTratamientos; x++)
+        {
+            tratamiento = tArchivo.LeerTratamientos(x);
+            if (tratamiento.getIDTratamiento() == IDTrat)
+            {
+                int mes = consulta.getFecha().getMes();
+                if (mes >= 1 && mes <= 12)
+                {
+                    vecContadorGananciaAnual[mes - 1] += tratamiento.getCosto();
+
                     encontrado = true;
                 }
-
+                break;
+            }
         }
+    }
+}
+
     system("cls");
     if(encontrado)
+    {
+
+        for(int i=0; i<12; i++)
         {
 
-            for(int i=0; i<12; i++)
-                {
-
-                    std::cout << "MES " << i+1 << ": " << vecContadorGananciaAnual[i] << std::endl;
-                    total += vecContadorGananciaAnual[i];
-                }
-            std::cout << "TOTAL FACTURADO DEL " << anio << " :  " << total;
+            std::cout << "MES " << i+1 << ": " << vecContadorGananciaAnual[i] << std::endl;
+            total += vecContadorGananciaAnual[i];
         }
+        std::cout << "TOTAL FACTURADO DEL " << anio << " :  " << total;
+    }
     else
-        {
-            std::cout << "No se Encontraron Pagos registrados en ese anio.";
-        }
+    {
+        std::cout << "No se Encontraron Pagos registrados en ese anio.";
+    }
+
 }
-*/
+
+
+
 void PagosManager::RecaudacionPorCliente()
 {
 
@@ -127,7 +114,7 @@ void PagosManager::RecaudacionPorCliente()
     bool IDValido = false;
     Validaciones validar;
 
-std::cin.ignore();
+    std::cin.ignore();
     while (!IDValido)
     {
         std::cout << "Ingrese ID del Cliente: ";
@@ -233,7 +220,7 @@ void PagosManager::RecaudacionPorSucursal()
     for(int i=0; i<cantidadRegistrosSucursales; i++)
     {
         sucursal = sArchivo.LeerSucursal(i);
-        //   std::cout << "RECAUDACION DE LA SUCURSAL " << sucursal.setIDSucursal() << " : $" << sucursal.getRecaudacion()<< std::endl;
+          std::cout << "RECAUDACION DE LA SUCURSAL " << sucursal.setIDSucursal() << " : $" << sucursal.getRecaudacion()<< std::endl;
     }
 }
 

@@ -507,11 +507,13 @@ void MenuManager::procesarSubmenuPagos(){
 
         switch (opcion) {
             case OPCION_RECAUDACION_ANUAL:
+                pagosman.FacturacionPorAnio();
                 break;
             case OPCION_RECAUDACION_POR_CLIENTE:
                 pagosman.RecaudacionPorCliente();
                 break;
             case OPCION_RECAUDACION_POR_SUCURSAL:
+                pagosman.RecaudacionPorSucursal();
                 break;
             case OPCION_ATRAS_SALIR:
                 break;
@@ -532,6 +534,7 @@ void MenuManager::procesarSubmenuSucursales(){
     const string TITULO_MODIFICAR = "Modificacion de sucursal";
     const string TITULO_BAJA = "Baja de sucursal";
     const string TITULO_LISTAR = "Listado de sucursales";
+    SucursalManager sucursalman;
 
     int opcion;
     limpiarPantalla();
@@ -549,12 +552,15 @@ void MenuManager::procesarSubmenuSucursales(){
 
         switch (opcion) {
             case OPCION_ALTA:
+                sucursalman.CargarSucursal();
                 break;
             case OPCION_MODIFICAR:
+                sucursalman.ModificarSucursal();
                 break;
             case OPCION_BAJA:
                 break;
             case OPCION_LISTAR:
+                sucursalman.MostrarSucursal();
                 break;
             case OPCION_ATRAS_SALIR:
                 break;

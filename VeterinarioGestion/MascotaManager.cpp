@@ -434,7 +434,7 @@ int MascotaManager::GenerarIdAutomatico()
     GestorArchivo gArchivo("mascotas.dat");
     int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
 
-    return cantidadRegistros + 1; // CONSULTAR SI ES POSIBLE BORRAR UN REGISTRO ENTERO EN UN ARCHIVO.
+    return cantidadRegistros + 1;
 }
 
 bool MascotaManager::DarDeBajaMascota()

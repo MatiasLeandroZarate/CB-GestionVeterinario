@@ -143,6 +143,17 @@ int GestorArchivo::CantidadRegistrosSucursales()
     fclose(pArchivo);
     return cantidadRegistros;
 }
+bool GestorArchivo::ModificarSucursal(int pos, Sucursales sucurales) {
+    FILE* p;
+    p = fopen("sucursales.dat", "rb+");
+    if (p == nullptr) return false;
+
+    fseek(p, pos * sizeof(Sucursales), SEEK_SET);
+    bool escribio = fwrite(&sucurales, sizeof(Sucursales), 1, p);
+    fclose(p);
+
+    return escribio;
+}
 // ----------------------------------SECTOR ESPECIALIDAD----------------------------------
 bool GestorArchivo::GuardarEspecialidad(Especialidades especialidad) {
     FILE* pArchivo;
