@@ -9,8 +9,10 @@ void SucursalManager::CargarSucursal()
 	int Idsucursal;
 	std::string Nombre, Direccion;
     float recaudacion = 0;
+    bool activo = true;
 
 	Idsucursal = GenerarIdAutomatico();
+    std::cin.ignore();
 	std::cout << "Ingrese el Nombre: ";
 	Nombre = validar.validarLetra();
 
@@ -18,7 +20,7 @@ void SucursalManager::CargarSucursal()
 	Direccion = validar.validarLetra();
 
 
-	sucursal = Sucursales(Idsucursal, Nombre, Direccion,recaudacion);
+	sucursal = Sucursales(Idsucursal, Nombre, Direccion, recaudacion, activo);
 
 	if (sArchivo.GuardarSucursal(sucursal))
 	{
@@ -60,6 +62,9 @@ void SucursalManager::MostrarSucursal()
 
         rlutil::locate(57, i + 3);
         std::cout << sucursal.getRecaudacion();
+
+         rlutil::locate(65, i + 3);
+        std::cout << sucursal.getActivo();
 
 
 
@@ -124,21 +129,60 @@ void SucursalManager::LocateTitulo()
     rlutil::locate(55, 2);
     std::cout << "| Recaudacion";
 
+    rlutil::locate(60, 2);
+    std::cout << "| Activo";
+
 }
+bool SucursalManager::DarDeBajaSucursal()
+{
+    Validaciones validar;
+    Sucursales sucursal;
+    int ID;
+
+
+    GestorArchivo vArchivo("sucursales.dat");
+    int cantidadRegistros = vArchivo.CantidadRegistrosSucursales();
+    std::cout << "Ingrese el ID de la Sucursal que desea dar de baja: ";
+
+    ID = validar.validarNumero();
+
+    for (int i = 0; i < cantidadRegistros; i++)
+    {
+        sucursal = vArchivo.LeerSucursal(i);
+        if (sucursal.getIDSucursal() == ID && sucursal.getActivo())
+        {
+            sucursal.setActivo(false);
+            if (vArchivo.ModificarSucursal(i, sucursal))
+            {
+                std::cout << "Sucursal dada de baja exitosamente." << std::endl;
+                return true;
+            }
+            else
+            {
+                std::cout << "Sucursal no encontrada o ya dada de baja." << std::endl;
+                return false;
+            }
+        }
+    }
+}
+
 void SucursalManager::ModificarSucursal()
 {
     const static std::string OPCION_NOMBRE = "Nombre";
     const static std::string OPCION_DIRECCION = "Direccion";
+    const static std::string OPCION_ACTIVO = "Activo";
     const static std::string OPCION_SALIR = "Salir";
 
     const int OPC_NOMBRE = 1;
     const int OPC_DIRECCION = 2;
+    const int OPC_ACTIVO = 3;
     const int OPC_ATRAS_SALIR = 0;
 
     Validaciones validar;
     Sucursales sucursal;
     int ID, opcion, modifico = 1;
     std::string Nombre, Direccion;
+    bool activo;
 
 
     GestorArchivo sArchivo("sucursales.dat");
@@ -167,14 +211,17 @@ void SucursalManager::ModificarSucursal()
                 std::cout << sucursal.getDireccion();
                 rlutil::locate(57, i + 3);
                 std::cout << sucursal.getRecaudacion();
+                 rlutil::locate(65, i + 3);
+        std::cout << sucursal.getActivo();
 
 
                 std::cout << std::endl << "-----------------------------------------" << std::endl;
                 std::cout << OPC_NOMBRE << ". " << OPCION_NOMBRE << std::endl;
                 std::cout << OPC_DIRECCION << ". " << OPCION_DIRECCION << std::endl;
+                 std::cout << OPC_ACTIVO << ". " << OPCION_ACTIVO << std::endl;
                 std::cout << OPC_ATRAS_SALIR << ". " << OPCION_SALIR << std::endl;
 
-                opcion = procesarEntradaMenu(OPC_ATRAS_SALIR, OPC_DIRECCION);
+                opcion = procesarEntradaMenu(OPC_ATRAS_SALIR, OPC_ACTIVO);
                 std::cin.ignore();
 
                 switch (opcion)
@@ -192,6 +239,13 @@ void SucursalManager::ModificarSucursal()
                     std::cout << "Ingrese nueva direccion: ";
                     Direccion = validar.validarLetra();
                     sucursal.setDireccion(Direccion);
+                    modifico++;
+                    break;
+                      case OPC_ACTIVO:
+                    std::cout << std::endl << "Status actual: " << sucursal.getActivo();
+                    std::cout << std::endl << "Activo (1: Si / 0: No): ";
+                    activo = validar.validarBool();
+                    sucursal.setActivo(activo);
                     modifico++;
                     break;
 

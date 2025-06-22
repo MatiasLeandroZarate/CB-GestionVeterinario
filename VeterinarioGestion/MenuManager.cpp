@@ -564,6 +564,7 @@ void MenuManager::procesarSubmenuSucursales(){
                 sucursalman.ModificarSucursal();
                 break;
             case OPCION_BAJA:
+                sucursalman.DarDeBajaSucursal();
                 break;
             case OPCION_LISTAR:
                 sucursalman.MostrarSucursal();

@@ -4,6 +4,7 @@
 
 std::string Validaciones::validarLetra()
 {
+
     char letra;
 
     while (true) {
@@ -12,7 +13,7 @@ std::string Validaciones::validarLetra()
             letraString.push_back(letra);
             return letraString;
         } else {
-            std::cout << "Dato Invalido, Ingresar Nuevamente." << std::endl;
+            std::cout << "Dato Invalido, Ingresar Nuevamente :" << std::endl;
             std::cin.clear();
             std::cin.ignore(10000, '\n');
         }
@@ -27,7 +28,7 @@ int Validaciones::validarNumero()
         if (std::cin >> numero) {
                 return numero;
         } else {
-            std::cout << "Dato invalido, Ingrese de nuevo." << std::endl;
+            std::cout << "Dato invalido, Ingrese de nuevo :" << std::endl;
             std::cin.clear();
             std::cin.ignore(10000, '\n');
         }

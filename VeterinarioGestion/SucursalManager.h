@@ -16,6 +16,7 @@ public:
     int procesarEntradaMenu(int opcionMinima, int opcionMaxima);
     void LocateTitulo();
     void ModificarSucursal();
+    bool DarDeBajaSucursal();
     std::optional<Sucursales> obtenerSucursalPorId(int idBuscado);
 };
 

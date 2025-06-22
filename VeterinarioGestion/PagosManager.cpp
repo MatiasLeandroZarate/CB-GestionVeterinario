@@ -57,31 +57,31 @@ void PagosManager::FacturacionPorAnio()
 
 
     for (int i = 0; i < cantidadRegistros; i++)
-{
-    consulta = pArchivo.LeerConsultas(i);
-
-    if (consulta.getFecha().getAnio() == anio)
     {
-        int IDTrat = consulta.getIDTratamiento();
+        consulta = pArchivo.LeerConsultas(i);
 
-
-        for (int x = 0; x < cantidadRegistrosTratamientos; x++)
+        if (consulta.getFecha().getAnio() == anio)
         {
-            tratamiento = tArchivo.LeerTratamientos(x);
-            if (tratamiento.getIDTratamiento() == IDTrat)
-            {
-                int mes = consulta.getFecha().getMes();
-                if (mes >= 1 && mes <= 12)
-                {
-                    vecContadorGananciaAnual[mes - 1] += tratamiento.getCosto();
+            int IDTrat = consulta.getIDTratamiento();
 
-                    encontrado = true;
+
+            for (int x = 0; x < cantidadRegistrosTratamientos; x++)
+            {
+                tratamiento = tArchivo.LeerTratamientos(x);
+                if (tratamiento.getIDTratamiento() == IDTrat)
+                {
+                    int mes = consulta.getFecha().getMes();
+                    if (mes >= 1 && mes <= 12)
+                    {
+                        vecContadorGananciaAnual[mes - 1] += tratamiento.getCosto();
+
+                        encontrado = true;
+                    }
+                    break;
                 }
-                break;
             }
         }
     }
-}
 
     system("cls");
     if(encontrado)
@@ -195,10 +195,20 @@ void PagosManager::RecaudacionPorSucursal()
     GestorArchivo pArchivo("consultas.dat");
     GestorArchivo sArchivo("sucursales.dat");
     Sucursales sucursal;
+    GestorArchivo tArchivo("tratamientos.dat");
+    Tratamientos tratamiento;
+    int cantidadRegistrosTratamientos = tArchivo.CantidadRegistrosTratamientos();
     int sucursalAux;
     int cantidadRegistrosSucursales = sArchivo.CantidadRegistrosSucursales();
     int cantidadRegistros = pArchivo.CantidadRegistrosConsultas();
+    float *vecSucursales;
 
+    vecSucursales = new float [cantidadRegistrosSucursales];
+    if(vecSucursales==nullptr)
+    {
+        std::cout << "Error Al asginar memoria.";
+        return;
+    }
     for (int i = 0; i < cantidadRegistros; i++)
     {
         consulta = pArchivo.LeerConsultas(i);
@@ -206,11 +216,21 @@ void PagosManager::RecaudacionPorSucursal()
 
         for(int j=0; j<cantidadRegistrosSucursales; j++)
         {
-            sucursal = sArchivo.LeerSucursal(i);
+            sucursal = sArchivo.LeerSucursal(j);
 
             if(sucursal.getIDSucursal()==sucursalAux)
             {
-                // sucursal.setRecaudacion()+=consulta.getTratamiento().getCosto();
+                int IDTrat = consulta.getIDTratamiento();
+
+                for (int x = 0; x < cantidadRegistrosTratamientos; x++)
+                {
+                    tratamiento = tArchivo.LeerTratamientos(x);
+                    if (tratamiento.getIDTratamiento() == IDTrat)
+                    {
+                        vecSucursales[consulta.getIDSucursal()-1]+= tratamiento.getCosto();
+                    }
+                }
+
             }
 
         }
@@ -220,8 +240,9 @@ void PagosManager::RecaudacionPorSucursal()
     for(int i=0; i<cantidadRegistrosSucursales; i++)
     {
         sucursal = sArchivo.LeerSucursal(i);
-       //   std::cout << "RECAUDACION DE LA SUCURSAL " << sucursal.setIDSucursal() << " : $" << sucursal.getRecaudacion()<< std::endl;
+        std::cout << "RECAUDACION DE LA SUCURSAL " << sucursal.getIDSucursal() << " : $" << vecSucursales[i]<< std::endl;
     }
+    delete []vecSucursales;
 }
 
 
