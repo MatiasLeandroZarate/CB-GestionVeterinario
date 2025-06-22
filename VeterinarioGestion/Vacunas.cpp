@@ -69,6 +69,6 @@ std::string Vacunas::toCSV()
 }
 
 std::string Vacunas::toCSVHeader(){
-    return "id,nombre,descripcion,serial";
+    return "id,nombre,descripcion,serial,activo";
 }
 
