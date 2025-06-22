@@ -3,7 +3,6 @@
 #include <string>
 #include "Validaciones.h"
 
-
 class Fecha{
     private:
     int _dia, _mes, _anio;

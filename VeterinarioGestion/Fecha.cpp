@@ -45,44 +45,44 @@ Fecha Fecha::ValidacionFecha(Fecha validar)
 	Fecha validacion;
 	int dia, mes, anio;
 	bool fechaok = false;
+    Validaciones validador;
+
 	while (!fechaok)
 	{
 		std::cout << "Dia: ";
-		//std::cin >> dia;
-dia = valid.validarNumero();
+		dia = validador.validarNumero();
 		while (dia < 1 || dia >31)
 		{
 			std::cout << "Dia invalido, por favor, ingrese un dia valido: ";
 			dia = valid.validarNumero();
 		}
 		std::cout << "Mes: ";
-		//std::cin >> mes;
-mes = valid.validarNumero();
+		mes = validador.validarNumero();
 		while (mes < 1 || mes > 12)
 		{
 			std::cout << "Mes invalido, por favor, ingrese un mes valido: ";
-			mes = valid.validarNumero();
+		    mes = validador.validarNumero();
 		}
 		std::cout << "Anio: ";
-		anio = valid.validarNumero();
+		anio = validador.validarNumero();
 		while (anio < 2010 || anio > 2025)
 		{
 			std::cout << "Anio invalido, por favor, ingrese un anio valido: ";
-			anio = valid.validarNumero();
+            anio = validador.validarNumero();
 		}
-		// ES AÑO BISIESTO
+		// ES Aï¿½O BISIESTO
 
 		if (anio % 4 == 0)
 		{
 			while (mes == 2 && dia > 29)
 			{
 				std::cout << "Dia invalido, el Mes tiene 29 dias, ingrese Dia: ";
-				dia = valid.validarNumero();
+                dia = validador.validarNumero();
 			}
 			while ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30)
 			{
-				std::cout << "Dia invalido, El mes tiene 30 días, ingrese Dia: ";
-				dia = valid.validarNumero();
+				std::cout << "Dia invalido, El mes tiene 30 dï¿½as, ingrese Dia: ";
+                dia = validador.validarNumero();
 			}
 		}
 
@@ -91,12 +91,12 @@ mes = valid.validarNumero();
 			while (mes == 2 && dia > 28)
 			{
 				std::cout << "Dia invalido, el Mes tiene 28 dias, ingrese Dia: ";
-				dia = valid.validarNumero();
+                dia = validador.validarNumero();
 			}
 			while ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30)
 			{
-				std::cout << "Dia invalido, El mes tiene 30 días, ingrese Dia: ";
-				dia = valid.validarNumero();
+				std::cout << "Dia invalido, El mes tiene 30 dï¿½as, ingrese Dia: ";
+                dia = validador.validarNumero();
 			}
 		}
 
