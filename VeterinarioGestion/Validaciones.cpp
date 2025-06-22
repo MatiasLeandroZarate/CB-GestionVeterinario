@@ -4,86 +4,34 @@
 
 std::string Validaciones::validarLetra()
 {
-    std::string str;
-    bool strValido = false;
+    char letra;
 
-    while (!strValido)
-        {
-            int i = 0;
-            strValido = true;
-
-           // std::cin.ignore();
-
-            std::getline(std::cin, str);
-
-            if(str.empty())  ///empty() , verifica si el str esta Vacio.
-                {
-                strValido = false;
-                }
-
-            while (str[i])
-                {
-                    char c = str[i];
-                    if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == ' '))
-                        {
-                            strValido = false;
-                        }
-                    i++;
-                }
-
-            if (!strValido)
-                {
-                    std::cout << "Dato Invalido, Ingresar Nuevamente: " << std::endl;
-                }
+    while (true) {
+        if (std::cin >> letra) {
+            std::string letraString;
+            letraString.push_back(letra);
+            return letraString;
+        } else {
+            std::cout << "Dato Invalido, Ingresar Nuevamente." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
         }
-    return str;
+    }
 }
+
 int Validaciones::validarNumero()
 {
-    std::string numIngresado;
-    bool numValido = false;
-    int Num;
+    int numero;
 
-    std::cin.clear();
-
-    while (!numValido)
-        {
-         std::cin.clear();
-         std::getline(std::cin, numIngresado);
-         numValido = true;
-         int i = 0;
-
-         if(numIngresado.empty())  ///empty() , verifica si el str esta Vacio.
-            {
-             numValido = false;
-            }
-
-          while (numIngresado[i] != '\0')  // Validacion de que todos los caracteres sean numeros y no letras o caracteres
-              {
-              if (numIngresado[i] < '0' || numIngresado[i] > '9')
-                 {
-                    numValido = false;
-                }
-                    i++;
-                }
-
-            if (numValido)
-                {
-                 Num = 0;
-                 i = 0;
-                 while (numIngresado[i] != '\0')
-                 {
-                          Num = Num * 10 + (numIngresado[i] - '0');
-                            i++;
-                        }
-                }
-
-            if (!numValido)
-                {
-                    std::cout << "Dato invalido, Ingrese de nuevo: " << std::endl;
-                }
+    while (true) {
+        if (std::cin >> numero) {
+                return numero;
+        } else {
+            std::cout << "Dato invalido, Ingrese de nuevo." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
         }
-    return Num;
+    }
 }
 
 std::string Validaciones::validarNUMenString()

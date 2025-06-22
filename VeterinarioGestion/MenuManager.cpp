@@ -300,16 +300,18 @@ void MenuManager::procesarSubmenuConsultasMedicas(){
     const int OPCION_ALTA = 1;
     const int OPCION_MODIFICAR = 2;
     const int OPCION_LISTAR = 3;
-    const int OPCION_BAJA = 4;
-    const int OPCION_CONSULTA_MASCOTA = 5;
-    const int OPCION_CONSULTA_FECHA = 6;
-    const int OPCION_CONSULTA_SUCURSAL = 7;
-    const int OPCION_CONSULTA_VETERINARIO = 8;
-    const int OPCION_CONSULTA_CLIENTE = 9;
+    const int OPCION_DETALLE_CONSULTA = 4;
+    const int OPCION_BAJA = 5;
+    const int OPCION_CONSULTA_MASCOTA = 6;
+    const int OPCION_CONSULTA_FECHA = 7;
+    const int OPCION_CONSULTA_SUCURSAL = 8;
+    const int OPCION_CONSULTA_VETERINARIO = 9;
+    const int OPCION_CONSULTA_CLIENTE = 10;
 
     const string TITULO_ALTA = "Alta de atencion";
     const string TITULO_MODIFICAR = "Modificacion de atencion";
     const string TITULO_LISTAR = "Listar atenciones";
+    const string TITULO_DETALLE_CONSULTA = "Detalle de consulta por ID";
     const string TITULO_BAJA = "Baja de atencion";
     const string TITULO_CONSULTA_MASCOTA = "Consulta por ID Mascota";
     const string TITULO_CONSULTA_FECHA = "Consulta por rango de fecha";
@@ -325,6 +327,7 @@ void MenuManager::procesarSubmenuConsultasMedicas(){
         cout << OPCION_ALTA << ". " << TITULO_ALTA << endl;
         cout << OPCION_MODIFICAR << ". " << TITULO_MODIFICAR << endl;
         cout << OPCION_LISTAR << ". " << TITULO_LISTAR << endl;
+        cout << OPCION_DETALLE_CONSULTA << ". " << TITULO_DETALLE_CONSULTA << endl;
         cout << OPCION_BAJA << ". " << TITULO_BAJA << endl;
         cout << OPCION_CONSULTA_MASCOTA << ". " << TITULO_CONSULTA_MASCOTA << endl;
         cout << OPCION_CONSULTA_FECHA << ". " << TITULO_CONSULTA_FECHA << endl;
@@ -346,6 +349,9 @@ void MenuManager::procesarSubmenuConsultasMedicas(){
                 break;
             case OPCION_LISTAR:
                 consultasMan.listarConsultas();
+                break;
+            case OPCION_DETALLE_CONSULTA:
+                consultasMan.mostrarDetalleConsultaPorId();
                 break;
             case OPCION_BAJA:
                 consultasMan.bajaConsulta();
@@ -679,8 +685,6 @@ void MenuManager::procesarSubmenuExportaciones(){
         realizarOperacionPostSeleccion(opcion);
 
     } while (opcion != OPCION_ATRAS_SALIR);
-
-    esperarCualquierTecla();
 }
 
 

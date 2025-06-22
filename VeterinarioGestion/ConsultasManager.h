@@ -56,6 +56,7 @@ public:
 	void altaConsulta();
 	void modificarConsulta();
 	void listarConsultas();
+	void mostrarDetalleConsultaPorId();
 	void bajaConsulta();
 	void consultarPorMascota();
 	void consultarPorFecha();

@@ -5,6 +5,7 @@ using namespace std;
 const string ENCABEZADO_ALTA_CONSULTA = "========== Alta de consulta medica ==========";
 const string ENCABEZADO_MODIFICACION_CONSULTA = "========== Modificacion de consulta medica ==========";
 const string ENCABEZADO_LISTADO_CONSULTAS = "========== Listado de consultas medicas activas ==========";
+const string ENCABEZADO_DETALLE_CONSULTA = "========== Detalle de consulta medica por ID ==========";
 const string ENCABEZADO_BAJA_CONSULTA = "========== Baja de consulta medica ==========";
 const string ENCABEZADO_LISTADO_CONSULTAS_POR_MASCOTA = "========== Listado de consultas medicas por mascota ==========";
 const string ENCABEZADO_LISTADO_CONSULTAS_POR_FECHAS = "========== Listado de consultas medicas por rango de fechas ==========";
@@ -13,7 +14,7 @@ const string ENCABEZADO_LISTADO_CONSULTAS_POR_VETERINARIO = "========== Listado 
 const string ENCABEZADO_LISTADO_CONSULTAS_POR_CLIENTE = "========== Listado de consultas medicas por cliente ==========";
 
 const string MENSAJE_AVISO_RETORNO_MENU = "ATENCION: Sera regresado al menu anterior.";
-const string MENSAJE_CONFIRMACION_DATOS = "-> Confirma que los datos y la accion a realizar son correctos? (S/N): ";
+const string MENSAJE_CONFIRMACION_DATOS = "\n -> Confirma que los datos y/o la accion a realizar son correctos? (S/N): ";
 const int MAXIMOS_REINTENTOS_ENTRADA_DATOS = 3;
 
 int ConsultasManager::idMascotaFiltro = 0;
@@ -29,7 +30,7 @@ void ConsultasManager::altaConsulta() {
     int idMascota, idTratamiento, idVeterinario, idSucursal;
     int contadorIntentosCreacion = 0;
     string sintomas, diagnostico,respuestaProximaVisita;
-    bool registraProximaVisita, nuevaConsultaEsValida, aceptaNuevoRegistro;
+    bool registraProximaVisita, nuevaConsultaEsValida, aceptaNuevoRegistro, creacionExitosa = false;
 
     Tratamientos tratamiento;
     Veterinarios veterinario;
@@ -40,11 +41,18 @@ void ConsultasManager::altaConsulta() {
     do{
         contadorIntentosCreacion++;
 
+        if(contadorIntentosCreacion > MAXIMOS_REINTENTOS_ENTRADA_DATOS){
+            cout << MENSAJE_AVISO_RETORNO_MENU << endl;
+            return;
+        }
+
+        limpiarPantalla();
+
         cout << ENCABEZADO_ALTA_CONSULTA << endl;
          //Obtencion de  Sucursal.
         optional<Sucursales> sucursalOptional = solicitarSucursalValidada();
         if(sucursalOptional.has_value()){
-            int idSucursal = sucursalOptional.value().getIDSucursal();
+            idSucursal = sucursalOptional.value().getIDSucursal();
          } else {
              cout << MENSAJE_AVISO_RETORNO_MENU << endl;
              break;
@@ -60,9 +68,11 @@ void ConsultasManager::altaConsulta() {
          }
 
         //Obtencion de fecha de consulta
+        cout << "Ingrese la fecha de la consulta:" << endl;
         fechaConsulta = fechaConsulta.ValidacionFecha(fechaConsulta);
 
         cout << "Ingrese los sintomas: ";
+        cin.ignore();
         getline(cin, sintomas);
 
         cout << "Ingrese el diagnostico: ";
@@ -89,100 +99,88 @@ void ConsultasManager::altaConsulta() {
         cout << "Desea registrar una proxima visita? (S/N): ";
         respuestaProximaVisita = validador.validarLetra();
 
-        if(respuestaProximaVisita == "S")
+        if(respuestaProximaVisita == "S" || respuestaProximaVisita == "s")
         {
             fechaProximaVisita = fechaProximaVisita.ValidacionFecha(fechaProximaVisita);
         }
 
-        Consultas consulta = Consultas(obtenerProximoId(), idMascota, fechaConsulta, sintomas, diagnostico, idTratamiento, fechaProximaVisita, idVeterinario, idSucursal);
+        Consultas nuevaConsulta = Consultas(obtenerProximoId(), idMascota, fechaConsulta, sintomas, diagnostico, idTratamiento, fechaProximaVisita, idVeterinario, idSucursal);
+        imprimirConsulta(nuevaConsulta);
+        aceptaNuevoRegistro = confirmaAccion();
 
-        nuevaConsultaEsValida = esConsultaValida(consulta);
+        if(aceptaNuevoRegistro){
+            nuevaConsultaEsValida = esConsultaValida(nuevaConsulta);
 
-        if(nuevaConsultaEsValida){
-            cout << MENSAJE_CONFIRMACION_DATOS << endl;
-            imprimirConsulta(consulta);
+            if(nuevaConsultaEsValida){
+                if(aceptaNuevoRegistro){
+                  creacionExitosa = archivoConsultas.GuardarConsultas(nuevaConsulta);
 
-            aceptaNuevoRegistro = confirmaAccion();
-
-            if(aceptaNuevoRegistro){
-              if (archivoConsultas.GuardarConsultas(consulta)) {
-                    cout << "Consulta creada exitosamente.";
-                    esperarCualquierTecla();
-                } else {
-                    cout << "Ocurrio un error al guardar la consulta, intente de nuevo mas tarde.";
-                    esperarCualquierTecla();
-                    limpiarPantalla();
+                  if (creacionExitosa) {
+                        cout << "Consulta creada exitosamente." << endl;
+                    } else {
+                        cout << "Ocurrio un error al guardar la consulta, intente de nuevo mas tarde." << endl;
+                    }
                 }
             } else {
-                cout << "Porfavor, ingrese todos los datos nuevamente.";
+                cout << "Ya existe una consulta activa para los datos ingresados, corrija e intente nuevamente porfavor." << endl;
                 esperarCualquierTecla();
             }
         } else {
-            cout << "Ya existe una consulta para los datos ingresadoS, corrija e intente nuevamente.";
+            cout << "Porfavor, inicie de nuevo la carga de la nueva consulta." << endl;
             esperarCualquierTecla();
+            continue;
         }
-
-        if(!aceptaNuevoRegistro){
-            limpiarPantalla();
-        }
-
-        if(contadorIntentosCreacion == MAXIMOS_REINTENTOS_ENTRADA_DATOS){
-            cout << MENSAJE_AVISO_RETORNO_MENU << endl;
-            break;
-        }
-    } while(!nuevaConsultaEsValida || !aceptaNuevoRegistro);
-
-    esperarCualquierTecla();
-    limpiarPantalla();
+    } while(!creacionExitosa);
 }
 
+
 void ConsultasManager::modificarConsulta() {
-    bool usuarioConfirmaAccion = false;
+    bool consultaModificadaExitosamente = false;
     Consultas consulta;
-    int id;
 
     do{
         limpiarPantalla();
         cout << ENCABEZADO_MODIFICACION_CONSULTA << endl;
+
         optional<Consultas> consultaOptional = solicitarConsultaPorId();
 
         if(consultaOptional.has_value()){
-            cout << "No existe ninguna consulta asociada a ese ID, porfavor ingrese uno valido." << endl;
-            return;
+            consulta = consultaOptional.value();
+            string nuevoDiagnostico;
+            cout << "Diagnostico actual: " << consulta.getDiagnostico() << endl;
+            cout << "Ingrese el nuevo diagnostico: ";
+            cin.ignore();
+            getline(cin, nuevoDiagnostico);
+            consulta.setDiagnostico(nuevoDiagnostico);
+
+            GestorArchivo archivoConsultas("consultas.dat");
+            int posicionConsultaArchivo = BuscarConsultaPorID(consulta.getIDConsultas());
+            if (archivoConsultas.ModificarConsulta(posicionConsultaArchivo, consulta)) {
+                cout << "Consulta modificada exitosamente." << endl;
+                consultaModificadaExitosamente = true;
+            } else {
+                cout << "Ocurrio un error al modificar la consulta." << endl;
+            }
         } else {
             cout << MENSAJE_AVISO_RETORNO_MENU << endl;
             return;
         }
-
-        consulta = consultaOptional.value();
-
-        imprimirConsulta(consulta);
-
-        cin.ignore();
-        usuarioConfirmaAccion = confirmaAccion();
-    }while(!usuarioConfirmaAccion);
-
-    string nuevoDiagnostico;
-    cout << "Diagnostico actual: " << consulta.getDiagnostico() << endl;
-    cout << "Nuevo diagnóstico: ";
-    cin.ignore();
-    getline(cin, nuevoDiagnostico);
-
-    consulta.setDiagnostico(nuevoDiagnostico);
-    GestorArchivo archivoConsultas("consultas.dat");
-
-    int posicionConsultaArchivo = BuscarConsultaPorID(id);
-
-    if (archivoConsultas.ModificarConsulta(posicionConsultaArchivo, consulta)) {
-        cout << "Consulta modificada exitosamente." << endl;
-    } else {
-        cout << "Error al modificar la consulta." << endl;
-    }
+    }while(!consultaModificadaExitosamente);
 }
 
 void ConsultasManager::listarConsultas() {
     cout << ENCABEZADO_LISTADO_CONSULTAS << endl;
    listarConsultasConFiltro(sinFiltro);
+}
+
+void ConsultasManager::mostrarDetalleConsultaPorId(){
+    cout << ENCABEZADO_DETALLE_CONSULTA << endl;
+    optional<Consultas> consultaOptional = solicitarConsultaPorId();
+
+    if(!consultaOptional.has_value()){
+      cout << "No existe ninguna consulta asociada a ese ID, porfavor ingrese uno valido." << endl;
+      return;
+    }
 }
 
 
@@ -313,8 +311,8 @@ bool ConsultasManager::confirmaAccion() {
     cout << MENSAJE_CONFIRMACION_DATOS;
 
     Validaciones validador;
+    cin.ignore();
     string letra = validador.validarLetra();
-
     if(letra == "S" || letra == "s"){
         return true;
     }
@@ -328,6 +326,7 @@ void ConsultasManager::consultarPorMascota() {
     optional<Mascotas> mascotaOptional = solicitarMascotaValidada();
 
     if(mascotaOptional.has_value()){
+        limpiarPantalla();
         listarConsultasConFiltro(filtroPorMascota);
     } else {
         cout << MENSAJE_AVISO_RETORNO_MENU << endl;
@@ -344,8 +343,7 @@ std::optional<Mascotas> ConsultasManager::solicitarMascotaValidada() {
         cout << "Ingrese ID de la mascota: ";
         Validaciones validador;
         idMascotaFiltro = validador.validarNumero();
-
-         mascotasOptional = mascotasManager.obtenerMascotaPorId(idMascotaFiltro);
+        mascotasOptional = mascotasManager.obtenerMascotaPorId(idMascotaFiltro);
 
         if(mascotasOptional.has_value()){
             cout << "Mascota encontrada: " << mascotasOptional.value().getNombre() << endl;
@@ -376,6 +374,7 @@ std::optional<Sucursales> ConsultasManager::solicitarSucursalValidada() {
         cantidadIntentosIngreso++;
         cout << "Ingrese ID de la sucursal: ";
         Validaciones validador;
+
         idSucursalFiltro = validador.validarNumero();
         sucursalOptional = sucursalesManager.obtenerSucursalPorId(idSucursalFiltro);
 
@@ -408,13 +407,13 @@ std::optional<Veterinarios> ConsultasManager::solicitarVeterinarioValidado() {
         cantidadIntentosIngreso++;
         cout << "Ingrese ID de veterinario: ";
         Validaciones validador;
+
         idVeterinarioFiltro = validador.validarNumero();
         veterinarioOptional = veterinariosManager.obtenerVeterinarioPorId(idVeterinarioFiltro);
 
         if(veterinarioOptional.has_value()){
             cout << "Veterinario encontrado: " << veterinarioOptional.value().getNombre() << endl;
             usuarioConfirmaAccion = confirmaAccion();
-
             if(usuarioConfirmaAccion){
                 return veterinarioOptional.value();
             }
@@ -440,6 +439,7 @@ std::optional<Cliente> ConsultasManager::solicitarClienteValidado() {
         cantidadIntentosIngreso++;
         cout << "Ingrese ID de cliente: ";
         Validaciones validador;
+
         idClienteFiltro = validador.validarNumero();
         clienteOptional = clientesManager.obtenerClientePorId(idClienteFiltro);
 
@@ -473,11 +473,12 @@ std::optional<Tratamientos> ConsultasManager::solicitarTratamientoValidado() {
         cantidadIntentosIngreso++;
         cout << "Ingrese ID de tratamiento: ";
         Validaciones validador;
+
         idTratamiento = validador.validarNumero();
         tratamientoOptional = tratamientosManager.obtenerTratamientoPorId(idTratamiento);
 
         if(tratamientoOptional.has_value()){
-            cout << "Cliente encontrado: " << tratamientoOptional.value().getNombreTratamiento() << endl;
+            cout << "Tratamiento encontrado: " << tratamientoOptional.value().getNombreTratamiento() << endl;
             usuarioConfirmaAccion = confirmaAccion();
 
             if(usuarioConfirmaAccion){
@@ -507,12 +508,10 @@ std::optional<Consultas> ConsultasManager::solicitarConsultaPorId() {
         cout << "Ingrese ID de Consulta: ";
         Validaciones validador;
 
-        cin.ignore();
         idConsulta = validador.validarNumero();
         consultaOptional = obtenerConsultaPorId(idConsulta);
 
         if(consultaOptional.has_value()){
-            cout << "Consulta encontrada: " << endl;
             imprimirConsulta(consultaOptional.value());
 
             usuarioConfirmaAccion = confirmaAccion();
@@ -543,6 +542,8 @@ void ConsultasManager::consultarPorFecha() {
     cout << "Ingrese fecha hasta: " << endl;
     fechaHastaFiltro = fecha.ValidacionFecha(fecha);
 
+    confirmaAccion();
+    limpiarPantalla();
     listarConsultasConFiltro(filtroPorRangoDeFecha);
 }
 
@@ -552,6 +553,7 @@ void ConsultasManager::consultarPorSucursal() {
     optional<Sucursales> sucursalOptional = solicitarSucursalValidada();
 
     if(sucursalOptional.has_value()){
+        limpiarPantalla();
         listarConsultasConFiltro(filtroPorSucursal);
     } else {
         cout << MENSAJE_AVISO_RETORNO_MENU << endl;
@@ -564,6 +566,7 @@ void ConsultasManager::consultarPorVeterinario() {
     optional<Veterinarios> veterinarioOptional = solicitarVeterinarioValidado();
 
     if(veterinarioOptional.has_value()){
+        limpiarPantalla();
         listarConsultasConFiltro(filtroPorVeterinario);
     } else {
         cout << MENSAJE_AVISO_RETORNO_MENU << endl;
@@ -577,6 +580,7 @@ void ConsultasManager::consultarPorCliente() {
     optional<Cliente> clienteOptional = solicitarClienteValidado();
 
     if(clienteOptional.has_value()){
+        limpiarPantalla();
         listarConsultasConFiltro(filtroPorCliente);
     } else {
         cout << MENSAJE_AVISO_RETORNO_MENU << endl;
@@ -592,16 +596,17 @@ void ConsultasManager::imprimirEncabezadoListado() {
     rlutil::locate(59, 2);  cout << "| Prox. Visita";
     rlutil::locate(76, 2);  cout << "| Sucursal";
     rlutil::locate(92, 2);  cout << "| Veterinario";
-    rlutil::locate(109, 2); cout << "| Sntomas";
+    rlutil::locate(109, 2); cout << "| Sintomas";
     rlutil::locate(126, 2); cout << "| Tratamiento";
 }
 
 void ConsultasManager::imprimirConsulta(Consultas consulta) {
+    cout << " ============== Consulta =================== " << endl;
     cout << "ID de consulta: " << consulta.getIDConsultas() << endl;
     cout << "Fecha: " << consulta.getFecha().toString() << endl;
     cout << "Sintomas: " << consulta.getSintomas() << endl;
     cout << "Diagnostico: " << consulta.getDiagnostico() << endl;
-    cout << "Estado: " <<  (consulta.getEstado() ? "Activo" : "Baja");
+    cout << "Estado: " <<  (consulta.getEstado() ? "Activo" : "Baja") << endl;
     cout << "Fecha proxima visita: " << consulta.getFechaproximavisita().toString() << endl;
 
     optional<Mascotas> mascotaOptional = mascotasManager.obtenerMascotaPorId(consulta.getIDMascotas());
@@ -613,6 +618,7 @@ void ConsultasManager::imprimirConsulta(Consultas consulta) {
     cout << "Sucursal: " << sucursalOptional.value().getNombre() << endl;
     cout << "Veterinario: " << veterinarioOptional.value().getNombre() << endl;
     cout << "Tratamiento: " << tratamientoOptional.value().getNombreTratamiento() << endl;
+    cout << " ============================================== " << endl;
 }
 
 bool ConsultasManager::esConsultaValida(Consultas consulta) {
@@ -625,8 +631,6 @@ bool ConsultasManager::esConsultaValida(Consultas consulta) {
 }
 
 bool ConsultasManager::esConsultaDuplicada(Consultas consulta) {
-    cout << "Atencion: Verificando los datos ingresados..." << endl;
-
     GestorArchivo archivoConsultas("consultas.dat");
 
     Consultas consultaFichero;
@@ -637,7 +641,9 @@ bool ConsultasManager::esConsultaDuplicada(Consultas consulta) {
 
 		if(consulta.getIDConsultas() != consultaFichero.getIDConsultas()
         && consulta.getIDSucursal() == consultaFichero.getIDSucursal()
-        && consulta.getIDVeterinario() == consultaFichero.getIDVeterinario()){
+        && consulta.getIDVeterinario() == consultaFichero.getIDVeterinario()
+        && consulta.getFecha().equals(consultaFichero.getFecha())
+        && consulta.getEstado()){
             return true;
         }
     }
