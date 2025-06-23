@@ -12,7 +12,7 @@ void TratamientosManager::CargarTratamiento()
 
 	std::cout << "Ingrese el Nombre del Tratamiento: ";
 	std::cin.ignore();
-	NombreTratamiento = validar.validarLetra();
+	NombreTratamiento = validar.validarTexto();
 
 	do {
 		ComparaNombre = BuscarTratamientoPorNombre(NombreTratamiento);
@@ -28,9 +28,10 @@ void TratamientosManager::CargarTratamiento()
 		IDTratamiento = SiguienteID();
 
 		std::cout << "Ingrese la Descripcion: ";
-		Descripcion = validar.validarLetra();
+		Descripcion = validar.validarTexto();
 		std::cout << "Ingrese la Duracion en Dias: ";
 		DuracionDias = validar.validarNumero();
+		std::cin.ignore();
 		std::cout << "Ingrese el Monto: ";
 		Costo = validar.validarFloat();
 		std::cout << std::endl;
@@ -213,6 +214,7 @@ bool TratamientosManager::ConfirmarIngreso(Tratamientos tratamiento, bool confir
 	std::cout << "ID Tratamiento:" << std::endl;
 	std::cout << "Nombre Tratamiento: "<< std::endl;
 	std::cout << "Descripcion: " << std::endl;
+	std::cout << "Duracion Dias: " << std::endl;
 	std::cout << "Costo: " << std::endl;
 	std::cout << "Activo: " << std::endl;
 	rlutil::locate(21, 2);
@@ -222,8 +224,10 @@ bool TratamientosManager::ConfirmarIngreso(Tratamientos tratamiento, bool confir
 	rlutil::locate(21, 4);
 	std::cout << tratamiento.getDescripcion();
 	rlutil::locate(21, 5);
-	std::cout << tratamiento.getCosto();
+	std::cout << tratamiento.getDuracionDias();
 	rlutil::locate(21, 6);
+	std::cout << tratamiento.getCosto();
+	rlutil::locate(21, 7);
 	std::cout << tratamiento.getActivo();
 
 	std::cout << std::endl << "Confirma los datos ingresados? 1-Si, 0-No: " << std::endl;
@@ -326,7 +330,7 @@ void TratamientosManager::ModificarTratamientos()
 	std::cin.ignore();
 	MostrarTratamiento();
 	rlutil::locate(47, 1);
-	NombreTratamiento = validar.validarLetra();
+	NombreTratamiento = validar.validarTexto();
 	limpiarPantalla();
 
 
@@ -386,7 +390,7 @@ void TratamientosManager::ModificarTratamientos()
 
 					std::cout << std::endl << "Nombre actual del Tratamiento: " << tratamiento.getNombreTratamiento();
 					std::cout << std::endl << "Ingrese nuevo Nombre del Tratamiento: ";
-					NombreTratamiento = validar.validarLetra();
+					NombreTratamiento = validar.validarTexto();
 
 					tratamiento.setNombreTratamiento(NombreTratamiento);
 					limpiarPantalla();
@@ -396,7 +400,7 @@ void TratamientosManager::ModificarTratamientos()
 				case OPC_DESCRIPCION:
 					std::cout << std::endl << "Descripcion actual: " << tratamiento.getDescripcion();
 					std::cout << std::endl << "Ingrese la nueva Descripcion: ";
-					descripcion = validar.validarLetra();
+					descripcion = validar.validarTexto();
 
 					tratamiento.setDescripcion(descripcion);
 					limpiarPantalla();

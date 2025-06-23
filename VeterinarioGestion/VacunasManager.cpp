@@ -13,7 +13,7 @@ void VacunasManager::CargarVacunas()
 
 	std::cout << "Ingrese el Nombre de la Vacuna: ";
 	std::cin.ignore();
-	nombrevacuna = validar.validarLetra();
+	nombrevacuna = validar.validarTexto();
 
 	do{
 		ComparaNombre = BuscarVacunaPorNombre(nombrevacuna);
@@ -27,7 +27,7 @@ void VacunasManager::CargarVacunas()
 		{
 
 	std::cout << "Ingrese la Descripcion: ";
-	descripcion = validar.validarLetra();
+	descripcion = validar.validarTexto();
 	std::cout << "Ingrese el N Serial: ";
 	serial = validar.validarNUMenString();
 
@@ -83,7 +83,7 @@ void VacunasManager::ModificarVacunas()
 	std::cin.ignore();
 	MostrarVacunas();
 	rlutil::locate(47, 1);
-	NombreVacuna = validar.validarLetra();
+	NombreVacuna = validar.validarTexto();
 	limpiarPantalla();
 
 
@@ -139,7 +139,7 @@ void VacunasManager::ModificarVacunas()
 
 					std::cout << std::endl << "Nombre actual de la Vacuna: " << vacuna.getNombreVacuna();
 					std::cout << std::endl << "Ingrese nuevo Nombre de la Vacuna: ";
-					NombreVacuna = validar.validarLetra();
+					NombreVacuna = validar.validarTexto();
 
 					vacuna.setNombreVacuna(NombreVacuna);
 					limpiarPantalla();
@@ -149,7 +149,7 @@ void VacunasManager::ModificarVacunas()
 				case OPC_DESCRIPCION:
 					std::cout << std::endl << "Descripcion actual: " << vacuna.getDescripcion();
 					std::cout << std::endl << "Ingrese la nueva Descripcion: ";
-					descripcion = validar.validarLetra();
+					descripcion = validar.validarTexto();
 
 					vacuna.setDescripcion(descripcion);
 					limpiarPantalla();

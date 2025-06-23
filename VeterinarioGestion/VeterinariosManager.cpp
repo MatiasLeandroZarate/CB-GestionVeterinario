@@ -35,9 +35,10 @@ void VeterinariosManager::CargarVeterinarios()
                     std::cout << "Ingrese el ID especialidad: ";
                     idespecialidad = validar.validarNumero();
                     std::cout << "Ingrese el Nombre: ";
-                    Nombre = validar.validarLetra();
+                    std::cin.ignore();
+                    Nombre = validar.validarTexto();
                     std::cout << "Ingrese el Apellido: ";
-                    Apellido = validar.validarLetra();
+                    Apellido = validar.validarTexto();
                     std::cout << "Ingrese 1 si esta Activo o 0 para inactivo): ";
                     activo = validar.validarBool();
 
@@ -67,9 +68,9 @@ void VeterinariosManager::CargarVeterinarios()
                         {
                             especialidad = eArchivo.LeerEspecialidad(posEspecialidad);
                         }
-                    limpiarPantalla();
                     veterinarios = Veterinarios(idveterinario, matricula, DNI, Nombre, Apellido, especialidad, activo);
 
+                    limpiarPantalla();
                     confirmar = ConfirmarIngreso(veterinarios, confirmar);
                     guardardato = true;
                 }
@@ -89,7 +90,7 @@ void VeterinariosManager::MostrarVeterinarioInforme()
         {
             std::cout << "No hay Veterinarios registrados." << std::endl;
         }
-    std::cout << "VETERINARIO: " << std::endl;
+
    // std::cout << "IDVeterinario | MatriculaVete | DNIVete | NombreVete | ApellidoVete | IDEspe. | NombreEspe. | Descripcion \t | Activo" << std::endl;
 	LocateTitulo();
     std::cout << std::endl;
@@ -184,7 +185,7 @@ bool VeterinariosManager::ConfirmarIngreso(Veterinarios veterinario, bool confir
     std::cout << "Nombre: " << std::endl;
     std::cout << "Apellido: " << std::endl;
     std::cout << "IDEspecialidad: " << std::endl;
-    std::cout << "Especialidad: " << std::endl<< std::endl;
+    std::cout << "Especialidad: " << std::endl;
     std::cout << "Descripcion: " << std::endl;
     std::cout << "Activo: " << std::endl;
     rlutil::locate(20, 2);
@@ -206,12 +207,9 @@ bool VeterinariosManager::ConfirmarIngreso(Veterinarios veterinario, bool confir
     rlutil::locate(20, 10);
     std::cout << std::to_string(veterinario.getActivo()) << std::endl;
 
-
-
-
     std::cout << std::endl << "Confirma los datos ingresados? 1-Si, 0-No: " << std::endl;
     confirmar = validar.validarBool();
-
+    limpiarPantalla();
 
     if (confirmar)
         {
@@ -494,7 +492,7 @@ void VeterinariosManager::ModificarVeterinarios()
             case OPC_NOMBRE:
                     std::cout << std::endl << "Nombre actual: " << veterinario.getNombre();
                     std::cout << std::endl << "Ingrese nuevo Nombre: ";
-                    nombre = validar.validarLetra();
+                    nombre = validar.validarTexto();
                     veterinario.setNombre(nombre);
                     modifico++;
                 break;
@@ -502,7 +500,7 @@ void VeterinariosManager::ModificarVeterinarios()
             case OPC_APELLIDO:
                     std::cout << std::endl << "Apellido actual: " << veterinario.getApellido();
                     std::cout << std::endl << "Ingrese nuevo Apellido: ";
-                    apellido = validar.validarLetra();
+                    apellido = validar.validarTexto();
                     veterinario.setApellido(apellido);
                     modifico++;
                 break;
