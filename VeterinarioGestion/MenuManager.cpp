@@ -125,7 +125,7 @@ void MenuManager::procesarSubmenuClientes(){
     const string TITULO_ALTA = "Alta de cliente";
     const string TITULO_MODIFICAR = "Modificacion de cliente";
     const string TITULO_BAJA = "Baja de cliente";
-    const string TITULO_LISTAR = "Listado de clientes (ordenado por ID)";
+    const string TITULO_LISTAR = "Listado de clientes";
     const string TITULO_CONSULTA_DNI = "Consulta por DNI";
     const string TITULO_CONSULTA_ID = "Consulta por ID";
     const string TITULO_CONSULTA_TELEFONO = "Consulta por telefono";
@@ -149,26 +149,29 @@ void MenuManager::procesarSubmenuClientes(){
         opcion = procesarEntradaMenu(OPCION_ATRAS_SALIR, OPCION_CONSULTA_TELEFONO);
 
         switch (opcion) {
-            case OPCION_LISTAR:
-
-                clienteMan.MostrarClientes();
-                break;
-            case OPCION_ALTA:
-                break;
-            case OPCION_MODIFICAR:
-                break;
-            case OPCION_BAJA:
-                break;
-            case OPCION_CONSULTA_DNI:
-                std::cout << "Ingrese el DNI del cliente a buscar: ";
-
-                std::cin >> dniBuscado;
-				limpiarPantalla();
-
-
-				clienteMan.BuscarClientePorDNI(dniBuscado);
-
-                break;
+        case OPCION_ALTA:
+            clienteMan.CargarCliente();
+            break;
+        case OPCION_MODIFICAR:
+            clienteMan.ModificarClientes();
+            break;
+        case OPCION_BAJA:
+            clienteMan.BajaCliente();
+            break;
+        case OPCION_LISTAR:
+            clienteMan.MostrarClientes();
+            break;
+        case OPCION_CONSULTA_DNI:
+            clienteMan.BuscarCliporDni();
+            break;
+        case OPCION_CONSULTA_ID:
+            clienteMan.MostrarClienteporID();
+            break;
+        case OPCION_CONSULTA_TELEFONO:
+            clienteMan.MostrarClienteporTEL();
+            break;
+        case OPCION_ATRAS_SALIR:
+            break;
         }
 
         realizarOperacionPostSeleccion(opcion);

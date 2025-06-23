@@ -24,6 +24,7 @@ class GestorArchivo{
         bool GuardarClientes(Cliente cliente);
         Cliente LeerClientes (int posicion);
         int CantidadRegistrosClientes();
+        bool ModificarClientes(int pos, Cliente cliente);
 
 		//Funciones para Mascotas
         bool GuardarMascotas(Mascotas mascota);

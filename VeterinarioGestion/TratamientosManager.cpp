@@ -165,7 +165,6 @@ std::optional<Tratamientos> TratamientosManager::obtenerTratamientoPorId(int idB
 
 int TratamientosManager::SiguienteID()
 {
-	Tratamientos ultimotratamiento;
 	GestorArchivo tArchivo("tratamientos.dat");
 	int cantidadRegistros = tArchivo.CantidadRegistrosTratamientos();
 

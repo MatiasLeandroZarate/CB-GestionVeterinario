@@ -46,6 +46,20 @@ int GestorArchivo::CantidadRegistrosClientes(){
     return cantidadRegistros;
 }
 
+bool GestorArchivo::ModificarClientes(int pos, Cliente cliente) {
+    FILE* p;
+    p = fopen("clientes.dat", "rb+");
+    if (p == nullptr)
+    {
+        return false;
+    }
+    fseek(p, pos * sizeof(Cliente), SEEK_SET);
+    bool escribio = fwrite(&cliente, sizeof(Cliente), 1, p);
+    fclose(p);
+
+    return escribio;
+}
+
 // ----------------------------------SECTOR MASCOTAS----------------------------------
 
 bool GestorArchivo::GuardarMascotas(Mascotas mascota)
