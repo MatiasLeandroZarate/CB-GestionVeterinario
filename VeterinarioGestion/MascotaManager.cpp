@@ -16,13 +16,14 @@ void MascotaManager::CargarMascota()
     IDMascota = GenerarIdAutomatico();
     std::cin.ignore();
     std::cout << "Ingrese Nombre: ";
-    Nombre = validar.validarLetra();
+    Nombre = validar.validarTexto();
     std::cout << "Ingrese Especie: ";
-    Especie = validar.validarLetra();
+    Especie = validar.validarTexto();
     std::cout << "Ingrese Raza: ";
-    Raza = validar.validarLetra();
+    Raza = validar.validarTexto();
     std::cout << "Ingrese Edad: ";
     Edad = validar.validarNumero();
+    std::cin.ignore();
     std::cout << "Ingrese Peso: ";
     Peso = validar.validarFloat();
 
@@ -96,15 +97,16 @@ void MascotaManager::MostrarMascota()
 }
 void MascotaManager::MostrarMascotaPorRaza()
 {
+    Validaciones validar;
     Mascotas mascotas;
     GestorArchivo gArchivo("mascotas.dat");
     int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
     std::string RazaBuscada;
     int ContEncontrados = 0;
     int j=0;
-
+    std::cin.ignore();
     std::cout << "Ingrese Raza de la Mascota: ";
-    std::cin >> RazaBuscada;
+    RazaBuscada = validar.validarTexto();
 
     for (int i = 0; i < cantidadRegistros; i++)
     {
@@ -161,16 +163,16 @@ void MascotaManager::MostrarMascotaPorRaza()
 }
 void MascotaManager::MostrarMascotaPorEspecie()
 {
-
+    Validaciones validar;
     Mascotas mascotas;
     GestorArchivo gArchivo("mascotas.dat");
     int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
     std::string EspecieBuscada;
     int ContEncontrados = 0;
     int j=0;
-
+    std::cin.ignore();
     std::cout << "Ingrese Especie de la Mascota: ";
-    std::cin >> EspecieBuscada;
+    EspecieBuscada = validar.validarTexto();
 
     for (int i = 0; i < cantidadRegistros; i++)
     {
@@ -226,7 +228,8 @@ void MascotaManager::MostrarMascotaPorEspecie()
 }
 void MascotaManager::MostrarMascotaPorID()
 {
- Mascotas mascotas;
+    Validaciones validar;
+    Mascotas mascotas;
     GestorArchivo gArchivo("mascotas.dat");
     int cantidadRegistros = gArchivo.CantidadRegistrosMascotas();
     int idBuscado;
@@ -234,7 +237,7 @@ void MascotaManager::MostrarMascotaPorID()
     int j = 0;
 
     std::cout << "Ingrese el ID de la Mascota: ";
-    std::cin >> idBuscado;
+    idBuscado = validar.validarNumero();
 
     for (int i = 0; i < cantidadRegistros; i++)
     {
@@ -325,7 +328,7 @@ std::optional<Mascotas> MascotaManager::obtenerMascotaPorId(int idBuscado) {
 
 int MascotaManager::ValidarIdCliente()
 {
-
+    Validaciones validar;
     std::string IDIngresado;
     bool IDValido = false;
 
@@ -335,7 +338,7 @@ int MascotaManager::ValidarIdCliente()
     {
 
         std::cout << "Ingrese ID del Cliente: ";
-        std::getline(std::cin, IDIngresado);
+        std::getline(std::cin,IDIngresado);
         IDValido = true;
         int i = 0;
 
@@ -388,6 +391,7 @@ int MascotaManager::ValidarIdCliente()
 
 std::string  MascotaManager::validarSexo()
 {
+    Validaciones validar;
     std::string Sexo;
     bool SexoValido = false;
 
@@ -397,7 +401,7 @@ std::string  MascotaManager::validarSexo()
         SexoValido = true;
 
         std::cout << "Ingrese el Sexo (1.- Hembra 0.- Macho): ";
-        std::getline(std::cin, Sexo);
+        Sexo = validar.validarNUMenString();
 
         while (Sexo[i] != '\0')  // Validacion de que todos los caracteres sean numeros y no letras o caracteres
         {
@@ -503,7 +507,7 @@ void MascotaManager::ModificarMascota()
     float Peso;
     bool Activo;
     Fecha FechaNacimiento, fechavalidar;
-
+    int activos = 0;
     GestorArchivo vArchivo("mascotas.dat");
     int cantidadRegistros = vArchivo.CantidadRegistrosMascotas();
 
@@ -524,25 +528,25 @@ void MascotaManager::ModificarMascota()
                 std::cout << "Datos actuales:" << std::endl;
                 LocateTitulo();
 
-                rlutil::locate(3, i + 3);
+                rlutil::locate(3, activos + 3);
                 std::cout << mascota.getIDMascota();
-                rlutil::locate(14, i + 3);
+                rlutil::locate(14, activos + 3);
                 std::cout << mascota.getNombre();
-                rlutil::locate(25, i + 3);
+                rlutil::locate(25, activos + 3);
                 std::cout << mascota.getEspecie();
-                rlutil::locate(40, i + 3);
+                rlutil::locate(40, activos + 3);
                 std::cout << mascota.getRaza();
-                rlutil::locate(56, i + 3);
+                rlutil::locate(56, activos + 3);
                 std::cout << mascota.getEdad();
-                rlutil::locate(63, i + 3);
+                rlutil::locate(63, activos + 3);
                 std::cout << mascota.getPeso();
-                rlutil::locate(72, i + 3);
+                rlutil::locate(72, activos + 3);
                 std::cout << mascota.getSexo();
-                rlutil::locate(83, i + 3);
+                rlutil::locate(83, activos + 3);
                 std::cout << mascota.getFechaNacimiento().toString();
-                rlutil::locate(103, i + 3);
+                rlutil::locate(103, activos + 3);
                 std::cout << mascota.getIDCliente();
-                rlutil::locate(115, i + 3);
+                rlutil::locate(115, activos + 3);
                 std::cout << mascota.getActivo();
 
                 std::cout << std::endl <<"-----------------------------------------" << std::endl;
@@ -565,7 +569,7 @@ void MascotaManager::ModificarMascota()
                 case OPC_NOMBRE:
                     std::cout << std::endl << "Nombre Actual de la Mascota: " << mascota.getNombre();
                     std::cout << std::endl << "Ingrese nuevo Nombre: ";
-                    Nombre = validar.validarLetra();
+                    Nombre = validar.validarTexto();
                     mascota.setNombre(Nombre);
                     modifico++;
                     break;
@@ -573,14 +577,14 @@ void MascotaManager::ModificarMascota()
                 case OPC_ESPECIE:
                     std::cout << std::endl << "Especie Actual de la Mascota: " << mascota.getEspecie();
                     std::cout << std::endl << "Ingrese nueva Especie: ";
-                    Especie = validar.validarLetra();
+                    Especie = validar.validarTexto();
                     mascota.setEspecie(Especie);
                     modifico++;
                     break;
                 case OPC_RAZA:
                     std::cout << std::endl << "Raza Actual de la Mascota: " << mascota.getRaza();
                     std::cout << std::endl << "Ingrese nueva Raza: ";
-                    Raza = validar.validarLetra();
+                    Raza = validar.validarTexto();
                     mascota.setRaza(Raza);
                     modifico++;
                     break;

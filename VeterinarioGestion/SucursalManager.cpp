@@ -14,10 +14,10 @@ void SucursalManager::CargarSucursal()
 	Idsucursal = GenerarIdAutomatico();
     std::cin.ignore();
 	std::cout << "Ingrese el Nombre: ";
-	Nombre = validar.validarLetra();
+	Nombre = validar.validarTexto();
 
 	std::cout << "Ingrese la Direccion: ";
-	Direccion = validar.validarLetra();
+	Direccion = validar.validarTexto();
 
 
 	sucursal = Sucursales(Idsucursal, Nombre, Direccion, recaudacion, activo);
@@ -64,7 +64,7 @@ void SucursalManager::MostrarSucursal()
         std::cout << sucursal.getRecaudacion();
 
          rlutil::locate(65, i + 3);
-        std::cout << sucursal.getActivo();
+        std::cout << std::to_string(sucursal.getActivo());
 
 
 
@@ -229,7 +229,7 @@ void SucursalManager::ModificarSucursal()
                 case OPC_NOMBRE:
                     std::cout << "Nombre actual: " << sucursal.getNombre() << std::endl;
                     std::cout << "Ingrese nuevo nombre: ";
-                    Nombre = validar.validarLetra();
+                    Nombre = validar.validarTexto();
                     sucursal.setNombre(Nombre);
                     modifico++;
                     break;
@@ -237,7 +237,7 @@ void SucursalManager::ModificarSucursal()
                 case OPC_DIRECCION:
                     std::cout << "Direccion actual: " << sucursal.getDireccion() << std::endl;
                     std::cout << "Ingrese nueva direccion: ";
-                    Direccion = validar.validarLetra();
+                    Direccion = validar.validarTexto();
                     sucursal.setDireccion(Direccion);
                     modifico++;
                     break;

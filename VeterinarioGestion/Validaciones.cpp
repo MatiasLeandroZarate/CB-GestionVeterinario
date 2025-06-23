@@ -176,3 +176,37 @@ float Validaciones::validarFloat()
     return numdecimal;
 
 }
+
+std::string Validaciones::validarTexto()
+{
+    std::string str;
+    bool strValido = false;
+
+    while (!strValido)
+        {
+            int i = 0;
+            strValido = true;
+            std::getline(std::cin, str);
+
+            if(str.empty())  ///empty() , verifica si el str esta Vacio.
+                {
+                strValido = false;
+                }
+
+            while (str[i])
+                {
+                    char c = str[i];
+                    if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == ' '))
+                        {
+                            strValido = false;
+                        }
+                    i++;
+                }
+
+            if (!strValido)
+                {
+                    std::cout << "Dato Invalido, Ingresar Nuevamente." << std::endl;
+                }
+        }
+    return str;
+}

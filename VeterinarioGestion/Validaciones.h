@@ -14,4 +14,5 @@ public:
 	std::string validarLetra();
 	std::string validarNUMenString();
 	float validarFloat();
+	std::string validarTexto();
 };

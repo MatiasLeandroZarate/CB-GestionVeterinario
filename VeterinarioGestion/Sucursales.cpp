@@ -7,7 +7,7 @@ Sucursales::Sucursales()
 	strcpy(_Nombre, "");
 	strcpy(_Direccion, "");
 	_Recaudacion = 0.0f;
-	_Activo = true;
+	_Activo = false;
 }
 
 Sucursales::Sucursales(int idSucursal, std::string nombre, std::string direccion,float recaudacion, bool activo)
@@ -19,6 +19,7 @@ Sucursales::Sucursales(int idSucursal, std::string nombre, std::string direccion
 	setActivo(activo);
 }
 void Sucursales::setActivo(bool activo){
+_Activo = activo;
 }
 
 void Sucursales::setIDSucursal(int IDSucursal)
@@ -37,12 +38,12 @@ void Sucursales::setRecaudacion(float recaudacion)
 {
     _Recaudacion = recaudacion;
 }
+
+
+
 bool Sucursales::getActivo(){
     return _Activo;
 }
-
-
-
 int Sucursales::getIDSucursal()
 {
 	return _IDSucursal;
